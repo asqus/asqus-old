@@ -1,4 +1,10 @@
 AsqUs::Application.routes.draw do
+  
+  match 'reps/dashboard' => 'reps#dashboard', :as => :rep_dashboard
+
+  resources :users
+  resources :reps
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +54,7 @@ AsqUs::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'reps#index'
 
   # See how all your routes lay out with "rake routes"
 

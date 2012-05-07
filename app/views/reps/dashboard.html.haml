@@ -1,0 +1,10 @@
+#notice
+  = notice
+
+%p
+  %b User:
+  = @rep.user_id
+
+
+= link_to 'Edit', edit_rep_path(@rep) |
+= link_to 'Back', reps_path

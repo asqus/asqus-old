@@ -1,0 +1,23 @@
+<h1>Listing reps</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reps.each do |rep| %>
+  <tr>
+    <td><%= rep.user_id %></td>
+    <td><%= link_to 'Show', rep %></td>
+    <td><%= link_to 'Edit', edit_rep_path(rep) %></td>
+    <td><%= link_to 'Destroy', rep, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rep', new_rep_path %>
