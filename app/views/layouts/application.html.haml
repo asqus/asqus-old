@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    %title
+      AsqUs
+    
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = javascript_include_tag "http://www.google.com/jsapi"
+    = csrf_meta_tags
+    :javascript
+      google.load("maps", "2", {callback: receiveLocation});
+  %body
+
+    = yield
+

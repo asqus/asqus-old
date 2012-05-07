@@ -1,6 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
+gem 'json'
+gem 'ym4r'
+gem 'sunlight'
+gem 'govkit', :git => 'git://github.com/opengovernment/govkit.git'
+gem 'haml'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'

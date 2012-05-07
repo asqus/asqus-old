@@ -9,6 +9,11 @@ class RepsController < ApplicationController
       format.json { render :json => @reps }
     end
   end
+  
+  
+  def find_by_latlong
+    return render :json => Rep.find_by_latlong(params[:lat], params[:long])
+  end
 
 
   # GET /reps
