@@ -1,4 +1,3 @@
-
 // Poll Item View
 // --------------
 
@@ -6,7 +5,7 @@ var PollView = Backbone.View.extend({
   tagName:  "li",
 
   // Cache the template function for a single item.
-  template: _.template(t_poll_item),
+  template: JST['templates/poll_item'],
 
   // The DOM events specific to an item.
   events: {

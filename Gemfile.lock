@@ -141,6 +141,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.1.1)
   dalli
+  ejs
   govkit!
   haml
   jquery-rails

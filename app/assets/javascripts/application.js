@@ -15,12 +15,10 @@
 //= require_tree ./views
 //= //require_tree .
 
-
 $(function(){
 
   // Create our global collection of **Polls**.
   var Polls = new PollList;
-
 
   // The Application
   // ---------------
@@ -33,7 +31,7 @@ $(function(){
     el: $("#pollContainer"),
 
     // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template(t_poll_stats),
+    statsTemplate: JST['templates/poll_stats'],
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
@@ -63,6 +61,7 @@ $(function(){
     render: function() {
       var published = Polls.published().length;
       var unpublished = Polls.unpublished().length;
+      console.log(Polls.published().length);
 
       if (Polls.length) {
         this.main.show();
