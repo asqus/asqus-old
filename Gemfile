@@ -8,6 +8,7 @@ gem 'sunlight'
 gem 'haml'
 gem 'dalli'  # For memcached access
 gem 'rails-backbone'
+gem 'ejs'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
