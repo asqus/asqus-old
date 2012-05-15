@@ -1,5 +1,7 @@
 AsqUs::Application.routes.draw do
   
+  resources :groups
+
   match 'reps/dashboard' => 'reps#dashboard', :as => :rep_dashboard
   match 'reps/find_by_latlong' => 'reps#find_by_latlong'
 

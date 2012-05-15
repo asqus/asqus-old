@@ -4,7 +4,7 @@ gem 'rails', '3.1.3'
 gem 'json'
 gem 'ym4r'
 gem 'sunlight'
-gem 'govkit', :git => 'git://github.com/opengovernment/govkit.git'
+#gem 'govkit', :git => 'git://github.com/opengovernment/govkit.git'
 gem 'haml'
 gem 'dalli'  # For memcached access
 gem 'rails-backbone'
@@ -45,3 +45,4 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'rails-backbone'
