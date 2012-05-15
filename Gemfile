@@ -7,6 +7,7 @@ gem 'sunlight'
 gem 'govkit', :git => 'git://github.com/opengovernment/govkit.git'
 gem 'haml'
 gem 'dalli'  # For memcached access
+gem 'rails-backbone'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
