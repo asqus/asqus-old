@@ -1,4 +1,5 @@
 
+/*
 // Poll Item View
 // --------------
 
@@ -63,4 +64,4 @@ var PollView = Backbone.View.extend({
 
 });
 
-
+*/
