@@ -9,6 +9,10 @@ gem 'haml'
 gem 'dalli'  # For memcached access
 gem 'rails-backbone'
 gem 'ejs'
+gem 'devise'    # For user accounts
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
