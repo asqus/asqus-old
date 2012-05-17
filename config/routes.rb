@@ -1,5 +1,7 @@
 AsqUs::Application.routes.draw do
   
+  resources :polls
+
   resources :groups
 
   match 'reps/dashboard' => 'reps#dashboard', :as => :rep_dashboard
