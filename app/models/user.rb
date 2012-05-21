@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   has_one :rep
+  has_many :polls
 
   def is_rep?
     !self.rep.nil?
