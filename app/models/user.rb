@@ -7,5 +7,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  belongs_to :rep
+  has_one :rep
+
+  def is_rep?
+    !self.rep.nil?
+  end
+
 end

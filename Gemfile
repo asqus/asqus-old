@@ -13,6 +13,7 @@ gem 'devise'    # For user accounts
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'quiet_assets', :group => :development  # For muting asset logging
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'

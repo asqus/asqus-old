@@ -12,6 +12,13 @@
 
 ActiveRecord::Schema.define(:version => 20120516230646) do
 
+  create_table "groups", :force => true do |t|
+    t.string   "title"
+    t.integer  "members"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reps", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"

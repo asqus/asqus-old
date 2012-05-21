@@ -1,4 +1,16 @@
 class UsersController < ApplicationController
+
+
+  before_filter :authenticate_user!, :only => [ :home ]
+
+  def home
+    if current_user.is_rep?
+      return redirect_to :rep_home
+    else
+      return redirect_to current_user
+    end
+  end
+
   # GET /users
   # GET /users.json
   def index

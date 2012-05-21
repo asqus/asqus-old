@@ -1,0 +1,14 @@
+:javascript
+  $(function() {
+    window.router = new AsqUs.Routers.RepsRouter({rep: #{@rep.to_json.html_safe}});
+    Backbone.history.start();
+  });
+
+%h1 Rep Index
+
+= @rep.to_json
+
+#rep_wrapper
+  = render :partial => 'reps/nav'
+  #content.rightRounded
+

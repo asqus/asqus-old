@@ -1,5 +1,5 @@
 class Rep < ActiveRecord::Base
-  has_one :user
+  belongs_to :user
   
   def self.find_by_latlong(lat, long)
     logger.info 'Looking up rep for ' + lat.to_s + ' ' + long.to_s

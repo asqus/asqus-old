@@ -8,6 +8,7 @@ AsqUs::Application.routes.draw do
   match 'reps/find_by_latlong' => 'reps#find_by_latlong'
 
   match 'users/home' => 'users#home', :as => :user_home
+  match 'reps/home' => 'reps#home', :as => :rep_home
 
   resources :users
   resources :reps

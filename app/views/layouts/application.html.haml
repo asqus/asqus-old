@@ -11,6 +11,11 @@
     :javascript
       //google.load("maps", "2", {callback: receiveLocation});
   %body
+    
+    .flash_notice
+      = flash[:notice]
+    .flash_error
+      = flash[:error]
 
     = yield
 

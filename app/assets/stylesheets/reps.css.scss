@@ -1,3 +1,84 @@
 // Place all the styles related to the Reps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+body {
+  background: url(image-path('lyonnette.png'));
+}
+
+#rep_wrapper {
+  width: 1000px;
+  height: 554px;
+  overflow: hidden;
+}
+
+#content {
+  float: right;
+  width: 715px;
+  height: 100%;
+  padding: 20px;
+  background-color: #CEF;
+  opacity: 0.8;
+}
+
+
+#nav {
+  float: left;
+  width: 205px;
+  overflow: hidden;
+  padding: 38px 40px 68px 0px;
+  background-color: #CCC;
+  opacity: 0.8;
+}
+
+.navItem {
+  float: left;
+  width: 150%;
+  height: 62px;
+  margin-top: 14px;
+  margin-left: -50px;
+  font-size: 24pt;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  padding-left: 55px;
+  padding-top: 34px;
+  text-decoration: none;
+
+  /** /
+  -moz-transform: rotate(-30deg) skew(-30deg, 0deg);
+  -webkit-transform: rotate(-30deg) skew(-30deg, 0deg);
+  -o-transform: rotate(-30deg) skew(-30deg, 0deg);
+  -ms-transform: rotate(-30deg) skew(-30deg, 0deg);
+  transform: rotate(-30deg) skew(-30deg, 0deg);
+  /**/
+
+  /**/
+  -moz-transform: rotate(-30deg);
+  -webkit-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+  /**/
+}
+  
+  a.navItem:hover {
+    background-color: #222;
+  }
+
+  .navItem.highlight {
+    background-color: #CEF;
+  }
+
+
+.leftRounded {
+  -webkit-border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 10px; 
+}
+
+.rightRounded {
+  -webkit-border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0; 
+}
+
+
