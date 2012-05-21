@@ -1,0 +1,30 @@
+<h1>New poll</h1>
+
+<form id="new-poll" name="poll">
+  <div class="field">
+    <label for="title"> title:</label>
+    <input type="text" name="title" id="title" value="<%= title %>" >
+  </div>
+
+  <div class="field">
+    <label for="prompt"> prompt:</label>
+    <input type="text" name="prompt" id="prompt" value="<%= prompt %>" >
+  </div>
+
+  <div class="field">
+    <label for="category"> category:</label>
+    <input type="text" name="category" id="category" value="<%= category %>" >
+  </div>
+
+  <div class="field">
+    <label for="published"> published:</label>
+    <input type="text" name="published" id="published" value="<%= published %>" >
+  </div>
+
+  <div class="actions">
+    <input type="submit" value="Create Poll" />
+  </div>
+
+</form>
+
+<a href="#/ask">Back</a>
