@@ -4,6 +4,8 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
     @reps.reset options.rep
     @rep = options.rep
     @model = new AsqUs.Models.Rep()
+    @polls = new AsqUs.Collections.PollsCollection()
+    @polls.reset options.polls
     this.bind 'all', ->
       console.log 'Route event'
     
@@ -39,6 +41,10 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
     $('#nav .navItem').removeClass('highlight')
     $('#nav .navItem#askNav').addClass('highlight')
     $("#reps").html(@view.render().el)
+    console.log(@polls)
+    @view2 = new AsqUs.Views.Polls.ListView(polls: @polls)
+    console.log(@view2.render().el)
+    $("#poll_list").html(@view2.render().el)
 
   answer: ->
     console.log('answer');
