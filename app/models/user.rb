@@ -13,4 +13,9 @@ class User < ActiveRecord::Base
     !self.rep.nil?
   end
 
+  def is_admin?
+    self.admin
+  end
+
+
 end

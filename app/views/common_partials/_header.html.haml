@@ -1,0 +1,12 @@
+
+-if user_signed_in?
+  -if current_user.is_admin?
+    #admin_controls
+      = link_to 'User', :user_home
+      = link_to 'Rep', :rep_home
+
+.flash_notice
+  = flash[:notice]
+.flash_error
+  = flash[:error]
+

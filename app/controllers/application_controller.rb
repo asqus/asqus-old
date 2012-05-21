@@ -8,9 +8,10 @@ class ApplicationController < ActionController::Base
   # If the currently signed in user is not a rep, redirect him to last_clean_url with an error.
   def assert_rep!
     authenticate_user!
-    if current_user.rep
+    if current_user.is_rep?
       return true
     else
+      flash[:error] = 'Oops, you must be democratically elected to view that page.'
       redirect_to session[:last_clean_url]
     end
   end
