@@ -6,7 +6,8 @@ class RepsController < ApplicationController
   def home
     @reps = Rep.all
     @rep = current_user.rep
-    
+    @polls = Poll.all
+
     if @rep.nil?
       return redirect_to :user_home, :error => 'Oops, you must be democratically elected to view that page.'
     end
@@ -24,6 +25,9 @@ class RepsController < ApplicationController
   # GET /reps.json
   def index
     #return redirect_to :controller => :rep, :action => :home
+    @polls = Poll.all
+    @reps = Rep.all
+
   end
 
 

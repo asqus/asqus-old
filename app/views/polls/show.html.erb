@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @poll.title %>
+</p>
+
+<p>
+  <b>Prompt:</b>
+  <%= @poll.prompt %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @poll.category %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%= @poll.published %>
+</p>
+
+
+<%= link_to 'Edit', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>

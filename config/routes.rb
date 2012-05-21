@@ -1,5 +1,6 @@
 AsqUs::Application.routes.draw do
   
+  resources :polls
   devise_for :users
 
   resources :groups

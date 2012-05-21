@@ -1,0 +1,12 @@
+
+<div id="polls_list"></div>
+<div id="polls"></div>
+
+<script type="text/javascript">
+  $(function() {
+    window.router = new AsqUs.Routers.PollsRouter({polls:
+      <%= @polls.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>
+
