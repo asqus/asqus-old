@@ -14,6 +14,7 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
     "home"      : "home"
     "community" : "community"
     "ask"       : "ask"
+    "ask/new"   : "newPoll"
     "answer"    : "answer"
     "new"       : "newRep"
     "index"     : "index"
@@ -45,6 +46,12 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
     @view2 = new AsqUs.Views.Polls.ListView(polls: @polls)
     console.log(@view2.render().el)
     $("#poll_list").html(@view2.render().el)
+    $("#poll_new").html("")
+
+  newPoll: ->
+    console.log('new poll');
+    @view = new AsqUs.Views.Polls.NewView(collection: @polls)
+    $("#poll_new").html(@view.render().el)
 
   answer: ->
     console.log('answer');
