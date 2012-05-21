@@ -4,10 +4,12 @@
     Backbone.history.start();
   });
   window.setTimeout (function() {
-    navItem.style.WebkitTransition = '-webkit-transform 300ms ease-in-out';
-    navItem.style.WebkitTransform = 'translate3d(0, 0, 0) rotate(5deg)';
+    nav.style.WebkitTransition = '-webkit-transform 300ms ease-in-out';
+    nav.style.WebkitTransform = 'translate3d(0, 0, 0) rotate(0deg)';
+    nav.style.WebkitTransition = 'backface-visibility:hidden';
+    nav.style.WebkitTransition = '-webkit-backface-visibility:hidden;' /* Chrome and Safari */
+    nav.style.WebkitTransition = '-moz-backface-visibility:hidden;' /* Firefox */
   }, 0);
-    
 
 = link_to image_tag( '/logo.jpg'), 'logo.jpg' 
 
