@@ -1,13 +1,17 @@
 class RepsController < ApplicationController
 
+  before_filter :authenticate_user!, :only => [ :home ]
+  #before_filter :assert_rep!, :only => [ :home ]
 
-  def dashboard
+  def home
     @reps = Rep.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @reps }
+    @rep = current_user.rep
+    
+    if @rep.nil?
+      return redirect_to :user_home, :error => 'Oops, you must be democratically elected to view that page.'
     end
+
+    return redirect_to reps_url( :anchor => 'home' )
   end
   
   
@@ -19,7 +23,7 @@ class RepsController < ApplicationController
   # GET /reps
   # GET /reps.json
   def index
-    return redirect_to :action => :dashboard
+    #return redirect_to :controller => :rep, :action => :home
   end
 
 
