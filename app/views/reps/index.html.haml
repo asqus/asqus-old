@@ -1,6 +1,6 @@
 :javascript
   $(function() {
-    window.router = new AsqUs.Routers.RepsRouter({rep: #{@rep.to_json.html_safe}});
+    window.router = new AsqUs.Routers.RepsRouter({rep: #{@rep.to_json.html_safe}, polls: #{@polls.to_json.html_safe}});
     Backbone.history.start();
   //var nav = document.getElementById('nav');
   //window.setTimeout (function() {

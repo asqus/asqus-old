@@ -6,7 +6,7 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @polls }
+      format.json { render :json => @polls }
     end
   end
 
@@ -17,7 +17,7 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @poll }
+      format.json { render :json => @poll }
     end
   end
 
@@ -28,7 +28,7 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @poll }
+      format.json { render :json => @poll }
     end
   end
 
@@ -44,11 +44,11 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       if @poll.save
-        format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
-        format.json { render json: @poll, status: :created, location: @poll }
+        format.html { redirect_to @poll, :notice => 'Poll was successfully created.' }
+        format.json { render :json => @poll, :status => :created, :location => @poll }
       else
-        format.html { render action: "new" }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @poll.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       if @poll.update_attributes(params[:poll])
-        format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
+        format.html { redirect_to @poll, :notice => 'Poll was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @poll.errors, :status => :unprocessable_entity }
       end
     end
   end
