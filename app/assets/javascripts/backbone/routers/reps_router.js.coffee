@@ -1,13 +1,12 @@
 class AsqUs.Routers.RepsRouter extends Backbone.Router
   initialize: (options) ->
     @reps = new AsqUs.Collections.RepsCollection()
-    @reps.reset options.rep
+    @reps.reset options.reps
     @rep = options.rep
     @model = new AsqUs.Models.Rep()
     @polls = new AsqUs.Collections.PollsCollection()
     @polls.reset options.polls
-    this.bind 'all', ->
-      console.log 'Route event'
+    this.on('all', this.updateNavBar)
     
 
   routes:
@@ -21,26 +20,27 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
     ":id/edit"  : "edit"
     ":id"       : "show"
     ".*"        : "index"
+  
+  updateNavBar: ->
+    fragment = Backbone.history.fragment
+    currentNav = $("#nav .navItem##{fragment}Nav")
+    if (currentNav.size() != 0)
+      $('#nav .navItem').removeClass('highlight')
+      currentNav.addClass('highlight')
 
   home: ->
     console.log('repHome');
     @view = new AsqUs.Views.Reps.HomeView(rep: @rep, model: @model)
-    $('#nav .navItem').removeClass('highlight')
-    $('#nav .navItem#homeNav').addClass('highlight')
     $("#reps").html(@view.render().el)
 
   community: ->
-    console.log('community');
+    console.log('Community');
     @view = new AsqUs.Views.Reps.CommunityView(rep: @rep, model: @model)
-    $('#nav .navItem').removeClass('highlight')
-    $('#nav .navItem#communityNav').addClass('highlight')
     $("#reps").html(@view.render().el)
 
   ask: ->
     console.log('ask');
     @view = new AsqUs.Views.Reps.AskView(rep: @rep, model: @model)
-    $('#nav .navItem').removeClass('highlight')
-    $('#nav .navItem#askNav').addClass('highlight')
     $("#reps").html(@view.render().el)
     console.log(@polls)
     @view2 = new AsqUs.Views.Polls.ListView(polls: @polls)
@@ -56,8 +56,6 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
   answer: ->
     console.log('answer');
     @view = new AsqUs.Views.Reps.AnswerView(rep: @rep, model: @model)
-    $('#nav .navItem').removeClass('highlight')
-    $('#nav .navItem#answerNav').addClass('highlight')
     $("#reps").html(@view.render().el)
 
   newRep: ->
@@ -73,9 +71,12 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
   show: (id) ->
     console.log('rep show');
     rep = @reps.get(id)
-
-    @view = new AsqUs.Views.Reps.ShowView(model: rep)
+    console.log rep
+    
+    @view = new AsqUs.Views.Reps.CommunityView(model: rep)
+    @showView = new AsqUs.Views.Reps.ShowView(model: rep)
     $("#reps").html(@view.render().el)
+    $('#rep_container').html(@showView.render().el)
 
   edit: (id) ->
     console.log('rep edit');

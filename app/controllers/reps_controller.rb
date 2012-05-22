@@ -27,7 +27,11 @@ class RepsController < ApplicationController
     #return redirect_to :controller => :rep, :action => :home
     @polls = Poll.all
     @reps = Rep.all
-
+    
+    respond_to do |format|
+      format.html
+      format.json { render :json => @reps, :include => :user }
+    end
   end
 
 

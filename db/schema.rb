@@ -10,13 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516230646) do
+ActiveRecord::Schema.define(:version => 20120521055959) do
 
   create_table "groups", :force => true do |t|
     t.string   "title"
     t.integer  "members"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "polls", :force => true do |t|
+    t.string   "title"
+    t.text     "prompt"
+    t.string   "category"
+    t.boolean  "published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "creator_id"
   end
 
   create_table "reps", :force => true do |t|
@@ -34,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20120516230646) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -50,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20120516230646) do
     t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.boolean  "admin",                  :default => false, :null => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

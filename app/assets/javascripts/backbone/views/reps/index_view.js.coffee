@@ -14,8 +14,9 @@ class AsqUs.Views.Reps.IndexView extends Backbone.View
     @$("tbody").append(view.render().el)
 
   render: =>
+    console.log('IndexView options: ')
     console.log(@options)
-    $(@el).html(@template(rep: @options.rep.toJSON() ))
+    $(@el).html(@template(reps: @options.reps.toJSON() ))
     @addAll()
 
     return this

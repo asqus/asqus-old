@@ -4,5 +4,9 @@ class AsqUs.Views.Reps.ShowView extends Backbone.View
   template: JST["backbone/templates/reps/show"]
 
   render: ->
+    console.log 'Show view:'
+    @model.fetch()
+    window.asdf = @model
+    console.log @model.toJSON()
     $(@el).html(@template(@model.toJSON() ))
     return this
