@@ -5,8 +5,8 @@ class AsqUs.Views.Reps.ShowView extends Backbone.View
 
   render: ->
     console.log 'Show view:'
-    @model.fetch()
-    window.asdf = @model
+    #@model.fetch()
+    window.asdf = this.options
     console.log @model.toJSON()
     $(@el).html(@template(@model.toJSON() ))
     return this

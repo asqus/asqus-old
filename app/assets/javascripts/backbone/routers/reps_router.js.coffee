@@ -21,6 +21,7 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
     ":id"       : "show"
     ".*"        : "index"
   
+
   updateNavBar: ->
     fragment = Backbone.history.fragment
     currentNav = $("#nav .navItem##{fragment}Nav")
@@ -28,15 +29,18 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
       $('#nav .navItem').removeClass('highlight')
       currentNav.addClass('highlight')
 
+
   home: ->
     console.log('repHome');
     @view = new AsqUs.Views.Reps.HomeView(rep: @rep, model: @model)
     $("#reps").html(@view.render().el)
 
+
   community: ->
     console.log('Community');
     @view = new AsqUs.Views.Reps.CommunityView(rep: @rep, model: @model)
     $("#reps").html(@view.render().el)
+
 
   ask: ->
     console.log('ask');
@@ -48,35 +52,42 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
     $("#poll_list").html(@view2.render().el)
     $("#poll_new").html("")
 
+
   newPoll: ->
     console.log('new poll');
     @view = new AsqUs.Views.Polls.NewView(collection: @polls)
     $("#poll_new").html(@view.render().el)
+
 
   answer: ->
     console.log('answer');
     @view = new AsqUs.Views.Reps.AnswerView(rep: @rep, model: @model)
     $("#reps").html(@view.render().el)
 
+
   newRep: ->
     console.log('new rep');
     @view = new AsqUs.Views.Reps.NewView(collection: @reps)
     $("#reps").html(@view.render().el)
+
 
   index: ->
     console.log('rep index');
     @view = new AsqUs.Views.Reps.IndexView(reps: @reps)
     $("#reps").html(@view.render().el)
 
+
   show: (id) ->
-    console.log('rep show');
+    console.log("rep show id: #{ id }");
     rep = @reps.get(id)
     console.log rep
+    console.log @reps
     
     @view = new AsqUs.Views.Reps.CommunityView(model: rep)
     @showView = new AsqUs.Views.Reps.ShowView(model: rep)
     $("#reps").html(@view.render().el)
     $('#rep_container').html(@showView.render().el)
+
 
   edit: (id) ->
     console.log('rep edit');
@@ -84,4 +95,5 @@ class AsqUs.Routers.RepsRouter extends Backbone.Router
 
     @view = new AsqUs.Views.Reps.EditView(model: rep)
     $("#reps").html(@view.render().el)
+
 

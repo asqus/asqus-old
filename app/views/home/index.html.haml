@@ -1,5 +1,16 @@
+:javascript
+  $(function() {
+    window.router = new AsqUs.Routers.HomeRouter({polls: #{@polls.to_json.html_safe}});
+    Backbone.history.start();
+  });
+
+
 
 #message
   Finding your representatives.
 
 #repContainer
+
+
+#home
+

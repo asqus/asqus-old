@@ -6,6 +6,8 @@ class AsqUs.Models.Poll extends Backbone.Model
     prompt: null
     category: null
     published: null
+    creator_id: null
+    
 
 class AsqUs.Collections.PollsCollection extends Backbone.Collection
   model: AsqUs.Models.Poll

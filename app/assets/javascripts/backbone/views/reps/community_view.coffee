@@ -16,6 +16,7 @@ class AsqUs.Views.Reps.CommunityView extends Backbone.View
       error: ->
         new Error({ message: 'Error loading representatives.' })
     );
+    
     $(@el).html(@template(@model.toJSON() ))
     #this.$('#nav').html(JST['backbone/templates/reps/_nav'])
     return this

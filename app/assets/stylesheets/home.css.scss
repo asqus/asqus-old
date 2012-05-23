@@ -1,3 +1,30 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#state {
+  width: 553px;
+  height: 500px;
+}
+
+  #state img.state_graphic {
+    height: 100%;
+    width: 100%;
+  }
+
+.speech_bubble {
+  background-image: url(speech_bubble_sprite_small.png);
+  background-repeat: no-repeat;
+  height: 32px;
+  width: 41px;
+}
+
+  .speech_bubble.from_left {
+    background-position: -41px 0;
+  }
+  
+  .speech_bubble.from_right {
+    background-position: 0 0;
+  }
+
