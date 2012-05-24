@@ -2,13 +2,9 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all
-    @polls.each_with_index { |poll, i|
-      i = 5 if i > 5
-      #poll = poll.attributes
-      poll['map_x_coord'] = 10 + i*5
-      poll['map_y_coord'] = 10 + i*5
-    }
+    @polls = Poll.all_with_map_coords
+    
+    # Add in creator information
 
     respond_to do |format|
       format.html # index.html.erb

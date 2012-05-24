@@ -2,6 +2,8 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
   initialize: (options) ->
     @polls = new AsqUs.Collections.PollsCollection()
     @polls.reset options.polls
+    @state = options.location.state
+    console.log(options)
 
   routes:
     "new"      : "newHome"
@@ -11,6 +13,6 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     ".*"        : "index"
 
   index: ->
-    @view = new AsqUs.Views.Home.MapView(polls: @polls)
+    @view = new AsqUs.Views.Home.MapView(polls: @polls, el: '#map', state: @state)
     $("#home").html(@view.render().el)
 

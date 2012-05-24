@@ -7,6 +7,8 @@ class AsqUs.Models.Poll extends Backbone.Model
     category: null
     published: null
     creator_id: null
+    map_x_coord: 0
+    map_y_coord: 0
     
 
 class AsqUs.Collections.PollsCollection extends Backbone.Collection

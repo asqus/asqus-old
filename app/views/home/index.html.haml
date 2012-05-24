@@ -1,6 +1,11 @@
 :javascript
   $(function() {
-    window.router = new AsqUs.Routers.HomeRouter({polls: #{@polls.to_json.html_safe}});
+    window.router = new AsqUs.Routers.HomeRouter({
+      polls: #{@polls.to_json.html_safe},
+      location: {
+        state: '#{@state_name}'
+      }
+    });
     Backbone.history.start();
   });
 
@@ -13,4 +18,5 @@
 
 
 #home
+  #map
 
