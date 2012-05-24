@@ -3,7 +3,6 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     @polls = new AsqUs.Collections.PollsCollection()
     @polls.reset options.polls
     @state = options.location.state
-    console.log(options)
 
   routes:
     "new"      : "newHome"

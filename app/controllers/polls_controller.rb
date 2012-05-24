@@ -2,7 +2,7 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all_with_map_coords
+    @polls = Poll.all_with_map_information
     
     # Add in creator information
 
