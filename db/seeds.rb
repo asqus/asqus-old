@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+
+# Require all files in db/seeds/
+Dir[File.dirname(__FILE__) + '/seeds/*.rb'].each {|file| require file; puts file }
+
