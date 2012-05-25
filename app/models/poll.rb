@@ -2,6 +2,7 @@ class Poll < ActiveRecord::Base
   belongs_to :creator, :class_name => "User"
   
   def self.all_with_map_information
+    #Poll.find_by_sql('SELECT polls.title, users.first_name, reps.created_at FROM polls JOIN users ON users.id = polls.creator_id JOIN reps ON reps.user_id = users.id')
     results = Poll.all  
     results.each_with_index { |poll, i|
       case i

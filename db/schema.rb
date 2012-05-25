@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521055959) do
+ActiveRecord::Schema.define(:version => 20120524234857) do
 
   create_table "groups", :force => true do |t|
     t.string   "title"
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(:version => 20120521055959) do
 
   create_table "reps", :force => true do |t|
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.integer  "state_id"
+    t.string   "district"
+    t.string   "chamber"
+    t.string   "level"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.string   "ansi_code"
+    t.string   "statens"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
