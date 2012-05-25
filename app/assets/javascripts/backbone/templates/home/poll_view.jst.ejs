@@ -1,0 +1,15 @@
+<script>
+    $(function() {
+        $("button", ".poll_info").button();
+    });
+</script>
+
+<div class="poll-info">
+    <h1><%= title %></h1>
+    <h2><%= category %></h2>
+    <p><%= prompt %></p>
+    <button class="pollAnswer agree">Good Idea</button>
+    <button class="pollAnswer disagree">Bad Idea</button>
+</div>
+        
+

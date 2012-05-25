@@ -1,0 +1,26 @@
+<script>
+  $(function() {
+    $( "#location-confirm" ).dialog({
+        resizable: false,
+        height:140,
+        width:430,
+        modal: true,
+        buttons: {
+            "Yes, I live in <%= city %>": function() {
+                $( this ).dialog( "close" );
+            },
+            "No, I live elsewhere": function() {
+                $( this ).dialog( "close" );
+            }
+        }
+	});
+  });
+</script>
+
+
+<div id="location-confirm" title="Connect with your representatives">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+    We think you live in <%= city %>, is this correct?</p>
+</div>
+        
+
