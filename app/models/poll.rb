@@ -2,9 +2,27 @@ class Poll < ActiveRecord::Base
   belongs_to :creator, :class_name => "User"
   
   def self.all_with_map_information
-    #Poll.find_by_sql('SELECT polls.title, users.first_name, reps.created_at FROM polls JOIN users ON users.id = polls.creator_id JOIN reps ON reps.user_id = users.id')
-    results = Poll.all  
+    results = Poll.find_by_sql(
+      "SELECT polls.*, reps.*, users.first_name, users.last_name, users.zipcode
+      FROM polls
+      JOIN users ON users.id = polls.creator_id
+      JOIN reps ON reps.user_id = users.id
+      WHERE polls.published = #{ActiveRecord::Base.connection.quoted_true}"
+    )
     results.each_with_index { |poll, i|
+      logger.info poll.first_name
+      case poll['zipcode']
+        when '49501'
+          x = 92
+          y = 67
+        when '48854'
+          x = 57.5
+          y = 74
+        else
+          x = 79
+          y = 87.5
+      end
+=begin
       case i
         when 0
           x = 79
@@ -46,9 +64,11 @@ class Poll < ActiveRecord::Base
           }
         end
       i = 5 if i > 5
+=end
       poll['map_x_coord'] = x
       poll['map_y_coord'] = y
-      poll['creator_info'] = creator_info
+      poll['poll_type'] = (poll['chamber'] ? 'rep' : 'user')
+
     }
   end
   

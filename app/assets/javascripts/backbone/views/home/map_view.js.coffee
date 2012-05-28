@@ -32,7 +32,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     
     @options.polls.each (poll) ->
       question_bubble = $('<div class="speech_bubble"></div>')
-      bubble_direction = if (poll.attributes.creator_info.type == 'user') then 'from_right' else 'from_left'
+      bubble_direction = if (poll.attributes.poll_type == 'user') then 'from_right' else 'from_left'
       question_bubble.addClass(bubble_direction)
       question_bubble.css
         left: "#{poll.attributes.map_x_coord / 100 * mapWidth}px"
