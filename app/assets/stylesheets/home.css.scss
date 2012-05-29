@@ -28,12 +28,20 @@
   width: 41px;
 }
 
-  .speech_bubble.from_left {
+  .speech_bubble.from_right {
     background-position: -41px 0;
   }
   
-  .speech_bubble.from_right {
+  .speech_bubble.from_right.hl {
+    background-position: -123px 0;
+  }
+
+  .speech_bubble.from_left {
     background-position: 0 0;
+  }
+
+  .speech_bubble.from_left.hl {
+    background-position: -82px 0;
   }
 
 
