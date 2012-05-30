@@ -1,3 +1,73 @@
+:javascript
+  $(function() {
+    $("#login_register").dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Get started now": function() {
+          // Proceed
+          $( this ).dialog( "close" );
+        },
+        "Cancel": function() {
+          $( this ).dialog( "close" );
+        }
+      },
+      close: function() {
+        
+      }
+    });
+    $('.sign_in_button').click(function() {
+      $('#login_register').dialog('open');
+    });  //{
+  });
+
+
+.header.row
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+
+        = link_to 'Home', root_url, :class => 'brand pull-left'
+
+        %ul.nav
+          -if user_signed_in?
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
+              = link_to 'Propose', {:controller => '/users', :action => 'new'}
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+              = link_to 'Policy', '/'
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+              = link_to 'People', '/'
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+              = link_to 'Profile', '/'
+          -else
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
+              = link_to 'Propose', '#login_register', :class => 'sign_in_button'
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+              = link_to 'Policy', '/'
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+              = link_to 'People', '/'
+            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+              = link_to 'Profile', '#login_register', :class => 'sign_in_button'
+          %li.divider-vertical
+
+        %form.navbar-search.pull-left
+          %input{ :type => "text", :class => "search-query", :placeholder => "Search" }
+
+        %ul.nav.pull-right
+          -if user_signed_in?
+            %li
+              = link_to 'Log out', :destroy_user_session, { :method => :delete }
+          -else
+            %li
+              = link_to 'Log in', '#', :class => 'sign_in_button'
+            
+            %li.divider-vertical
+            %li
+              = link_to 'Sign up', '#', :class => 'sign_in_button'
+
+= render :partial => 'common_partials/user_forms'
 
 -if user_signed_in?
   -if current_user.is_admin?

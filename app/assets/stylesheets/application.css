@@ -20,3 +20,8 @@
     height: 20px;
     border: 1px solid #633;
   }
+  
+/* Fix for JQuery UI Dialog scrollbar bug */
+.ui-widget-overlay {
+  position: fixed !important;
+}
