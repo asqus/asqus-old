@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @poll_option_set.type %>
+</p>
+
+<p>
+  <b>Options:</b>
+  <%= @poll_option_set.options %>
+</p>
+
+<p>
+  <b>Poll:</b>
+  <%= @poll_option_set.poll_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @poll_option_set.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_poll_option_set_path(@poll_option_set) %> |
+<%= link_to 'Back', poll_option_sets_path %>

@@ -72,11 +72,18 @@ justin_amash =
   })
 
 
+yes_or_no = 
+  PollOptionSet.create(
+    :options_type => 'binary',
+    :num_options => 2,
+    :options => "  { \"0\": \"Yes\", \"1\": \"No\" }  "
+  )
 
 Poll.create({
   :creator_id => justin_amash.id,
   :title => 'Title',
   :prompt => 'Do you support CISPA?',
+  :poll_option_set_id => yes_or_no.id,
   :published => true
 })
 
@@ -85,6 +92,8 @@ Poll.create({
   :creator_id => rick_snyder.id,
   :title => 'Cyber charter',
   :prompt => 'Do you think we should expand cyber charter schools in Michigan?',
+  :poll_option_set_id => yes_or_no.id,
   :published => true
 })
+
 

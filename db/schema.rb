@@ -10,11 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524234857) do
+ActiveRecord::Schema.define(:version => 20120530184701) do
 
   create_table "groups", :force => true do |t|
     t.string   "title"
     t.integer  "members"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "poll_option_sets", :force => true do |t|
+    t.string   "options_type", :null => false
+    t.text     "options",      :null => false
+    t.integer  "num_options",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20120524234857) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "creator_id"
+    t.integer  "poll_option_set_id"
+    t.integer  "recipient_id"
   end
 
   create_table "reps", :force => true do |t|
@@ -81,5 +91,13 @@ ActiveRecord::Schema.define(:version => 20120524234857) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "poll_option_set_index", :null => false
+    t.integer  "poll_id"
+    t.integer  "voter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -1,6 +1,9 @@
 AsqUs::Application.routes.draw do
   
-  resources :polls
+  resources :votes
+
+  resources :poll_option_sets
+
   devise_for :users
 
   resources :groups
@@ -13,6 +16,11 @@ AsqUs::Application.routes.draw do
 
   resources :users
   resources :reps
+
+
+  resources :polls
+  match 'polls/:id/vote/:option' => 'polls#vote', :as => :poll_vote
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,29 @@
+<h1>Listing poll_option_sets</h1>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Options</th>
+    <th>Poll</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @poll_option_sets.each do |poll_option_set| %>
+  <tr>
+    <td><%= poll_option_set.type %></td>
+    <td><%= poll_option_set.options %></td>
+    <td><%= poll_option_set.poll_id %></td>
+    <td><%= poll_option_set.user_id %></td>
+    <td><%= link_to 'Show', poll_option_set %></td>
+    <td><%= link_to 'Edit', edit_poll_option_set_path(poll_option_set) %></td>
+    <td><%= link_to 'Destroy', poll_option_set, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Poll option set', new_poll_option_set_path %>

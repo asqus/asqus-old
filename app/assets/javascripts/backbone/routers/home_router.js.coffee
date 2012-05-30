@@ -5,7 +5,6 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     @state = options.location.state
     @city = options.location.city
     @user_auth = options.user_auth
-    console.log(options)
 
   routes:
     "new"      : "newHome"
