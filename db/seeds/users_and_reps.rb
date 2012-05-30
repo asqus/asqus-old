@@ -1,5 +1,5 @@
 
-User.create(
+jake_schwarz = User.create(
   :first_name => 'Jake',
   :last_name => 'Schwartz',
   :email => 'jake@asq.us',
@@ -10,7 +10,7 @@ User.create(
 )
 
 
-User.create({
+adam_williams = User.create({
   :first_name => 'Adam',
   :last_name => 'Williams',
   :email => 'adam@asq.us',
@@ -21,7 +21,7 @@ User.create({
 })
 
 
-User.create({
+brad_chick = User.create({
   :first_name => 'Brad',
   :last_name => 'Chick',
   :email => 'brad@asq.us',
@@ -83,8 +83,8 @@ Poll.create({
 
 Poll.create({
   :creator_id => rick_snyder.id,
-  :title => 'Title2',
-  :prompt => 'Prompt2',
+  :title => 'Cyber charter',
+  :prompt => 'Do you think we should expand cyber charter schools in Michigan?',
   :published => true
 })
 
