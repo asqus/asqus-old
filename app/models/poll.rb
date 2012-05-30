@@ -13,14 +13,14 @@ class Poll < ActiveRecord::Base
       logger.info poll.first_name
       case poll['zipcode']
         when '49501'
-          x = 92
-          y = 67
+          x = 330
+          y = 390
         when '48854'
-          x = 57.5
-          y = 74
+          x = 420
+          y = 430
         else
-          x = 79
-          y = 87.5
+          x = 460
+          y = 460
       end
 =begin
       case i

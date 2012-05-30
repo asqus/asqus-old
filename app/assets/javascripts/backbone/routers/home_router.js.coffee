@@ -15,11 +15,8 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     ".*"        : "index"
 
   index: ->
-    #@view = new AsqUs.Views.Home.MapView(polls: @polls, el: '#map', state: @state)
     @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state)
     $("#home").html(@view.render().el)
-    #@view = new AsqUs.Views.Home.PollView(polls: @polls)
-    #$("#poll").html(@view.render().el)
     if(! @user_auth)
       @view = new AsqUs.Views.Home.AlertView(city: @city, user_auth: @user_auth)
       $("#message").html(@view.render().el)
