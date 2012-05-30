@@ -23,4 +23,5 @@ class ApplicationController < ActionController::Base
     session[:last_clean_url] = request.url
   end
   
+
 end

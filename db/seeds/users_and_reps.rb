@@ -23,7 +23,7 @@ adam_williams =
   })
 
 
-User.create({
+brad_chick = User.create({
   :first_name => 'Brad',
   :last_name => 'Chick',
   :email => 'brad@asq.us',
@@ -92,6 +92,12 @@ john_hieftje =
     :level => 'city'
   })
 
+yes_or_no = 
+  PollOptionSet.create(
+    :options_type => 'binary',
+    :num_options => 2,
+    :options => "  { \"0\": \"Yes\", \"1\": \"No\" }  "
+  )
 
 Poll.create({
   :creator_id => justin_amash.id,
@@ -99,6 +105,7 @@ Poll.create({
   :prompt => 'H R 3523, Cyber Intelligence Sharing and Protection Act (CISPA). The bill exempts private entities and utilities from all state and federal liability when they share "cyber threat information" with the federal government. That term is defined broadly to mean any information "directly pertaining to . . . [a] threat to [] a system or network," and it may include your personally identifiable information.
 
 The bill also provides new authority to the federal government to share your information with the private sector. The government may use information it receives from companies for purposes beyond cybersecurity, including protecting minors and national security.',
+  :poll_option_set_id => yes_or_no.id,
   :published => true
 })
 
@@ -108,6 +115,7 @@ Poll.create({
   :title => 'Do you think we should expand cyber charter schools in Michigan?',
   :prompt => 'For more information, click here: <a
 href="http://www.legislature.mi.gov/(S(pncoiw45kbdn4laj03leie45))/mileg.aspx?page=getobject&objectname=2011-SB-0619">http://www.legislature.mi.gov/</a>',
+  :poll_option_set_id => yes_or_no.id,
   :published => true
 })
 
@@ -121,6 +129,7 @@ city hall?",
 For more information, <a
 href='http://www.a2gov.org/government/publicservices/Pages/aapac.aspx'>click
 here</a>",
+  :poll_option_set_id => yes_or_no.id,
   :published => true
 })
 
@@ -129,6 +138,7 @@ Poll.create({
   :creator_id => adam_williams.id,
   :title => 'Title',
   :prompt => 'Do you support SOPA/PIPA?',
+  :poll_option_set_id => yes_or_no.id,
   :published => true
 })
 
@@ -137,6 +147,7 @@ Poll.create({
   :creator_id => jake_schwartz.id,
   :title => 'Title2',
   :prompt => 'Prompt2',
+  :poll_option_set_id => yes_or_no.id,
   :published => true
 })
 

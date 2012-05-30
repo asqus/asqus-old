@@ -1,0 +1,51 @@
+#login_register{ :style => "display:none" }
+  #login_form{ :style => "display:block;" }
+    = form_for("user", :url => user_session_path) do |f|
+      Email
+      %br
+      = f.text_field :email 
+      %br
+      Password 
+      %br
+      = f.password_field :password 
+      %br
+      Remember Me?
+      = f.check_box :remember_me 
+      %br
+      = f.submit 'Sign In', :class => 'float_button', :style => 'height:30px;margin:10px auto;'
+      = link_to "Forgot your password?", new_password_path('user')
+    -# __
+      .register_link
+        %br
+        Or
+        .float_button{ :style => 'display:inline', :onclick => "$('#register_form').css('display','block');$('#login_form').css('display','none');" }
+          Sign up 
+    
+  #register_form{ :style => "display:none;" }
+    = form_for("user", :url => user_registration_path) do |f| 
+      %div
+        = f.label :first_name 
+        %br
+        = f.text_field :first_name 
+      %div
+        = f.label :email 
+        %br
+        = f.email_field :email 
+      %div
+        = f.label :password 
+        %br
+        = f.password_field :password 
+      %div
+        = f.label :password_confirmation 
+        %br
+        = f.password_field :password_confirmation 
+      %div
+        = f.submit "Sign Up", :class => 'float_button', :style => 'height:30px;margin:10px auto;'
+    -# __
+      .register_link
+        %br
+        Or
+        .float_button{ :style => 'display:inline', :onclick => "$('#register_form').css('display','none');$('#login_form').css('display','block');" }
+          Sign in 
+
+

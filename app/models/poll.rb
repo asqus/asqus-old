@@ -1,9 +1,31 @@
 class Poll < ActiveRecord::Base
+
   belongs_to :creator, :class_name => "User"
+  belongs_to :recipient, :class_name => "User"  # nil if the Poll is for the whole district
+  belongs_to :poll_option_set   # nil if the poll is free-response
+  has_many :votes
+  
+  
+  def options
+    JSON.parse(self.poll_option_set.options)
+  end
+
+
+  def vote_for(option_index, voter_id)
+    vote = Vote.create({
+      :poll_id => self.id,
+      :voter_id => voter_id,
+      :poll_option_set_index => option_index.to_i
+    })
+    logger.info vote.errors.full_messages
+    
+    return vote.errors.empty?
+  end
+  
   
   def self.all_with_map_information
     results = Poll.find_by_sql(
-      "SELECT polls.*, reps.*, users.first_name, users.last_name, users.zipcode
+      "SELECT polls.*, polls.title as poll_title, polls.created_at as published_at, reps.*, users.first_name, users.last_name, users.zipcode
       FROM polls
       JOIN users ON users.id = polls.creator_id
       JOIN reps ON reps.user_id = users.id
