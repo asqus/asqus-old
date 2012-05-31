@@ -50,6 +50,8 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   populatePoll: ->
     $(".poll-info").remove()
     poll = @options.polls.at(@count)
+    console.log("Poll here")
+    console.log(poll)
     #pollElement.html(@pollTemplate(poll.toJSON()))
     if(poll)
       newText = ".speech_bubble." + poll.id
@@ -65,12 +67,8 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 #How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
     $(".poll-info").remove()
-    console.log('test')
     newID = e.currentTarget.id
-    console.log(newID)
-    console.log(" blbah" )
     poll = @options.polls.get(newID)
-    console.log(poll)
     currentBubble = $(".speech_bubble." + poll.id)
     $(".speech_bubble").removeClass("hl")
     currentBubble.addClass("hl")
@@ -79,6 +77,8 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   nextPoll: ->
     @count++
+    #$.get('/polls/2/vote/1.json', {}, (r)-> { console.log(r) })
+    alert "Thank you for voting!"
     console.log(@count)
     if(! @options.polls.at(@count))
       @count = 0

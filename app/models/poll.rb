@@ -37,10 +37,10 @@ class Poll < ActiveRecord::Base
         poll_option_sets.num_options,
         poll_option_sets.options
       FROM polls
-      JOIN users ON users.id = polls.creator_id
-      JOIN reps ON reps.user_id = users.id
-      JOIN poll_option_sets ON poll_option_sets.id = polls.poll_option_set_id
-      WHERE polls.published = #{ActiveRecord::Base.connection.quoted_true}"
+      LEFT JOIN users ON users.id = polls.creator_id
+      LEFT JOIN reps ON reps.user_id = users.id
+      LEFT JOIN poll_option_sets ON poll_option_sets.id = polls.poll_option_set_id
+      WHERE polls.published = 't'"
     )
     results.each_with_index { |poll, i|
       logger.info poll.first_name
