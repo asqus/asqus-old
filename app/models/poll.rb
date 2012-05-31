@@ -26,18 +26,21 @@ class Poll < ActiveRecord::Base
   def self.all_with_map_information
     results = Poll.find_by_sql(
       "SELECT
-        polls.*,  
+        polls.*,
+        polls.id as poll_id,
         polls.title as poll_title,
         polls.created_at as published_at,
         reps.*,
+        reps.id as rep_id,
         users.first_name,
         users.last_name,
         users.zipcode,
+        users.id as user_id,
         poll_option_sets.options_type,
         poll_option_sets.num_options,
         poll_option_sets.options
       FROM polls
-      JOIN users ON users.id = polls.creator_id
+      LEFT JOIN users ON users.id = polls.creator_id
       JOIN reps ON reps.user_id = users.id
       JOIN poll_option_sets ON poll_option_sets.id = polls.poll_option_set_id
       WHERE polls.published = #{ActiveRecord::Base.connection.quoted_true}"
