@@ -9,9 +9,9 @@ class Poll < ActiveRecord::Base
   def totals
     results = Vote.find_by_sql(
       "SELECT
-        votes.poll_option_set_index option_index,
-        count(poll_option_set_index) count,
-        poll_option_sets.options options
+        votes.poll_option_set_index as option_index,
+        count(poll_option_set_index) as count,
+        poll_option_sets.options as options
        FROM votes
        JOIN polls ON votes.poll_id = polls.id
        JOIN poll_option_sets ON polls.poll_option_set_id = poll_option_sets.id
@@ -29,6 +29,7 @@ class Poll < ActiveRecord::Base
   
   
   def options
+    check if pos is nil
     JSON.parse(self.poll_option_set.options)
   end
 
