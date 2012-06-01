@@ -9,27 +9,30 @@ class Poll < ActiveRecord::Base
   def totals
     results = Vote.find_by_sql(
       "SELECT
-        votes.poll_option_set_index option_index,
-        count(poll_option_set_index) count,
-        poll_option_sets.options options
+        votes.poll_option_set_index,
+        count(votes.poll_option_set_index) AS count
        FROM votes
        JOIN polls ON votes.poll_id = polls.id
        JOIN poll_option_sets ON polls.poll_option_set_id = poll_option_sets.id
        WHERE
         votes.poll_id = #{self.id}
-        AND option_index < poll_option_sets.num_options
-       GROUP BY option_index"
+        AND votes.poll_option_set_index < poll_option_sets.num_options
+       GROUP BY votes.poll_option_set_index"
     )
     return nil if results.empty?
-    options_hash = JSON.parse(results.first.options)
+    options_hash = JSON.parse(self.poll_option_set.options)
     results.collect{ |result|
-      {:option => options_hash[result.option_index.to_s], :count => result.count}
+      {:option => options_hash[result.poll_option_set_index.to_s], :count => result.count}
     }
   end
   
   
   def options
-    JSON.parse(self.poll_option_set.options)
+    if self.poll_option_set
+      JSON.parse(self.poll_option_set.options)
+    else
+      {}
+    end
   end
 
 
