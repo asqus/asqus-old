@@ -46,7 +46,7 @@ class Poll < ActiveRecord::Base
     results = Poll.find_by_sql(
       "SELECT
         polls.*,
-        polls.id as id,
+        polls.id as poll_id,
         polls.title as poll_title,
         polls.created_at as published_at,
         reps.*,
