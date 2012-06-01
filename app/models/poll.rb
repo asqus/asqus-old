@@ -6,6 +6,28 @@ class Poll < ActiveRecord::Base
   has_many :votes
   
   
+  def totals
+    results = Vote.find_by_sql(
+      "SELECT
+        votes.poll_option_set_index option_index,
+        count(poll_option_set_index) count,
+        poll_option_sets.options options
+       FROM votes
+       JOIN polls ON votes.poll_id = polls.id
+       JOIN poll_option_sets ON polls.poll_option_set_id = poll_option_sets.id
+       WHERE
+        votes.poll_id = #{self.id}
+        AND option_index < poll_option_sets.num_options
+       GROUP BY option_index"
+    )
+    return nil if results.empty?
+    options_hash = JSON.parse(results.first.options)
+    results.collect{ |result|
+      {:option => options_hash[result.option_index.to_s], :count => result.count}
+    }
+  end
+  
+  
   def options
     JSON.parse(self.poll_option_set.options)
   end
@@ -17,9 +39,6 @@ class Poll < ActiveRecord::Base
       :voter_id => voter_id,
       :poll_option_set_index => option_index.to_i
     })
-    logger.info vote.errors.full_messages
-    
-    return vote.errors.empty?
   end
   
   
@@ -27,11 +46,12 @@ class Poll < ActiveRecord::Base
     results = Poll.find_by_sql(
       "SELECT
         polls.*,
-        polls.id as poll_id,
+        polls.id as id,
         polls.title as poll_title,
         polls.created_at as published_at,
         reps.*,
         reps.id as rep_id,
+        reps.title as rep_title,
         users.first_name,
         users.last_name,
         users.zipcode,
