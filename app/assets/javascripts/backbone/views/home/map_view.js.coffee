@@ -11,12 +11,16 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   template: JST["backbone/templates/home/map_view"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
+  resultTemplate: JST["backbone/templates/home/result_view"]
   
   events:
     "click .destroy" : "destroy"
     "click .pollAnswer" : "nextPoll"
+    "click .nextQuestion" : "populatePoll"
     "click .pollTest" : "nextPoll"
     "hover .speech_bubble" : "hover"
+    "hover .pollAnswer" : "hoverInverse"
+    "hover .nextQuestion" : "hoverInverse"
     "click .speech_bubble" : "replacePoll"
 
   destroy: () ->
@@ -28,6 +32,9 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   hover:(e) ->
     $(e.currentTarget).toggleClass("hl_temp")
 
+  hoverInverse:(e) ->
+    $(e.currentTarget).toggleClass("btn-inverse")
+
   render: ->
     @populateMap()
     @populatePoll()
@@ -37,9 +44,10 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   populateMap: ->
     mapElement = @$el
     @options.polls.each (single_poll) ->
-      #console.log(single_poll.toJSON())
+      console.log("populateMap")
       console.log(single_poll)
-      question_bubble = $('<div class="speech_bubble '+single_poll.id+'" id="'+single_poll.id+'"></div>')
+      pollID = single_poll.attributes.poll_id
+      question_bubble = $('<div class="speech_bubble '+pollID+'" id="'+pollID+'"></div>')
       bubble_direction = if (single_poll.attributes.poll_type == 'user') then 'from_right' else 'from_left'
       question_bubble.addClass(bubble_direction)
       question_bubble.css
@@ -52,12 +60,9 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     poll = @options.polls.at(@count)
     console.log("Poll here")
     console.log(poll)
-    #pollElement.html(@pollTemplate(poll.toJSON()))
     if(poll)
-      newText = ".speech_bubble." + poll.id
-      console.log(newText)
+      newText = ".speech_bubble." + poll.attributes.poll_id
       currentBubble = $(newText)
-      console.log(currentBubble)
       $(".speech_bubble").removeClass("hl")
         #Toggle would be better here!
       currentBubble.addClass("hl")
@@ -69,18 +74,52 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     $(".poll-info").remove()
     newID = e.currentTarget.id
     poll = @options.polls.get(newID)
+    console.log("check")
+    console.log(poll)
     currentBubble = $(".speech_bubble." + poll.id)
     $(".speech_bubble").removeClass("hl")
     currentBubble.addClass("hl")
     console.log(currentBubble)
     $(@el).append(@pollTemplate(poll.toJSON()))
 
-  nextPoll: ->
+
+  nextPoll:(clicked) ->
+    if($(clicked.currentTarget).hasClass("disabled"))
+      return false
+    $(clicked.currentTarget).addClass("btn-warning")
+    pollID = clicked.currentTarget.dataset.pollid
+    answerID = clicked.currentTarget.dataset.answerid
+    console.log("check check")
+    console.log(pollID)
+    console.log(answerID)
     @count++
-    #$.get('/polls/2/vote/1.json', {}, (r)-> { console.log(r) })
-    alert "Thank you for voting!"
+    url = "/polls/"+pollID+"/vote/"+answerID+".json"
+    console.log(url)
+    $.get(url, {}, (r)->
+      console.log(r)
+      $(clicked.currentTarget).removeClass("btn-warning")
+      $(clicked.currentTarget).addClass("btn-success")
+      $(".pollAnswer").addClass("disabled")
+      $(".pollAnswer").attr("disabled", "disabled"))
     console.log(@count)
     if(! @options.polls.at(@count))
       @count = 0
-    @populatePoll()
+    @showResults(pollID)
+    #@populatePoll()
+
+  showResults:(pollID) ->
+    #$(".poll-info").remove()
+    poll = @options.polls.get(pollID)
+    if(poll)
+      $(@el).append(@resultTemplate(poll.toJSON()))
+
+
+
+
+
+
+
+
+
+
 

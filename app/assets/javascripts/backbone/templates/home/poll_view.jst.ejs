@@ -1,15 +1,15 @@
-<script>
-    $(function() {
-        $("button", ".poll-info").button();
-    });
-</script>
-
 <div class="poll-info">
-    <h1><%= title %></h1>
+    <h1><%= poll_title %></h1>
     <h2><%= category %></h2>
     <p><%= prompt %></p>
-    <button class="pollAnswer agree">Good Idea</button>
-    <button class="pollAnswer disagree">Bad Idea</button>
+    <% _.each(options, function(key,num) { %>
+    <button class="pollAnswer btn btn-large" data-pollid="<%= poll_id %>" 
+                               data-answerid="<%= num %>">
+        <%= key %>
+    </button>
+    <% }); %>
+    <br>
+    <br>
 </div>
         
 

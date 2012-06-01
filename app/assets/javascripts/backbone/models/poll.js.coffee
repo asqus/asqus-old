@@ -1,5 +1,6 @@
 class AsqUs.Models.Poll extends Backbone.Model
   paramRoot: 'poll'
+  idAttribute: 'poll_id'
 
   defaults:
     title: null
