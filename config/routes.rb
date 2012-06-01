@@ -4,7 +4,6 @@ AsqUs::Application.routes.draw do
 
   resources :poll_option_sets
 
-  devise_for :users
 
   resources :groups
 
@@ -13,6 +12,8 @@ AsqUs::Application.routes.draw do
 
   match 'users/home' => 'users#home', :as => :user_home
   match 'reps/home' => 'reps#home', :as => :rep_home
+
+  devise_for :users
 
   resources :users
   resources :reps
