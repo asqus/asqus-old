@@ -57,6 +57,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   populatePoll: ->
     $(".poll-info").remove()
+    $(".poll-result").remove()
     poll = @options.polls.at(@count)
     console.log("Poll here")
     console.log(poll)
@@ -72,6 +73,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 #How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
     $(".poll-info").remove()
+    $(".poll-result").remove()
     newID = e.currentTarget.id
     poll = @options.polls.get(newID)
     console.log("check")
@@ -93,19 +95,26 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     console.log(pollID)
     console.log(answerID)
     @count++
+    if(! @options.polls.at(@count))
+      @count = 0
     url = "/polls/"+pollID+"/vote/"+answerID+".json"
     console.log(url)
-    $.get(url, {}, (r)->
-      console.log(r)
+    data = null
+    votePost = $.get url
+    votePost.success (data) ->
+      #console.log(data)
       $(clicked.currentTarget).removeClass("btn-warning")
       $(clicked.currentTarget).addClass("btn-success")
       $(".pollAnswer").addClass("disabled")
-      $(".pollAnswer").attr("disabled", "disabled"))
-    console.log(@count)
-    if(! @options.polls.at(@count))
-      @count = 0
-    @showResults(pollID)
+      if($(".pollAnswer").hasClass("btn-inverse"))
+        $(".pollAnswer").removeClass("btn-inverse")
+      $(".pollAnswer").attr("disabled", "disabled")
+    votePost.error (jqXHR, textStatus, errorThrown) ->
+      alert "Vote never made it, try again!"
+      $(clicked.currentTarget).removeClass("btn-warning")
+      $(".poll-result").remove()
     #@populatePoll()
+    @showResults(pollID)
 
   showResults:(pollID) ->
     #$(".poll-info").remove()
