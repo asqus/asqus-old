@@ -5,26 +5,32 @@ class PollsController < ApplicationController
 
   def vote
     @poll = Poll.where(:id => params[:id]).first
-    option = params[:option]
+    option_index = params[:option]
 
     response = Hash.new
     
     if @poll.nil?
-      response['error'] = 'That poll was not found.'
+      (response['errors'] ||= []) << 'That poll was not found.'
       return respond_with response
     end
     
-    if option.blank? or !option.is_numeric?
-      response['error'] = 'A vote option must be specified'
+    if option_index.blank? or !option_index.is_numeric?
+      (response['errors'] ||= []) << 'A vote option must be specified'
       return respond_with response
     end
     
-
     voter_id = (current_user.nil?) ? nil : current_user.id
-    response = @poll.vote_for(option.to_i, voter_id)
+    vote = @poll.vote_for(option_index.to_i, voter_id)
+    response =  if vote.valid?
+                  @poll.totals
+                else
+                  { :errors => vote.errors.messages.values.collect{|e| e.first} }
+                end
     
-    respond_with(response) do |format|
+    respond_to do |format|
       format.html { redirect_to @poll }
+      format.json { render :json => response }
+      format.xml { render :xml => response }
     end
   end
   
