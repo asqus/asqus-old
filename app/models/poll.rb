@@ -20,9 +20,11 @@ class Poll < ActiveRecord::Base
         AND option_index < poll_option_sets.num_options
        GROUP BY option_index"
     )
-    #return nil if results.empty?
-    #options_hash = JSON.parse(results.first.options)
-    
+    return nil if results.empty?
+    options_hash = JSON.parse(results.first.options)
+    results.collect{ |result|
+      {:option => options_hash[result.option_index.to_s], :count => result.count}
+    }
   end
   
   

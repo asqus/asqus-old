@@ -4,6 +4,13 @@ class PollsController < ApplicationController
 
 
   def vote
+    # API requires
+    #   :id, :option
+    # responds with
+    #   [{"option": "Yes", "count": 127}, {"option": "No", "count": 75}]
+    # On error:
+    #   {"errors": ["error1", "error2"]}
+  
     @poll = Poll.where(:id => params[:id]).first
     option_index = params[:option]
 
