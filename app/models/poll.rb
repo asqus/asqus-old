@@ -29,8 +29,11 @@ class Poll < ActiveRecord::Base
   
   
   def options
-    check if pos is nil
-    JSON.parse(self.poll_option_set.options)
+    if self.poll_option_set
+      JSON.parse(self.poll_option_set.options)
+    else
+      {}
+    end
   end
 
 
