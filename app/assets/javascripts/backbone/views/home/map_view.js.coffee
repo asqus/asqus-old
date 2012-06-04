@@ -7,7 +7,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   initialize: (options) ->
     @state = options.state
     @count = 0
-    $(@el).html(@template({state_graphic_path: "/assets/#{@state}_outline.gif"}))
+    $(@el).html(@template({state_graphic_path: "/assets/#{@state.toLowerCase()}_outline.gif"}))
 
   template: JST["backbone/templates/home/map_view"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
