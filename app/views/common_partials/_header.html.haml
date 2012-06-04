@@ -24,36 +24,41 @@
   });
 
 
-.header.row
+.header
   .navbar.navbar-fixed-top
     .navbar-inner
       .container
 
         = link_to 'Home', root_url, :class => 'brand pull-left'
+        %a.btn.btn-navbar{ "data-target" => ".nav-collapse", "data-toggle" => "collapse" }
+          .icon-bar
+          .icon-bar
+          .icon-bar
 
-        %ul.nav
-          -if user_signed_in?
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
-              = link_to 'Propose', {:controller => '/users', :action => 'new'}
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-              = link_to 'Policy', '/'
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-              = link_to 'People', '/'
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-              = link_to 'Profile', '/'
-          -else
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
-              = link_to 'Propose', '#login_register', :class => 'sign_in_button'
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-              = link_to 'Policy', '/'
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-              = link_to 'People', '/'
-            %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-              = link_to 'Profile', '#login_register', :class => 'sign_in_button'
-          %li.divider-vertical
+        .nav-collapse
+          %ul.nav
+            -if user_signed_in?
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
+                = link_to 'Propose', {:controller => '/users', :action => 'new'}
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+                = link_to 'Policy', '/'
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+                = link_to 'People', '/'
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+                = link_to 'Profile', '/'
+            -else
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
+                = link_to 'Propose', '#login_register', :class => 'sign_in_button'
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+                = link_to 'Policy', '/'
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+                = link_to 'People', '/'
+              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
+                = link_to 'Profile', '#login_register', :class => 'sign_in_button'
+            %li.divider-vertical
 
-        %form.navbar-search.pull-left
-          %input{ :type => "text", :class => "search-query", :placeholder => "Search" }
+          %form.navbar-search.pull-left
+            %input{ :type => "text", :class => "search-query", :placeholder => "Search" }
 
         %ul.nav.pull-right
           -if user_signed_in?

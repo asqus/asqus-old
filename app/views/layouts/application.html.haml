@@ -11,11 +11,8 @@
     :javascript
       //google.load("maps", "2", {callback: receiveLocation});
   %body
-    
-    %h1 Welcome to Asq.us, democracy with balls
 
     = render :partial => 'common_partials/header'
 
     = yield
-   
-    = link_to "Sign out", destroy_user_session_path, :method => :delete
+
