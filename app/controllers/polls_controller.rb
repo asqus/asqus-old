@@ -13,7 +13,6 @@ class PollsController < ApplicationController
   
     @poll = Poll.where(:id => params[:id]).first
     option_index = params[:option]
-
     response = Hash.new
     
     if @poll.nil?
@@ -21,23 +20,29 @@ class PollsController < ApplicationController
       return respond_with response
     end
     
+    if cookies["voted_on_poll_#{@poll.id}"] === 'true'
+      (response['errors'] ||= []) << 'You have already voted on this poll.'
+      return respond_with response
+    end
+    
     if option_index.blank? or !option_index.is_numeric?
-      (response['errors'] ||= []) << 'A vote option must be specified'
+      (response['errors'] ||= []) << 'A vote option must be specified.'
       return respond_with response
     end
     
     voter_id = (current_user.nil?) ? nil : current_user.id
     vote = @poll.vote_for(option_index.to_i, voter_id)
-    response =  if vote.valid?
-                  @poll.totals
-                else
-                  { :errors => vote.errors.messages.values.collect{|e| e.first} }
-                end
+    if vote.valid?
+      @response = @poll.totals
+      cookies["voted_on_poll_#{@poll.id}"] = { :value => "true" }
+    else
+      @response = { :errors => vote.errors.messages.values.collect{|e| e.first} }
+    end
     
     respond_to do |format|
       format.html { redirect_to @poll }
-      format.json { render :json => response }
-      format.xml { render :xml => response }
+      format.json { render :json => @response }
+      format.xml { render :xml => @response }
     end
   end
   
@@ -46,8 +51,6 @@ class PollsController < ApplicationController
   # GET /polls.json
   def index
     @polls = Poll.all_with_map_information
-    
-    # Add in creator information
 
     respond_to do |format|
       format.html # index.html.erb

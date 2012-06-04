@@ -99,6 +99,13 @@ yes_or_no =
     :options => "  { \"0\": \"Yes\", \"1\": \"No\" }  "
   )
 
+agree_scale = 
+  PollOptionSet.create(
+    :options_type => 'multiple',
+    :num_options => 4,
+    :options => "  { \"0\": \"Strongly Disagree\", \"1\": \"Disagree\", \"2\": \"Agree\", \"3\": \"Strongly Agree\"}  "
+  )
+
 Poll.create({
   :creator_id => justin_amash.id,
   :title => 'Do you support CISPA?',
@@ -115,7 +122,7 @@ Poll.create({
   :title => 'Do you think we should expand cyber charter schools in Michigan?',
   :prompt => 'For more information, click here: <a
 href="http://www.legislature.mi.gov/(S(pncoiw45kbdn4laj03leie45))/mileg.aspx?page=getobject&objectname=2011-SB-0619">http://www.legislature.mi.gov/</a>',
-  :poll_option_set_id => yes_or_no.id,
+  :poll_option_set_id => agree_scale.id,
   :published => true
 })
 
@@ -147,7 +154,7 @@ Poll.create({
   :creator_id => jake_schwartz.id,
   :title => 'Title2',
   :prompt => 'Prompt2',
-  :poll_option_set_id => yes_or_no.id,
+  :poll_option_set_id => agree_scale.id,
   :published => true
 })
 
