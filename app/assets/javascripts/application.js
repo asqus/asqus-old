@@ -7,7 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require jquery.ui.ipad.altfix
+//= require jquery.ui.touch-punch.min
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
