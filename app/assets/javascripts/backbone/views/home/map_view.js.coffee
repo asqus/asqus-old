@@ -6,7 +6,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   initialize: (options) ->
     @state = options.state
-    @count = 0
+    @count = options.count
     $(@el).html(@template({state_graphic_path: "/assets/#{@state.toLowerCase()}_outline.gif"}))
 
   template: JST["backbone/templates/home/map_view"]
@@ -17,7 +17,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     "click .destroy" : "destroy"
     "click .pollAnswer" : "nextPoll"
     "click .nextQuestion" : "populatePoll"
-    "click .pollTest" : "nextPoll"
+    "click .pollTest" : "populatePoll"
     "hover .speech_bubble" : "hover"
     "hover .pollAnswer" : "hoverInverse"
     "hover .nextQuestion" : "hoverInverse"
@@ -58,6 +58,9 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   populatePoll: ->
     $(".poll-info").remove()
     $(".poll-result").remove()
+    @count++
+    if(! @options.polls.at(@count))
+      @count = 0
     poll = @options.polls.at(@count)
     console.log("Poll here")
     console.log(poll)
