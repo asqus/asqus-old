@@ -5,6 +5,11 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   className: "map"
 
   initialize: (options) ->
+    agent = navigator.userAgent.toLowerCase()
+    if agent.match(/ip(hone|od|ad)/i) or agent.match(/android/i)
+      console.log("mobile!")
+    else
+      console.log("not mobile")
     @state = options.state
     @count = options.count
     $(@el).html(@template({state_graphic_path: "/assets/#{@state.toLowerCase()}_outline.gif"}))
@@ -13,15 +18,28 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   pollTemplate: JST["backbone/templates/home/poll_view"]
   resultTemplate: JST["backbone/templates/home/result_view"]
   
-  events:
-    "click .destroy" : "destroy"
-    "click .pollAnswer" : "nextPoll"
-    "click .nextQuestion" : "populatePoll"
-    "click .pollTest" : "populatePoll"
-    "hover .speech_bubble" : "hover"
-    "hover .pollAnswer" : "hoverInverse"
-    "hover .nextQuestion" : "hoverInverse"
-    "click .speech_bubble" : "replacePoll"
+
+  events: ->
+    agent = navigator.userAgent.toLowerCase()
+    if agent.match(/ip(hone|od|ad)/i) or agent.match(/android/i)
+      events =
+        "touchstart .pollAnswer" : "hoverInverse"
+        "touchend .pollAnswer" : "nextPoll"
+        "touchend .pollNext" : "populatePoll"
+        "touchend .pollTest" : "populatePoll"
+        "touchstart .speech_bubble" : "hover"
+        "touchstart .pollNext" : "hoverInverse"
+        "touchend .speech_bubble" : "replacePoll"
+    else
+      events =
+        "click .destroy" : "destroy"
+        "click .pollAnswer" : "nextPoll"
+        "click .pollNext" : "populatePoll"
+        "click .pollTest" : "populatePoll"
+        "hover .speech_bubble" : "hover"
+        "hover .pollAnswer" : "hoverInverse"
+        "hover .pollNext" : "hoverInverse"
+        "click .speech_bubble" : "replacePoll"
 
   destroy: () ->
     #@model.destroy()
@@ -75,6 +93,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
 #How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
+    $(e.currentTarget).removeClass("hl_temp")
     $(".poll-info").remove()
     $(".poll-result").remove()
     newID = e.currentTarget.id
@@ -89,8 +108,11 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
 
   nextPoll:(clicked) ->
+    console.log("EL")
+    console.log(@el)
     if($(clicked.currentTarget).hasClass("disabled"))
       return false
+    $(clicked.currentTarget).toggleClass("btn-inverse")
     $(clicked.currentTarget).addClass("btn-warning")
     pollID = clicked.currentTarget.dataset.pollid
     answerID = clicked.currentTarget.dataset.answerid
@@ -105,7 +127,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     data = null
     votePost = $.get url
     votePost.success (data) ->
-      #console.log(data)
+      $(".pollAnswer").removeAttr("disabled", "disabled")
       $(clicked.currentTarget).removeClass("btn-warning")
       $(clicked.currentTarget).addClass("btn-success")
       $(".pollAnswer").addClass("disabled")
@@ -114,16 +136,18 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       $(".pollAnswer").attr("disabled", "disabled")
     votePost.error (jqXHR, textStatus, errorThrown) ->
       alert "Vote never made it, try again!"
+      $(".pollAnswer").removeAttr("disabled", "disabled")
       $(clicked.currentTarget).removeClass("btn-warning")
       $(".poll-result").remove()
     #@populatePoll()
     @showResults(pollID)
 
   showResults:(pollID) ->
-    #$(".poll-info").remove()
+    $(".pollAnswer").attr("disabled", "disabled")
     poll = @options.polls.get(pollID)
     if(poll)
-      $(@el).append(@resultTemplate(poll.toJSON()))
+      $(".pollStats").append(@resultTemplate(poll.toJSON()))
+      #$(@el).append(@resultTemplate(poll.toJSON()))
 
 
 
