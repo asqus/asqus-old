@@ -1,8 +1,8 @@
 AsqUs.Views.Home ||= {}
 
-class AsqUs.Views.Home.PollView extends Backbone.View
+class AsqUs.Views.Home.PromptView extends Backbone.View
 
-  template: JST["backbone/templates/home/poll_view"]
+  template: JST["backbone/templates/home/prompt_view"]
 
   initialize: ->
     @count = 0

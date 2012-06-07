@@ -7,10 +7,11 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     @user_auth = options.user_auth
     console.log(options)
     console.log("chyea")
+    @firstPage = true
 
   routes:
-    "nextt"    : "nexttHome"
-    "new"      : "newHome"
+    ":id/answer" : "answer"
+    ":id/prompt" : "prompt"
     "index"    : "index"
     ":id/edit" : "edit"
     ":id"      : "show"
@@ -23,12 +24,28 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
       #Insert alert message for not logged in
     @user_auth = true
     
-  newHome: ->
-    console.log("Button new!")
-    @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state)
-    $("#home").html(@view.render().el)
+  prompt: (id) ->
+    console.log("Prompt!")
+    poll = @polls.get(id)
+    @view = new AsqUs.Views.Home.PromptView(model: poll)
+    @slideView(@view)
 
-  nexttHome: ->
-    console.log("Button nextt!")
-    @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state, count: 3)
-    $("#home").html(@view.render().el)
+  answer: (id) ->
+    console.log("Answer!")
+    poll = @polls.get(id)
+    @view = new AsqUs.Views.Home.PollView(model: poll)
+    @slideView(@view)
+
+  slideView: (page) ->
+    console.log("Slide View!")
+    $(page.el).attr('data-role', 'page')
+    page.render()
+    $("body").append($(page.el))
+    transition = $.mobile.defaultPageTransition
+    if (@firstPage)
+      transition = 'none'
+      @firstPage = false
+    console.log("Slide 5!")
+    $.mobile.changePage($(page.el), {changeHash:false, transition: transition})
+    console.log("Slide 6!")
+     
