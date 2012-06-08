@@ -5,8 +5,13 @@ class Poll < ActiveRecord::Base
   belongs_to :poll_option_set   # nil if the poll is free-response
   has_many :votes
   
+  validates_presence_of :creator_id
   
-  def totals
+  
+  def totals(poll = nil)
+    poll ||= self
+    results = Rails.cache.read("Poll_#{poll.id}.totals")
+    return results if results
     results = Vote.find_by_sql(
       "SELECT
         votes.poll_option_set_index,
@@ -15,17 +20,63 @@ class Poll < ActiveRecord::Base
        JOIN polls ON votes.poll_id = polls.id
        JOIN poll_option_sets ON polls.poll_option_set_id = poll_option_sets.id
        WHERE
-        votes.poll_id = #{self.id}
+        votes.poll_id = #{poll.id}
         AND votes.poll_option_set_index < poll_option_sets.num_options
        GROUP BY votes.poll_option_set_index"
     )
     return nil if results.empty?
-    options_hash = JSON.parse(self.poll_option_set.options)
-    results.collect{ |result|
+    options_hash = JSON.parse(poll.poll_option_set.options)
+    results.collect!{ |result|
       {:option => options_hash[result.poll_option_set_index.to_s], :count => result.count}
     }
+    Rails.cache.write("Poll_#{poll.id}.totals", results)
+    return results
   end
   
+  
+  def votes_per_day(poll = nil)
+  # Returns data of the number of votes per day for the current object. Called like:
+  #   @poll.votes_per_day
+  #
+  # This function returns  an array of data points like the following:
+  #   [ [1287903600000, 79], [1287990000000, 25], [1288076400000, 61] ]
+  # The first number in each element is Unix time in milliseconds.
+  #   The second number is the number of tweets that occured on that day for
+  #   the given poll.
+  # Returns nil if there are no results.
+  #
+    poll ||= self
+    votes = Vote.find_by_sql(
+     "SELECT
+        count(date(votes.created_at)) as count_for_day,
+        date(votes.created_at) as day
+      FROM votes
+      WHERE votes.poll_id = #{ poll.id }
+      GROUP BY day"
+    )
+    data_points = votes.collect{ |vote|
+      [Time.parse(vote.day).to_i*1000, vote.count_for_day.to_i]
+    }
+
+    (data_points.length == 0) ? nil : data_points
+  end
+  
+  
+  def votes_per_day_as_string
+  # Returns a Javascript-ready version of votes_per_day, as if "inspect" was called on its output.
+  # Returns a string like:
+  #   "[ [1287903600, 79], [1287990000, 25], [1288076400, 61] ]"
+  #
+    data_points = self.votes_per_day
+    return nil unless data_points
+
+    output = '['
+    data_points.each_with_index{ |point, i|
+      output << ((i == 0) ? ' [' : ', [' ) << point[0].to_s << ', ' << point[1].to_s << ']'
+    }
+    output << ' ]'
+  end
+
   
   def options
     if self.poll_option_set
@@ -45,16 +96,18 @@ class Poll < ActiveRecord::Base
   end
   
   
-  def self.all_with_map_information
+  def self.all_with_details
     results = Poll.find_by_sql(
       "SELECT
         polls.*,
         polls.id as poll_id,
         polls.title as poll_title,
         polls.created_at as published_at,
-        reps.*,
         reps.id as rep_id,
         reps.title as rep_title,
+        reps.district as rep_district,
+        reps.chamber as rep_chamber,
+        reps.level as rep_level,
         users.first_name,
         users.last_name,
         users.zipcode,
@@ -69,7 +122,6 @@ class Poll < ActiveRecord::Base
       WHERE polls.published = #{ActiveRecord::Base.connection.quoted_true}"
     )
     results.each_with_index { |poll, i|
-      logger.info poll.first_name
       case poll['zipcode']
         when '49501'
           x = 330
@@ -81,53 +133,11 @@ class Poll < ActiveRecord::Base
           x = 460
           y = 460
       end
-=begin
-      case i
-        when 0
-          x = 79
-          y = 87.5
-          creator_info = {
-            'type' => 'user',
-            'name' => 'Jake Schwartz',
-            'title' => 'Michigan Governor'
-          }
-        when 1
-          x = 57.5
-          y = 74
-          creator_info = {
-            'type' => 'rep',
-            'name' => 'Gov. Rick Snyder',
-            'title' => 'Michigan Governor'
-          }
-        when 2
-          x = 92
-          y = 67
-          creator_info = {
-            'type' => 'rep',
-            'name' => 'Rep. Justin Amash',
-            'title' => 'Michigan state representative'
-          }
-        when 3
-          x = 90
-          y = 50
-          creator_info = {
-            'type' => 'user',
-            'name' => 'Adam Williams'
-          }
-        else
-          x = 10 + i*5
-          y = 40 + i*3
-          creator_info = {
-            'type' => 'user',
-            'name' => 'Brad Chick'
-          }
-        end
-      i = 5 if i > 5
-=end
       poll['map_x_coord'] = x
       poll['map_y_coord'] = y
-      poll['poll_type'] = (poll['chamber'] ? 'rep' : 'user')
-
+      poll['poll_type'] = (poll.creator && poll.creator.rep) ? 'rep' : 'user'
+      poll['totals'] = poll.totals
+      poll['votes_per_day'] = poll.votes_per_day_as_string
     }
   end
   
