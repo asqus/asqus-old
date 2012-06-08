@@ -8,22 +8,12 @@
  *= require_tree .
 */
 
-#admin_controls {
-  position: fixed;
-  top: 0px;
-  right: 5px;
-  list-style-type: none;
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
 }
 
-  #admin_controls a {
-    display: block;
-    float: left;
-    width: 50px;
-    height: 20px;
-    border: 1px solid #633;
-  }
-  
-/* Fix for JQuery UI Dialog scrollbar bug */
-.ui-widget-overlay {
-  position: fixed !important;
-}
+

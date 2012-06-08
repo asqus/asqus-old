@@ -12,11 +12,13 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       console.log("not mobile")
     @state = options.state
     @count = options.count
+    @polls = options.polls
     $(@el).html(@template({state_graphic_path: "/assets/#{@state.toLowerCase()}_outline.gif"}))
+    
 
   template: JST["backbone/templates/home/map_view"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
-  resultTemplate: JST["backbone/templates/home/result_view"]
+  resultTemplate: JST["backbone/templates/polls/result"]
   
 
   events: ->
@@ -153,20 +155,45 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   showResults:(pollID) ->
     $(".pollAnswer").attr("disabled", "disabled")
     poll = @options.polls.get(pollID)
-    if(poll)
-      $(".pollStats").html(@resultTemplate(poll.toJSON())).hide()
-      $(".poll-info").fadeOut('fast', ->
-        $(".pollStats").fadeIn('fast')
-      )
-      #$(@el).append(@resultTemplate(poll.toJSON()))
+    if(!poll)
+      return
+    $(".pollStats").html(@resultTemplate(poll.toJSON())).hide()
+    $(".poll-info").fadeOut('fast', ->
+      $(".pollStats").fadeIn('fast')
+    )
+    resultView = new AsqUs.Views.Polls.ResultView(model: poll)
+    $('#poll_results_container').html(resultView.render().el)
+    resultView.generatePlots()
 
 
-
-
-
-
-
-
-
-
+#      plot_data = poll.attributes.totals.map (val) ->
+#        return { label: val.option, data: val.count }
+#      #data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
+#      plot_options =
+#        series:
+#          pie:
+#            show: true
+#            radius: 1
+#            label:
+#              radius: 0.7
+#              formatter: (label, series) ->
+#                return '<div class="plot-label"><div class="plot-label-label">'+label+'</div>'+
+#                '<div class="plot-label-series">'+ Math.round(series.percent) + "%</div></div>"
+#        colors: [
+#          '#6D6'
+#          '#D66'
+#        ] 
+#        legend:
+#          show: true
+#          labelFormatter: (label, series) ->
+#            return label + ' ' + Math.round(series.percent) + '%'
+#        grid:
+#          hoverable: true
+#          clickable: true
+#        highlight:
+#          opacity: 0.9
+#      $.plot($("#poll_#{pollID}_result_plot"), plot_data, plot_options);
+      
+     
+      
 

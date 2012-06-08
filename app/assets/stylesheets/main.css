@@ -1,0 +1,62 @@
+/* Site-wide styles */
+
+
+/* Colors:
+
+$blue: #012245
+$cyan: #92CCEA
+$white: #FFFFFF
+$orange: #FF8600
+*/
+
+
+body {
+  background-color: #012245;
+}
+
+
+.header_logo {
+  height: 28px;
+}
+
+.brand {
+  padding: 8px 5px 2px !important;
+  margin-right: 20px;
+}
+
+
+#site-info {
+  
+}
+
+  #site-info .site-info-text {
+    color: #92CCEA;
+  }
+
+
+.dark {
+  background-color: #012245;
+}
+
+
+
+#admin_controls {
+  position: fixed;
+  top: 0px;
+  right: 5px;
+  list-style-type: none;
+}
+
+  #admin_controls a {
+    display: block;
+    float: left;
+    width: 50px;
+    height: 20px;
+    border: 1px solid #633;
+  }
+  
+/* Fix for JQuery UI Dialog scrollbar bug */
+.ui-widget-overlay {
+  position: fixed !important;
+}
+

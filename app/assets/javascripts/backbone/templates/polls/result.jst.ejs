@@ -1,0 +1,21 @@
+
+<div class="poll-result well span6">
+    <h2>Your voice has been heard!</h2>
+    <h3><%= rep_title %> <%= first_name %> <%= last_name %>,</h3>
+    <h3>thanks you for your response.</h3>
+
+    <div class="poll-plot-container poll-result-plot">
+      <div class="poll-plot poll-result-plot" id="poll_<%= poll_id %>_result_plot">
+      </div>
+      <div class="plot-title">Totals</div>
+    </div>
+
+    <div class="poll-plot-container poll-time-plot">
+      <div class="poll-plot poll-time-plot" id="poll_<%= poll_id %>_time_plot">
+      </div>
+      <div class="plot-title">Activity</div>
+    </div>
+
+    <button class="nextQuestion btn btn-primary btn-large">Next question</button>
+</div>
+

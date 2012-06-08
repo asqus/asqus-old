@@ -20,8 +20,12 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
   index: ->
     @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state, count: 0)
     $("#home").html(@view.render().el)
-    #if(!@user_auth && !Cookie.get('browser_location_city'))
-      #Insert alert message for not logged in
+    
+    show_alert = false
+    
+    if(show_alert && !@user_auth && !Cookie.get('browser_location_city'))
+      @view = new AsqUs.Views.Home.AlertView(city: @city, user_auth: @user_auth)
+      $("#message").html(@view.render().el)
     @user_auth = true
     
   prompt: (id) ->

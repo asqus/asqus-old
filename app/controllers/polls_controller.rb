@@ -4,12 +4,12 @@ class PollsController < ApplicationController
 
 
   def vote
-    # API requires
-    #   :id, :option
-    # responds with
-    #   [{"option": "Yes", "count": 127}, {"option": "No", "count": 75}]
-    # On error:
-    #   {"errors": ["error1", "error2"]}
+  # API requires
+  #   :id, :option
+  # responds with
+  #   [{"option": "Yes", "count": 127}, {"option": "No", "count": 75}]
+  # On error:
+  #   {"errors": ["error1", "error2"]}
   
     @poll = Poll.where(:id => params[:id]).first
     option_index = params[:option]
@@ -47,10 +47,34 @@ class PollsController < ApplicationController
   end
   
   
+  def votes_per_day
+  # API requires
+  #   :id
+  # responds with
+  #   [ [1287903600, 79], [1287990000, 25], [1288076400, 61] ]
+  # On error:
+  #   {"errors": ["error1", "error2"]}
+  #
+    @poll = Poll.where(:id => params[:id]).first
+    response = Hash.new
+    
+    if @poll.nil?
+      (response['errors'] ||= []) << 'That poll was not found.'
+      return respond_with response
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to @poll }
+      format.json { render :json => @poll.votes_per_day_as_string }
+      format.xml { render :xml => @poll.votes_per_day }
+    end
+  end
+  
+  
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all_with_map_information
+    @polls = Poll.all_with_details
 
     respond_to do |format|
       format.html # index.html.erb

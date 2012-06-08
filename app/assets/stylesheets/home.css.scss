@@ -3,21 +3,109 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
 #map {
   position: relative;
 }
 
   #state {
     position: relative;
-    width: 553px;
-    height: 500px;
+    height: 400px;
   }
 
     #state img.state_graphic {
       height: 100%;
-      width: 100%;
     }
+
+
+.poll-question-container {
+	position:relative;
+	padding:15px;
+	margin:1em 0 3em;
+	background:#075698; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#EEE), to(#CCC));
+	background:-moz-linear-gradient(#EEE, #CCC);
+	background:-o-linear-gradient(#EEE, #CCC);
+	background:linear-gradient(#EEE, #CCC);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-shadow: 1px 1px 1px #FFF;
+}
+
+.poll-question-container:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#CCC transparent; 
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+
+.poll-plot-container {
+  position: relative;
+  float: left;
+  overflow: hidden;
+}
+
+  .poll-plot-container.poll-time-plot {
+    width: 155px;
+  }
+
+  .poll-plot-container.poll-result-plot {
+    width: 155px;
+  }
+
+  .poll-plot-container .plot-title {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: black;
+    color:white;
+    opacity: 0.4;
+    padding: 2px 4px;
+    text-align: center;
+    border-radius: 3px;
+	  -webkit-border-radius:3px;
+	  -moz-border-radius:3px;
+    font-style: italic;
+  }
+  
+  .poll-plot-container.poll-result-plot .plot-title {
+    right: 0;
+    bottom: 10px;
+    top: auto;
+    left: auto;
+  }
+  
+.poll-plot {
+  float: left;
+  margin: 2px;
+  height: 80px;
+  width: 145px;
+}
+
+  .poll-plot .plot-label {
+    padding: 2px 3px;
+    font-size: 8pt;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #000;
+    opacity: 0.7;
+    color: #FFF;
+  }
+    .poll-plot .plot-label .plot-label-label {
+      display: none;
+    }
+    
+  .poll-plot.poll-time-plot {
+    width: 150px;
+  }
 
 .speech_bubble {
   position: absolute;
