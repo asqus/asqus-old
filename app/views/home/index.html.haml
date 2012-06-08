@@ -11,12 +11,24 @@
     Backbone.history.start();
   });
 
-#repContainer
 
-
-#home
-
+#main.container
+  .row
+    #home.span8
+    #site-info.span4
+      = image_tag 'logo/logo_orange_white_transparent.png'
+      .site-info-text
+        %p
+          We're building a publicly-owned political dialogue platform.
+        %p
+          As a nonprofit that's building open-source technology, Asq.Us is bridging the gap between you and your elected officials. 
+        %p
+          We're taking the 'townhall' concept to the 21st century.
+        %p
+          By using the internet, we can finally connect the people that make up America's democracy.
 
 #message
 #poll
+
+#plot_placeholder{ :style => 'height: 100px; width: 100px;' }
 
