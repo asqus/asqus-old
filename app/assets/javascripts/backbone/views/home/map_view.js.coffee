@@ -66,11 +66,17 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       console.log(single_poll)
       pollID = single_poll.attributes.poll_id
       question_bubble = $('<div class="speech_bubble '+pollID+'" id="'+pollID+'"></div>')
-      bubble_direction = if (single_poll.attributes.poll_type == 'user') then 'from_right' else 'from_left'
+      if (single_poll.attributes.poll_type == 'user')
+        bubble_direction = 'from_right'
+        question_bubble.css
+          left: "#{single_poll.attributes.map_x_coord}px"
+          top: "#{single_poll.attributes.map_y_coord}px"
+      else
+        bubble_direction = 'from_left'
+        question_bubble.css
+          left: "#{single_poll.attributes.map_x_coord + 45}px"
+          top: "#{single_poll.attributes.map_y_coord}px"
       question_bubble.addClass(bubble_direction)
-      question_bubble.css
-        left: "#{single_poll.attributes.map_x_coord}px"
-        top: "#{single_poll.attributes.map_y_coord}px"
       mapElement.append(question_bubble)
 
   populatePoll: ->
@@ -93,7 +99,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
 #How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
-    $(e.currentTarget).removeClass("hl_temp")
+    $(".speech_bubble").removeClass("hl_temp")
     $(".poll-info").remove()
     $(".poll-result").remove()
     newID = e.currentTarget.id
@@ -138,7 +144,9 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       alert "Vote never made it, try again!"
       $(".pollAnswer").removeAttr("disabled", "disabled")
       $(clicked.currentTarget).removeClass("btn-warning")
-      $(".poll-result").remove()
+      $(".pollStats").fadeOut('fast', ->
+        $(".poll-info").fadeIn('fast')
+      )
     #@populatePoll()
     @showResults(pollID)
 
@@ -146,7 +154,10 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     $(".pollAnswer").attr("disabled", "disabled")
     poll = @options.polls.get(pollID)
     if(poll)
-      $(".pollStats").append(@resultTemplate(poll.toJSON()))
+      $(".pollStats").html(@resultTemplate(poll.toJSON())).hide()
+      $(".poll-info").fadeOut('fast', ->
+        $(".pollStats").fadeIn('fast')
+      )
       #$(@el).append(@resultTemplate(poll.toJSON()))
 
 

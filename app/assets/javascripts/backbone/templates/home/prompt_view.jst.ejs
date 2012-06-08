@@ -1,4 +1,9 @@
-<div class="poll-info well span8">
+<div class="poll-result"></div>
+<div class="poll-info well span12">
+    <h1><%= poll_title %></h1>
+    <% if (rep_title) { %>
+    <h2>Question from: <%= rep_title %></h2> 
+    <% } %>
     <p><%= prompt %></p>
     <% _.each(options, function(key,num) { %>
     <button class="pollAnswer btn btn-large" data-pollid="<%= poll_id %>" 
@@ -7,14 +12,10 @@
     </button>
     <% }); %>
     <br>
-    <a href="#/<%= poll_id %>/answer" class="pollView btn btn-danger btn-large" data-pollid="<%= poll_id %>" 
-                               data-answerid="99">
-        Prompt Question
-    </a>
-    <button class="pollNext btn btn-large" data-pollid="<%= poll_id %>" 
+    <a href="#" class="pollSkip btn btn-primary" data-pollid="<%= poll_id %>" 
                                data-answerid="99">
         Skip
-    </button>
+    </a>
     <br>
     <br>
 </div>

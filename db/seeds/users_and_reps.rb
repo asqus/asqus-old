@@ -46,7 +46,7 @@ rick_snyder =
   )
   Rep.create({
     :user_id => rick_snyder.id,
-    :title => 'Michigan governor',
+    :title => 'Governor of Michigan',
     :state_id => 23,
     :district => '23',
     :chamber => 'governor',
@@ -66,7 +66,7 @@ justin_amash =
   })
   Rep.create({
     :user_id => justin_amash.id,
-    :title => 'Michigan state representative',
+    :title => "U.S. Representative for Michigan's 3rd Congressional District",
     :state_id => 23,
     :district => '3',
     :chamber => 'house',
@@ -129,9 +129,7 @@ href="http://www.legislature.mi.gov/(S(pncoiw45kbdn4laj03leie45))/mileg.aspx?pag
 
 Poll.create({
   :creator_id => john_hieftje.id,
-  :title => "What do you think about the plan to install Herbert Dreiseitl's
-750k statue in front of the new Justice Center building and a newly renovated
-city hall?",
+  :title => "What do you think about the plan to install Herbert Dreiseitl's 750k statue in front of the new Justice Center building and a newly renovated city hall?",
   :prompt => "In 2007, Ann Arbor's City Council unanimously passed an ordinance stipulating that all capital improvement projects funded wholly or partly by the City will include funds for public art equal to one percent of the project construction costs, to a maximum of $250,000 per capital improvement project. Public art may be located at the capital improvement site, or can be installed at other locations. Public art must relate to the funding source of the capital improvement.
 For more information, <a
 href='http://www.a2gov.org/government/publicservices/Pages/aapac.aspx'>click
@@ -143,8 +141,9 @@ here</a>",
 
 Poll.create({
   :creator_id => adam_williams.id,
-  :title => 'Title',
-  :prompt => 'Do you support SOPA/PIPA?',
+  :recipient_id => john_hieftje.id,
+  :title => 'Remove street repair from the Percent for Art program',
+  :prompt => 'The Percent for Art program receives 1% of the budget for all city capital projects, however "taking tar and filling cracks on streets" is considered as one of those projects. Can we exempt the street and sidewalk budget from funding the Percent for Art program?',
   :poll_option_set_id => yes_or_no.id,
   :published => true
 })
@@ -152,8 +151,9 @@ Poll.create({
 
 Poll.create({
   :creator_id => jake_schwartz.id,
-  :title => 'Title2',
-  :prompt => 'Prompt2',
+  :recipient_id => rick_snyder.id,
+  :title => 'Language removed from cyber charter schools bill',
+  :prompt => 'Senate Bill 0619 was recently updated to remove language that would require cyber-school students to test in a setting where it could be determined who was actually taking the test. Is there an explanation for why this seemingly necessary policy would be redacted?',
   :poll_option_set_id => agree_scale.id,
   :published => true
 })

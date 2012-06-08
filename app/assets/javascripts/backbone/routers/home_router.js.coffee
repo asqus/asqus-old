@@ -28,13 +28,15 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     console.log("Prompt!")
     poll = @polls.get(id)
     @view = new AsqUs.Views.Home.PromptView(model: poll)
-    @slideView(@view)
+    $("#home").html(@view.render().el)
+    #@slideView(@view)
 
   answer: (id) ->
     console.log("Answer!")
     poll = @polls.get(id)
     @view = new AsqUs.Views.Home.PollView(model: poll)
-    @slideView(@view)
+    $("#home").html(@view.render().el)
+    #@slideView(@view)
 
   slideView: (page) ->
     console.log("Slide View!")

@@ -76,7 +76,7 @@ class Poll < ActiveRecord::Base
           y = 390
         when '48854'
           x = 420
-          y = 430
+          y = 400
         else
           x = 460
           y = 460
