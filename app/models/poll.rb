@@ -10,7 +10,11 @@ class Poll < ActiveRecord::Base
   
   def totals(poll = nil)
     poll ||= self
-    results = Rails.cache.read("Poll_#{poll.id}.totals")
+    results = if Rails.env != 'development'
+                Rails.cache.read("Poll_#{poll.id}.totals")
+              else
+                nil
+              end
     return results if results
     results = Vote.find_by_sql(
       "SELECT
@@ -25,11 +29,11 @@ class Poll < ActiveRecord::Base
        GROUP BY votes.poll_option_set_index"
     )
     return nil if results.empty?
-    options_hash = JSON.parse(poll.poll_option_set.options)
+    options_hash = poll.options
     results.collect!{ |result|
       {:option => options_hash[result.poll_option_set_index.to_s], :count => result.count}
     }
-    Rails.cache.write("Poll_#{poll.id}.totals", results)
+    Rails.cache.write("Poll_#{poll.id}.totals", results, :expires_in => 5.minutes) if Rails.env != 'development'
     return results
   end
   

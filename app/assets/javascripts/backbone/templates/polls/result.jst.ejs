@@ -1,20 +1,42 @@
 
 <div class="poll-result well span6">
     <h2>Your voice has been heard!</h2>
-    <h3><%= rep_title %> <%= first_name %> <%= last_name %>,</h3>
-    <h3>thanks you for your response.</h3>
+    <h3><%= rep_title %> <%= first_name %> <%= last_name %> thanks you for your response.</h3>
 
     <div class="poll-plot-container poll-result-plot">
       <div class="poll-plot poll-result-plot" id="poll_<%= poll_id %>_result_plot">
       </div>
       <div class="plot-title">Totals</div>
+      <div class="plot-no-data" style="display: none;">Not enough data</div>
     </div>
 
     <div class="poll-plot-container poll-time-plot">
       <div class="poll-plot poll-time-plot" id="poll_<%= poll_id %>_time_plot">
       </div>
       <div class="plot-title">Activity</div>
+      <div class="plot-no-data" style="display: none;">Not enough data</div>
     </div>
+    
+    <div class="facebook-share">
+      <img src="/assets/icons/facebook.png" alt="Tell your friends!" />
+    </div>
+    
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en"
+       target="_blank"
+       data-url="<%= share_url %>"
+       data-text="I just made my voice heard. You can, too @AsqUs"
+       data-count="none"
+       data-dnt="true">
+      Tell your friends
+    </a>
+    <script type="text/javascript">
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+        if(!d.getElementById(id)){
+          js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js,fjs);
+        }
+      }(document,"script","twitter-wjs");
+    </script>
 
     <button class="nextQuestion btn btn-primary btn-large">Next question</button>
 </div>
