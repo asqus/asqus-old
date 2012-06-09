@@ -11,6 +11,7 @@ $orange: #FF8600
 
 
 body {
+  line-height: 1.1;
   background-color: #012245;
 }
 
@@ -33,11 +34,49 @@ body {
     color: #92CCEA;
   }
 
+.pips {
+  width: 200px;
+  margin: 20px auto 50px;
+}
+
+  .pip {
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    border: 1px solid black;
+    margin: 0 8px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #000;
+  }
+  
+    .pip.current {
+      background-color: #EDC;
+    }
+
+
+.well {
+	background:#DDD;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#EEE), to(#CCC));
+	background:-moz-linear-gradient(#EEE, #CCC);
+	background:-o-linear-gradient(#EEE, #CCC);
+	background:linear-gradient(#EEE, #CCC);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-shadow: 1px 1px 1px #FFF;
+}
+
 
 .dark {
   background-color: #012245;
 }
 
+
+.facebook-share img {
+  height: 20px;
+  width: 20px;
+}
 
 
 #admin_controls {

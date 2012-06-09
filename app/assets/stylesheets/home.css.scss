@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#map {
+.map {
   position: relative;
 }
 
@@ -117,6 +117,7 @@
   background-repeat: no-repeat;
   height: 32px;
   width: 41px;
+  opacity: 0.75;
 }
 
   .speech_bubble.from_right {
