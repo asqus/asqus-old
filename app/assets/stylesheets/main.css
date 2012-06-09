@@ -49,11 +49,19 @@ body {
     border: none;
     text-align: center;
     background-color: #555;
+    cursor: pointer;
   }
+    .pip:hover {
+      background-color: #999;
+    }
   
     .pip.current {
       background-color: #DDF;
+      cursor: default;
     }
+      .pip.current:hover {
+        background-color: #DDF;
+      }
 
 
 .well {
