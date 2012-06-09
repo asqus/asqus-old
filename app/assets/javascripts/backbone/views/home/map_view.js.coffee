@@ -76,7 +76,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       else
         bubble_direction = 'from_left'
         question_bubble.css
-          left: "#{single_poll.attributes.map_x_coord + 45}px"
+          left: "#{single_poll.attributes.map_x_coord + 55}px"
           top: "#{single_poll.attributes.map_y_coord}px"
       question_bubble.addClass(bubble_direction)
       mapElement.append(question_bubble)

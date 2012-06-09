@@ -115,32 +115,32 @@
   top: 0; left: 0;
   background-image: url(speech_bubble_sprite_small.png);
   background-repeat: no-repeat;
-  height: 32px;
-  width: 41px;
+  height: 49px;
+  width: 62px;
 }
 
   .speech_bubble.from_right {
-    background-position: -41px 0;
+    background-position: 0 0;
   }
   
   .speech_bubble.from_right.hl {
-    background-position: -123px 0;
+    background-position: -126px 0;
   }
 
   .speech_bubble.from_right.hl_temp {
-    background-position: -123px 0;
+    background-position: -126px 0;
   }
 
   .speech_bubble.from_left {
-    background-position: 0 0;
+    background-position: -63px 0;
   }
 
   .speech_bubble.from_left.hl {
-    background-position: -82px 0;
+    background-position: -189px 0;
   }
 
   .speech_bubble.from_left.hl_temp {
-    background-position: -82px 0;
+    background-position: -189px 0;
   }
 
 
