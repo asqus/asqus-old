@@ -24,7 +24,7 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
       colors: [
         '#6D6'
         '#D66'
-      ] 
+      ]
       legend:
         show: true
         labelFormatter: (label, series) ->
@@ -33,7 +33,7 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
         clickable: true
       highlight:
         opacity: 0.9
-    $.plot($("#poll_#{@model.attributes.poll_id}_result_plot"), plot_data, plot_options);
+    $.plot($("#poll_#{@model.attributes.poll_id}_result_plot"), plot_data, plot_options)
 
     plot_data = @model.attributes.votes_per_day.map (val) ->
       return [ val[0], val[1] ]
@@ -66,7 +66,7 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
       highlight:
         opacity: 0.9
       colors: ['#FFC']
-    $.plot($("#poll_#{@model.attributes.poll_id}_time_plot"), [ plot_data ], plot_options);
+    $.plot($("#poll_#{@model.attributes.poll_id}_time_plot"), [ plot_data ], plot_options)
       
     return this
 

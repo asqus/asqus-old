@@ -18,7 +18,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   template: JST["backbone/templates/home/map_view"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
-  resultTemplate: JST["backbone/templates/polls/result"]
+  resultTemplate: JST["backbone/templates/home/result_view"]
   
 
   events: ->
@@ -82,7 +82,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       mapElement.append(question_bubble)
 
   populatePoll: ->
-    $(".poll-info").remove()
+    $(".poll-question-container").remove()
     $(".poll-result").remove()
     @count++
     if(! @options.polls.at(@count))
@@ -98,11 +98,13 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       currentBubble.addClass("hl")
 
       $(@el).append(@pollTemplate(poll.toJSON()))
+      @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
+      $('#poll_results_container').html(@resultView.render().el).hide()
 
 #How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
     $(".speech_bubble").removeClass("hl_temp")
-    $(".poll-info").remove()
+    $(".poll-question-container").remove()
     $(".poll-result").remove()
     newID = e.currentTarget.id
     poll = @options.polls.get(newID)
@@ -113,6 +115,8 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     currentBubble.addClass("hl")
     console.log(currentBubble)
     $(@el).append(@pollTemplate(poll.toJSON()))
+    @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
+    $('#poll_results_container').html(@resultView.render().el).hide()
 
 
   nextPoll:(clicked) ->
@@ -146,8 +150,8 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       alert "Vote never made it, try again!"
       $(".pollAnswer").removeAttr("disabled", "disabled")
       $(clicked.currentTarget).removeClass("btn-warning")
-      $(".pollStats").fadeOut('fast', ->
-        $(".poll-info").fadeIn('fast')
+      $("#poll_results_container").fadeOut('fast', ->
+        $(".poll-question-container").fadeIn('fast')
       )
     #@populatePoll()
     @showResults(pollID)
@@ -157,13 +161,10 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     poll = @options.polls.get(pollID)
     if(!poll)
       return
-    $(".pollStats").html(@resultTemplate(poll.toJSON())).hide()
-    $(".poll-info").fadeOut('fast', ->
-      $(".pollStats").fadeIn('fast')
+    $(".poll-question-container").fadeOut('fast', ->
+      $("#poll_results_container").fadeIn('fast')
     )
-    resultView = new AsqUs.Views.Polls.ResultView(model: poll)
-    $('#poll_results_container').html(resultView.render().el)
-    resultView.generatePlots()
+    @resultView.generatePlots()
 
 
 #      plot_data = poll.attributes.totals.map (val) ->
