@@ -115,8 +115,8 @@
   top: 0; left: 0;
   background-image: url(speech_bubble_sprite_small.png);
   background-repeat: no-repeat;
-  height: 49px;
-  width: 62px;
+  height: 61px;
+  width: 70px;
   opacity: 0.75;
 }
 
@@ -125,23 +125,23 @@
   }
   
   .speech_bubble.from_right.hl {
-    background-position: -126px 0;
+    background-position: -141px 0;
   }
 
   .speech_bubble.from_right.hl_temp {
-    background-position: -126px 0;
+    background-position: -141px 0;
   }
 
   .speech_bubble.from_left {
-    background-position: -63px 0;
+    background-position: -70px 0;
   }
 
   .speech_bubble.from_left.hl {
-    background-position: -189px 0;
+    background-position: -212px 0;
   }
 
   .speech_bubble.from_left.hl_temp {
-    background-position: -189px 0;
+    background-position: -212px 0;
   }
 
 
