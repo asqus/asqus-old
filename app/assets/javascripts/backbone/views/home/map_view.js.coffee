@@ -13,7 +13,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     @state = options.state
     @count = options.count
     @polls = options.polls
-    $(@el).html(@template({state_graphic_path: "/assets/#{@state.toLowerCase()}_outline.gif"}))
+    $(@el).html(@template({state_graphic_path: "/assets/#{@state.toLowerCase()}_outline.png"}))
     
 
   template: JST["backbone/templates/home/map_view"]
@@ -57,6 +57,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   render: ->
     @populateMap()
+    @generatePips()
     @populatePoll()
     return this
   
@@ -91,7 +92,8 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     console.log("Poll here")
     console.log(poll)
     if(poll)
-      newText = ".speech_bubble." + poll.attributes.poll_id
+      pollID = poll.attributes.poll_id  
+      newText = ".speech_bubble." + pollID
       currentBubble = $(newText)
       $(".speech_bubble").removeClass("hl")
         #Toggle would be better here!
@@ -100,6 +102,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       $(@el).append(@pollTemplate(poll.toJSON()))
       @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
       $('#poll_results_container').html(@resultView.render().el).hide()
+      @updatePips(@count)
 
 #How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
@@ -168,34 +171,19 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     @resultView.generatePlots()
 
 
-#      plot_data = poll.attributes.totals.map (val) ->
-#        return { label: val.option, data: val.count }
-#      #data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
-#      plot_options =
-#        series:
-#          pie:
-#            show: true
-#            radius: 1
-#            label:
-#              radius: 0.7
-#              formatter: (label, series) ->
-#                return '<div class="plot-label"><div class="plot-label-label">'+label+'</div>'+
-#                '<div class="plot-label-series">'+ Math.round(series.percent) + "%</div></div>"
-#        colors: [
-#          '#6D6'
-#          '#D66'
-#        ] 
-#        legend:
-#          show: true
-#          labelFormatter: (label, series) ->
-#            return label + ' ' + Math.round(series.percent) + '%'
-#        grid:
-#          hoverable: true
-#          clickable: true
-#        highlight:
-#          opacity: 0.9
-#      $.plot($("#poll_#{pollID}_result_plot"), plot_data, plot_options);
-      
-     
-      
+  generatePips: ->
+    @pips = $('<div class="pips"></div>')
+    @pips.css({width: (30 * @polls.length) + 'px'})
+    pip = $('<div class="pip"></div>')
+    that = this
+    pip.clone().attr('id', "pip_#{i}").appendTo(that.pips) for i in [0..@polls.length-1]
+    $(@el).append(@pips)
+    console.log 'Added pips'
+
+  updatePips: (index) ->
+    console.log "Updating pips with #{index}"
+    $('.pip').removeClass('current')
+    $("#pip_#{index}").addClass('current')
+    console.log $("#pip_#{index}")
+
 

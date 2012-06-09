@@ -2,11 +2,11 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
   initialize: (options) ->
     @polls = new AsqUs.Collections.PollsCollection()
     @polls.reset options.polls
+    window.test = @polls
     @state = options.location.state
     @city = options.location.city
     @user_auth = options.user_auth
     console.log(options)
-    console.log("chyea")
     @firstPage = true
 
   routes:
@@ -20,6 +20,7 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
   index: ->
     @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state, count: 0)
     $("#home").html(@view.render().el)
+    @view.updatePips(1)
     
     show_alert = false
     
