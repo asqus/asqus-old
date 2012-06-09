@@ -66,10 +66,12 @@ class AsqUs.Views.Home.PromptView extends Backbone.View
   showResults: ->
     $(".pollAnswer").attr("disabled", "disabled")
     if(@model)
-      $(".poll-result").append(@resultTemplate(@model.toJSON() )).hide().slideDown('fast')
+      $(".poll-result").append(@resultView.render().el).hide().slideDown('fast')
       $(".pollSkip").remove()
+      @resultView.generatePlots()
 
   render: ->
+    @resultView = new AsqUs.Views.Polls.ResultView(model: @model)
     $(@el).html(@template(@model.toJSON() ))
     return this
 

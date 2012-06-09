@@ -158,6 +158,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   showResults:(pollID) ->
     $(".pollAnswer").attr("disabled", "disabled")
+    $('#poll_results_container').html(@resultView.render().el).hide()
     poll = @options.polls.get(pollID)
     if(!poll)
       return

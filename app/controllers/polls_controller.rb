@@ -20,7 +20,7 @@ class PollsController < ApplicationController
       return respond_with response
     end
     
-    if cookies["voted_on_poll_#{@poll.id}"] === 'true'
+    if cookies["voted_on_poll_#{@poll.id}"] === 'true' && false
       (response['errors'] ||= []) << 'You have already voted on this poll.'
       return respond_with response
     end
