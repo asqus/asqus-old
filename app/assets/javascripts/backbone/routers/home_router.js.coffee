@@ -21,6 +21,7 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state, count: 0)
     $("#home").html(@view.render().el)
     @view.updatePips(1)
+    @view.highlightBubble(@polls.at(1).attributes.id)
     
     show_alert = false
     

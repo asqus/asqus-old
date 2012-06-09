@@ -44,14 +44,15 @@ body {
     width: 10px;
     display: inline-block;
     border: 1px solid black;
-    margin: 0 8px;
+    margin: 0 6px;
     border-radius: 4px;
+    border: none;
     text-align: center;
-    background-color: #000;
+    background-color: #555;
   }
   
     .pip.current {
-      background-color: #EDC;
+      background-color: #DDF;
     }
 
 
