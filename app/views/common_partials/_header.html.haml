@@ -36,8 +36,9 @@
         = image_tag 'logo/logo_flat_orange_white_transparent.png', :class => 'header_logo'
 
       .nav-collapse
-        %form.navbar-search.pull-left
+        %form.navbar-form.navbar-search.pull-left.form-inline
           %input{ :type => "text", :class => "search-query", :placeholder => "Search" }
+          %input{ :type => "submit", :class => "btn", :value => "Submit" }
         %ul.nav
           -if user_signed_in?
             %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
