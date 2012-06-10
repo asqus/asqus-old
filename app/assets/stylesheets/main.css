@@ -8,11 +8,38 @@ $cyan: #92CCEA
 $white: #FFFFFF
 $orange: #FF8600
 */
-
+html {
+  height: 100%;
+}
 
 body {
   line-height: 1.1;
-  background-color: #012245;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  /* background-color: #012245; */
+  /* IE10 Consumer Preview */ 
+  background-image: -ms-linear-gradient(bottom, #93CCEA 0%, #E8E9EA 50%, #FFFFFF 100%);
+
+  /* Mozilla Firefox */ 
+  background-image: -moz-linear-gradient(bottom, #93CCEA 0%, #E8E9EA 50%, #FFFFFF 100%);
+
+  /* Opera */ 
+  background-image: -o-linear-gradient(bottom, #93CCEA 0%, #E8E9EA 50%, #FFFFFF 100%);
+
+  /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #93CCEA), color-stop(0.5, #E8E9EA), color-stop(1, #FFFFFF));
+
+  /* Webkit (Chrome 11+) */ 
+  background-image: -webkit-linear-gradient(bottom, #93CCEA 0%, #E8E9EA 50%, #FFFFFF 100%);
+
+  /* W3C Markup, IE10 Release Preview */ 
+  background-image: linear-gradient(to top, #93CCEA 0%, #E8E9EA 50%, #FFFFFF 100%);
+  
+
+     
 }
 
 
@@ -44,15 +71,24 @@ body {
     width: 10px;
     display: inline-block;
     border: 1px solid black;
-    margin: 0 8px;
+    margin: 0 6px;
     border-radius: 4px;
+    border: none;
     text-align: center;
-    background-color: #000;
+    background-color: #555;
+    cursor: pointer;
   }
+    .pip:hover {
+      background-color: #999;
+    }
   
     .pip.current {
-      background-color: #EDC;
+      background-color: #DDF;
+      cursor: default;
     }
+      .pip.current:hover {
+        background-color: #DDF;
+      }
 
 
 .well {

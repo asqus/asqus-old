@@ -30,8 +30,9 @@ class AsqUs.Views.Home.MapView extends Backbone.View
         "touchend .pollNext" : "populatePoll"
         "touchend .pollTest" : "populatePoll"
         "touchstart .speech_bubble" : "hover"
-        "touchstart .pollNext" : "hoverInverse"
+        "touchstart .pollNext" : "selectBubble"
         "touchend .speech_bubble" : "replacePoll"
+        "touchend .pip" : "replacePoll"
     else
       events =
         "click .destroy" : "destroy"
@@ -39,9 +40,10 @@ class AsqUs.Views.Home.MapView extends Backbone.View
         "click .pollNext" : "populatePoll"
         "click .pollTest" : "populatePoll"
         "hover .speech_bubble" : "hover"
-        "hover .pollAnswer" : "hoverInverse"
-        "hover .pollNext" : "hoverInverse"
+        "hover .pollAnswer" : "selectBubble"
+        "hover .pollNext" : "selectBubble"
         "click .speech_bubble" : "replacePoll"
+        "click .pip" : "replacePoll"
 
   destroy: () ->
     #@model.destroy()
@@ -52,8 +54,11 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   hover:(e) ->
     $(e.currentTarget).toggleClass("hl_temp")
 
-  hoverInverse:(e) ->
-    $(e.currentTarget).toggleClass("btn-inverse")
+  selectBubble:(e) ->
+    @highlightBubble(e.currentTarget.getAttribute('data-pollid'))
+  
+  highlightBubble: (pollID) ->
+    $("#speech_bubble_#{pollID}").toggleClass("hl_temp")
 
   render: ->
     @populateMap()
@@ -64,11 +69,11 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   
   populateMap: ->
     mapElement = @$el
-    @options.polls.each (single_poll) ->
+    @options.polls.each (single_poll, i) ->
       console.log("populateMap")
       console.log(single_poll)
       pollID = single_poll.attributes.poll_id
-      question_bubble = $('<div class="speech_bubble '+pollID+'" id="'+pollID+'"></div>')
+      question_bubble = $('<div class="speech_bubble" id="speech_bubble_'+pollID+'" data-pollid="'+pollID+'" data-index="'+i+'"></div>')
       if (single_poll.attributes.poll_type == 'user')
         bubble_direction = 'from_left'
         question_bubble.css
@@ -81,6 +86,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
           top: "#{single_poll.attributes.map_y_coord}px"
       question_bubble.addClass(bubble_direction)
       mapElement.append(question_bubble)
+      console.log i
 
   populatePoll: ->
     $(".poll-question-container").remove()
@@ -92,10 +98,10 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     console.log("Poll here")
     console.log(poll)
     if(poll)
-      pollID = poll.attributes.poll_id  
-      newText = ".speech_bubble." + pollID
-      currentBubble = $(newText)
+      pollID = poll.attributes.poll_id
+      currentBubble = $("#speech_bubble_" + pollID)
       $(".speech_bubble").removeClass("hl")
+      $(".speech_bubble").removeClass("hl_temp")
         #Toggle would be better here!
       currentBubble.addClass("hl")
 
@@ -103,24 +109,26 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
       $('#poll_results_container').html(@resultView.render().el).hide()
       @updatePips(@count)
+      @highlightBubble(pollID)
 
 #How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
     $(".speech_bubble").removeClass("hl_temp")
     $(".poll-question-container").remove()
     $(".poll-result").remove()
-    newID = e.currentTarget.id
+    newID = e.currentTarget.getAttribute('data-pollid')
+    @count = e.currentTarget.getAttribute('data-index')
+    console.log("ReplacePoll with Poll id: #{newID}")
     poll = @options.polls.get(newID)
-    console.log("check")
     console.log(poll)
-    currentBubble = $(".speech_bubble." + poll.id)
+    currentBubble = $("#speech_bubble_" + poll.attributes.id)
     $(".speech_bubble").removeClass("hl")
     currentBubble.addClass("hl")
-    console.log(currentBubble)
     $(@el).append(@pollTemplate(poll.toJSON()))
     @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
     $('#poll_results_container').html(@resultView.render().el).hide()
-
+    @updatePips(@count)
+    
 
   nextPoll:(clicked) ->
     console.log("EL")
@@ -173,10 +181,10 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   generatePips: ->
     @pips = $('<div class="pips"></div>')
-    @pips.css({width: (30 * @polls.length) + 'px'})
+    @pips.css({width: (22 * @polls.length) + 'px'})
     pip = $('<div class="pip"></div>')
     that = this
-    pip.clone().attr('id', "pip_#{i}").appendTo(that.pips) for i in [0..@polls.length-1]
+    pip.clone().attr('id', "pip_#{i}").attr("data-index", i).attr("data-pollid", @polls.at(i).attributes.id).appendTo(that.pips) for i in [0..@polls.length-1]
     $(@el).append(@pips)
     console.log 'Added pips'
 
@@ -184,6 +192,5 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     console.log "Updating pips with #{index}"
     $('.pip').removeClass('current')
     $("#pip_#{index}").addClass('current')
-    console.log $("#pip_#{index}")
 
 

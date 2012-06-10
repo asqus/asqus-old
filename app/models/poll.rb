@@ -130,10 +130,13 @@ class Poll < ActiveRecord::Base
         when '49501'  # Grand Rapids
           x = 190
           y = 295
-        when '48854'
+        when '48854'  # Lansing
           x = 250
           y = 270
-        else
+        when '49855'  # Marquette
+          x = 100
+          y = 45
+        else          # Ann Arbor
           x = 315
           y = 315
       end
