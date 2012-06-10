@@ -26,7 +26,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     agent = navigator.userAgent.toLowerCase()
     if agent.match(/ip(hone|od|ad)/i) or agent.match(/android/i)
       events =
-        "touchstart .pollAnswer" : "hoverInverse"
+        "touchstart .pollAnswer" : "selectBubble"
         "touchend .pollAnswer" : "nextPoll"
         "touchend .pollNext" : "populatePoll"
         "touchend .pollTest" : "populatePoll"
