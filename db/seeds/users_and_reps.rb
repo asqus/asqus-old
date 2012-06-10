@@ -6,7 +6,7 @@ jake_schwartz =
     :email => 'jake@asq.us',
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
-    :zipcode => '48104',
+    :zipcode => '49855',
     :admin => true
   )
 

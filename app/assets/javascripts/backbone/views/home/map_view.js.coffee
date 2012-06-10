@@ -70,14 +70,14 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       pollID = single_poll.attributes.poll_id
       question_bubble = $('<div class="speech_bubble" id="speech_bubble_'+pollID+'" data-pollid="'+pollID+'" data-index="'+i+'"></div>')
       if (single_poll.attributes.poll_type == 'user')
-        bubble_direction = 'from_right'
-        question_bubble.css
-          left: "#{single_poll.attributes.map_x_coord}px"
-          top: "#{single_poll.attributes.map_y_coord}px"
-      else
         bubble_direction = 'from_left'
         question_bubble.css
           left: "#{single_poll.attributes.map_x_coord + 55}px"
+          top: "#{single_poll.attributes.map_y_coord}px"
+      else
+        bubble_direction = 'from_right'
+        question_bubble.css
+          left: "#{single_poll.attributes.map_x_coord}px"
           top: "#{single_poll.attributes.map_y_coord}px"
       question_bubble.addClass(bubble_direction)
       mapElement.append(question_bubble)
