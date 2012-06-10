@@ -10,14 +10,20 @@
 
   #state {
     position: relative;
-    float: left;
-    height: 400px;
+    margin: 0 auto;
+    width: 540px;
+    height: 500px;
   }
 
     #state img.state_graphic {
       height: 100%;
     }
 
+
+.poll-wrapper {
+  float: none;
+  margin: 0 auto;
+}
 
 .poll-question-container {
 	position:relative;
