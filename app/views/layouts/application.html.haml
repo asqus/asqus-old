@@ -9,8 +9,6 @@
     = javascript_include_tag "http://www.google.com/jsapi"
     = javascript_include_tag 'application.js'
     = csrf_meta_tags
-    :javascript
-      //google.load("maps", "2", {callback: receiveLocation});
   %body
 
     = render :partial => 'common_partials/header'
