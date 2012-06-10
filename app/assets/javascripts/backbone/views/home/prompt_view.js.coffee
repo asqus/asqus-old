@@ -7,6 +7,15 @@ class AsqUs.Views.Home.PromptView extends Backbone.View
 
   initialize: ->
     @count = 0
+  
+  dispose: ->
+    console.log 'dispose'
+
+  onClose: ->
+    console.log 'onClose'
+
+  remove: ->
+    console.log 'remove'
 
   events: ->
     agent = navigator.userAgent.toLowerCase()
@@ -71,6 +80,7 @@ class AsqUs.Views.Home.PromptView extends Backbone.View
       @resultView.generatePlots()
 
   render: ->
+    $(document.body).addClass('prompt_view')
     @resultView = new AsqUs.Views.Polls.ResultView(model: @model)
     $(@el).html(@template(@model.toJSON() ))
     return this

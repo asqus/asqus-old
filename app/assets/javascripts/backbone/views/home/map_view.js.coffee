@@ -19,6 +19,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   template: JST["backbone/templates/home/map_view"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
   resultTemplate: JST["backbone/templates/home/result_view"]
+  siteInfoTemplate: JST["backbone/templates/home/site_info"]
   
 
   events: ->
@@ -35,7 +36,6 @@ class AsqUs.Views.Home.MapView extends Backbone.View
         "touchend .pip" : "replacePoll"
     else
       events =
-        "click .destroy" : "destroy"
         "click .pollAnswer" : "nextPoll"
         "click .pollNext" : "populatePoll"
         "click .pollTest" : "populatePoll"
@@ -45,11 +45,6 @@ class AsqUs.Views.Home.MapView extends Backbone.View
         "click .speech_bubble" : "replacePoll"
         "click .pip" : "replacePoll"
 
-  destroy: () ->
-    #@model.destroy()
-    this.remove()
-
-    return false
 
   hover:(e) ->
     $(e.currentTarget).toggleClass("hl_temp")
@@ -64,6 +59,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     @populateMap()
     @generatePips()
     @populatePoll()
+    $(@el).prepend(@siteInfoTemplate())
     return this
   
   
@@ -95,7 +91,6 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     if(! @options.polls.at(@count))
       @count = 0
     poll = @options.polls.at(@count)
-    console.log("Poll here")
     console.log(poll)
     if(poll)
       pollID = poll.attributes.poll_id
@@ -185,7 +180,8 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     pip = $('<div class="pip"></div>')
     that = this
     pip.clone().attr('id', "pip_#{i}").attr("data-index", i).attr("data-pollid", @polls.at(i).attributes.id).appendTo(that.pips) for i in [0..@polls.length-1]
-    $(@el).append(@pips)
+    #$(@el).append(@pips)
+    @pips.insertAfter(@$el.find('.poll-question-container'))
     console.log 'Added pips'
 
   updatePips: (index) ->
