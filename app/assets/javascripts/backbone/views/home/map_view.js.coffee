@@ -58,7 +58,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   render: ->
     @populateMap()
     @populatePoll()
-    $(@el).prepend(@siteInfoTemplate())
+    #$(@el).prepend(@siteInfoTemplate())
     return this
   
   

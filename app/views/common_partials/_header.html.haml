@@ -37,8 +37,9 @@
 
       .nav-collapse
         %form.navbar-form.navbar-search.pull-left.form-inline
-          %input{ :type => "text", :class => "search-query", :placeholder => "Search" }
+          %input{ :type => "text", :class => "search-query", :placeholder => "Email" }
           %input{ :type => "submit", :class => "btn", :value => "Submit" }
+        %span.divider-vertical
         %ul.nav
           -if user_signed_in?
             %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
