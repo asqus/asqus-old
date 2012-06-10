@@ -115,12 +115,11 @@
 .speech_bubble {
   position: absolute;
   top: 0; left: 0;
-  background-image: url(speech_bubble_sprite_small.png);
+  background-image: url(speech_bubble_sprite_small_light.png);
   background-repeat: no-repeat;
   background-color: transparent;
   height: 61px;
   width: 70px;
-  opacity: 0.75;
   cursor: pointer;
 }
 

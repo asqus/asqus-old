@@ -26,7 +26,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     agent = navigator.userAgent.toLowerCase()
     if agent.match(/ip(hone|od|ad)/i) or agent.match(/android/i)
       events =
-        "touchstart .pollAnswer" : "hoverInverse"
+        "touchstart .pollAnswer" : "selectBubble"
         "touchend .pollAnswer" : "nextPoll"
         "touchend .pollNext" : "populatePoll"
         "touchend .pollTest" : "populatePoll"
@@ -119,7 +119,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     currentBubble = $("#speech_bubble_" + poll.attributes.id)
     $(".speech_bubble").removeClass("hl")
     currentBubble.addClass("hl")
-    $(@el).append(@pollTemplate(poll.toJSON()))
+    $('.poll-wrapper').prepend(@pollTemplate(poll.toJSON()))
     @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
     $('#poll_results_container').html(@resultView.render().el).hide()
     @updatePips(@count)
