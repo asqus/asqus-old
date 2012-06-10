@@ -57,7 +57,6 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   render: ->
     @populateMap()
-    #@generatePips()
     @populatePoll()
     $(@el).prepend(@siteInfoTemplate())
     return this
@@ -82,7 +81,6 @@ class AsqUs.Views.Home.MapView extends Backbone.View
           top: "#{single_poll.attributes.map_y_coord}px"
       question_bubble.addClass(bubble_direction)
       mapElement.append(question_bubble)
-      console.log i
 
   populatePoll: ->
     $(".poll-question-container").remove()
@@ -119,7 +117,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     currentBubble = $("#speech_bubble_" + poll.attributes.id)
     $(".speech_bubble").removeClass("hl")
     currentBubble.addClass("hl")
-    $(@el).append(@pollTemplate(poll.toJSON()))
+    @$el.find('.poll-wrapper').prepend(@pollTemplate(poll.toJSON()))
     @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
     $('#poll_results_container').html(@resultView.render().el).hide()
     @updatePips(@count)
@@ -176,17 +174,13 @@ class AsqUs.Views.Home.MapView extends Backbone.View
 
   generatePips: ->
     @pips = $('<div class="pips"></div>')
-    @pips.css({width: (22 * @polls.length) + 'px'})
+    @pips.css({width: (44 * @polls.length) + 'px'})
     pip = $('<div class="pip"></div>')
     that = this
     pip.clone().attr('id', "pip_#{i}").attr("data-index", i).attr("data-pollid", @polls.at(i).attributes.id).appendTo(that.pips) for i in [0..@polls.length-1]
-    #$(@el).append(@pips)
     @pips.insertAfter(@$el.find('.poll-question-container'))
-    console.log 'Added pips to'
-    console.log @$el.find('.poll-question-container')
 
   updatePips: (index) ->
-    console.log "Updating pips with #{index}"
     $('.pip').removeClass('current')
     $("#pip_#{index}").addClass('current')
 
