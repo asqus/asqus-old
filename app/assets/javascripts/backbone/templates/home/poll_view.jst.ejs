@@ -1,22 +1,20 @@
-<div class="poll-question-container poll-info well span8">
-    <h1><%= poll_title %></h1>
-    <h2>U.S. Representative for Michigan's 3rd Congressional District</h2>
-    <% _.each(options, function(key,num) { %>
-    <button class="pollAnswer btn btn-large" data-pollid="<%= poll_id %>" 
-                               data-answerid="<%= num %>">
-        <%= key %>
-    </button>
-    <% }); %>
-    <br>
-    <a href="#/<%= poll_id %>/prompt" class="pollView btn btn-danger btn-large" data-pollid="<%= poll_id %>" 
-                               data-answerid="99">
-        Answer Question
-    </a>
-    <button class="pollNext btn btn-large" data-pollid="<%= poll_id %>" 
-                               data-answerid="99">
-        Skip
-    </button>
-    <br>
-    <br>
+<div class="poll-question-container poll-info well">
+  <h1><%= poll_title %></h1>
+  <h2>U.S. Representative for Michigan's 3rd Congressional District</h2>
+  <% _.each(options, function(key,num) { %>
+  <button class="pollAnswer btn btn-large" data-pollid="<%= poll_id %>" 
+                             data-answerid="<%= num %>">
+      <%= key %>
+  </button>
+  <% }); %>
+  <br>
+  <a href="#/<%= poll_id %>/prompt" class="pollView btn btn-danger btn-large" data-pollid="<%= poll_id %>" 
+                             data-answerid="99">
+      Answer Question
+  </a>
+  <button class="pollNext btn btn-large" data-pollid="<%= poll_id %>" 
+                             data-answerid="99">
+      Skip
+  </button>
 </div>
 

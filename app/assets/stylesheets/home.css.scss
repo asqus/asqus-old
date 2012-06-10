@@ -5,10 +5,12 @@
 
 .map {
   position: relative;
+  overflow: auto;
 }
 
   #state {
     position: relative;
+    float: left;
     height: 400px;
   }
 

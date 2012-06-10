@@ -20,6 +20,7 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
   index: ->
     @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state, count: 0)
     $("#home").html(@view.render().el)
+    @view.generatePips()
     @view.updatePips(1)
     @view.highlightBubble(@polls.at(1).attributes.id)
     
