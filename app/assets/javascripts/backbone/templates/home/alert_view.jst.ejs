@@ -5,14 +5,18 @@
         height:180,
         width:430,
         modal: true,
-        buttons: {
-            "Yes, I live in <%= city %>": function() {
-                $( this ).dialog( "close" );
+        buttons: [
+            {
+              text: "Yes, I live in <%= city %>",
+              class: 'btn-location-accept',
+              click: function() { $( this ).dialog( "close" ); }
             },
-            "No, I live elsewhere": function() {
-                $( this ).dialog( "close" );
+            {
+              text: "No, I live elsewhere",
+              class: 'btn-location-decline',
+              click: function() { $( this ).dialog( "close" ); }
             }
-        }
+        ]
 	});
   });
 </script>

@@ -3,53 +3,148 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
-#map {
+.map {
   position: relative;
+  overflow: auto;
 }
 
   #state {
     position: relative;
-    width: 553px;
-    height: 500px;
+    float: left;
+    height: 400px;
   }
 
     #state img.state_graphic {
       height: 100%;
-      width: 100%;
     }
+
+
+.poll-question-container {
+	position:relative;
+}
+
+.poll-question-container:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#CCC transparent; 
+  /* reduce the damage in FF3.0 */
+  display:block; 
+  width:0;
+}
+
+
+.poll-plot-container {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 5px 15px 5px 10px;
+  min-height: 34px;
+}
+
+  .poll-plot-container.poll-time-plot {
+    /*width: 185px;*/
+  }
+
+  .poll-plot-container.poll-result-plot {
+    /*width: 185px;*/
+  }
+
+  .poll-plot-container .plot-title {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: black;
+    color:white;
+    opacity: 0.4;
+    padding: 2px 4px;
+    text-align: center;
+    border-radius: 3px;
+	  -webkit-border-radius:3px;
+	  -moz-border-radius:3px;
+    font-style: italic;
+  	text-shadow: none;
+  }
+  
+  .poll-plot-container.poll-result-plot .plot-title {
+    right: 0;
+    bottom: 10px;
+    top: auto;
+    left: auto;
+  }
+  
+  .poll-plot-container .plot-no-data {
+    width: 70%;
+    font-style: italic;
+    font-size: 9pt;
+  }
+  
+.poll-plot {
+  float: left;
+  margin: 2px;
+  height: 100px;
+  width: 185px;
+  margin: 10px;
+}
+
+  .poll-plot .plot-label {
+    padding: 2px 3px;
+    font-size: 8pt;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #000;
+    opacity: 0.7;
+    color: #FFF;
+  }
+    .poll-plot .plot-label .plot-label-label {
+      display: none;
+    }
+    
+  .poll-plot.poll-time-plot {
+    width: 150px;
+  }
+  
+  .poll-plot .legend table td.legendLabel {
+    line-height: 1.1;
+    max-width: 80px;
+  }
 
 .speech_bubble {
   position: absolute;
   top: 0; left: 0;
-  background-image: url(speech_bubble_sprite_small.png);
+  background-image: url(speech_bubble_sprite_small_light.png);
   background-repeat: no-repeat;
-  height: 32px;
-  width: 41px;
+  background-color: transparent;
+  height: 61px;
+  width: 70px;
+  cursor: pointer;
 }
 
   .speech_bubble.from_right {
-    background-position: -41px 0;
+    background-position: 0 0;
   }
   
   .speech_bubble.from_right.hl {
-    background-position: -123px 0;
+    background-position: -141px 0;
   }
 
   .speech_bubble.from_right.hl_temp {
-    background-position: -123px 0;
+    background-position: -141px 0;
   }
 
   .speech_bubble.from_left {
-    background-position: 0 0;
+    background-position: -70px 0;
   }
 
   .speech_bubble.from_left.hl {
-    background-position: -82px 0;
+    background-position: -212px 0;
   }
 
   .speech_bubble.from_left.hl_temp {
-    background-position: -82px 0;
+    background-position: -212px 0;
   }
 
 

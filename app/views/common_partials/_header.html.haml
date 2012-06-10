@@ -23,14 +23,21 @@
     });  //{
   });
 
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
 
-.header.row
-  .navbar.navbar-fixed-top
-    .navbar-inner
-      .container
+      %a.btn.btn-navbar{ "data-toggle" => "collapse", "data-target" => ".nav-collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
 
-        = link_to 'Home', root_url, :class => 'brand pull-left'
+      = link_to root_url, :class => 'brand' do
+        = image_tag 'logo/logo_flat_orange_white_transparent.png', :class => 'header_logo'
 
+      .nav-collapse
+        %form.navbar-search.pull-left
+          %input{ :type => "text", :class => "search-query", :placeholder => "Search" }
         %ul.nav
           -if user_signed_in?
             %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }
@@ -52,9 +59,6 @@
               = link_to 'Profile', '#login_register', :class => 'sign_in_button'
           %li.divider-vertical
 
-        %form.navbar-search.pull-left
-          %input{ :type => "text", :class => "search-query", :placeholder => "Search" }
-
         %ul.nav.pull-right
           -if user_signed_in?
             %li
@@ -67,7 +71,9 @@
             %li
               = link_to 'Sign up', '#', :class => 'sign_in_button'
 
+
 = render :partial => 'common_partials/user_forms'
+
 
 -if user_signed_in?
   -if current_user.is_admin?

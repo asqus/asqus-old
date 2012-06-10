@@ -1,0 +1,14 @@
+<div class="poll-info item active well" data-pollId="<%= poll_id %>">
+  <h1><%= poll_title %></h1>
+  <h2><%= category %></h2>
+  <p><%= prompt %></p>
+  <% _.each(options, function(key,num) { %>
+  <button class="pollAnswer btn btn-large" data-pollid="<%= poll_id %>" 
+                             data-answerid="<%= num %>">
+      <%= key %>
+  </button>
+  <% }); %>
+  <br>
+  <br>
+</div>
+

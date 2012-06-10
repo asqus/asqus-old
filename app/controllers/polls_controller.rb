@@ -4,16 +4,15 @@ class PollsController < ApplicationController
 
 
   def vote
-    # API requires
-    #   :id, :option
-    # responds with
-    #   [{"option": "Yes", "count": 127}, {"option": "No", "count": 75}]
-    # On error:
-    #   {"errors": ["error1", "error2"]}
+  # API requires
+  #   :id, :option
+  # responds with
+  #   [{"option": "Yes", "count": 127}, {"option": "No", "count": 75}]
+  # On error:
+  #   {"errors": ["error1", "error2"]}
   
     @poll = Poll.where(:id => params[:id]).first
     option_index = params[:option]
-
     response = Hash.new
     
     if @poll.nil?
@@ -21,23 +20,53 @@ class PollsController < ApplicationController
       return respond_with response
     end
     
+    if cookies["voted_on_poll_#{@poll.id}"] === 'true' && false
+      (response['errors'] ||= []) << 'You have already voted on this poll.'
+      return respond_with response
+    end
+    
     if option_index.blank? or !option_index.is_numeric?
-      (response['errors'] ||= []) << 'A vote option must be specified'
+      (response['errors'] ||= []) << 'A vote option must be specified.'
       return respond_with response
     end
     
     voter_id = (current_user.nil?) ? nil : current_user.id
     vote = @poll.vote_for(option_index.to_i, voter_id)
-    response =  if vote.valid?
-                  @poll.totals
-                else
-                  { :errors => vote.errors.messages.values.collect{|e| e.first} }
-                end
+    if vote.valid?
+      @response = @poll.totals
+      cookies["voted_on_poll_#{@poll.id}"] = { :value => "true" }
+    else
+      @response = { :errors => vote.errors.messages.values.collect{|e| e.first} }
+    end
     
     respond_to do |format|
       format.html { redirect_to @poll }
-      format.json { render :json => response }
-      format.xml { render :xml => response }
+      format.json { render :json => @response }
+      format.xml { render :xml => @response }
+    end
+  end
+  
+  
+  def votes_per_day
+  # API requires
+  #   :id
+  # responds with
+  #   [ [1287903600, 79], [1287990000, 25], [1288076400, 61] ]
+  # On error:
+  #   {"errors": ["error1", "error2"]}
+  #
+    @poll = Poll.where(:id => params[:id]).first
+    response = Hash.new
+    
+    if @poll.nil?
+      (response['errors'] ||= []) << 'That poll was not found.'
+      return respond_with response
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to @poll }
+      format.json { render :json => @poll.votes_per_day_as_string }
+      format.xml { render :xml => @poll.votes_per_day }
     end
   end
   
@@ -45,9 +74,7 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all_with_map_information
-    
-    # Add in creator information
+    @polls = Poll.all_with_details
 
     respond_to do |format|
       format.html # index.html.erb

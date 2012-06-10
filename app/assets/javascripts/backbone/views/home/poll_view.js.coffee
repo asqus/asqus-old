@@ -10,15 +10,22 @@ class AsqUs.Views.Home.PollView extends Backbone.View
   events:
     "click .pollAnswer" : "nextPoll"
 
+  update : (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+
+    @model.save(null,
+      success : (user) =>
+        @model = user
+        window.location.hash = "/#{@model.id}"
+    )
+
+
   render: ->
-    poll = @options.polls.at(@count)
-    $(@el).html(@template(poll.toJSON() ))
+    $(@el).html(@template(@model.toJSON() ))
     return this
 
   nextPoll: ->
-    @count++
-    if(! @options.polls.at(@count))
-      @count = 0
     @render()
 
 
