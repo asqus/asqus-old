@@ -1,20 +1,39 @@
 <div class="poll-question-container poll-info well">
-  <h1><%= poll_title %></h1>
-  <h2>U.S. Representative for Michigan's 3rd Congressional District</h2>
+  <p class="lead" style="font-size:26px;"><%= poll_title %></p>
+  <% if(poll_type == "user") {%>
+  <p style="font-size:16px;"><i>Asked <b>for</b> your representative</i></p>
+  <% } else {%> 
+  <p style="font-size:16px;"><i>Asked <b>by</b> the <%= rep_title %></i></p>
+  <% }%> 
+  <br>
+  <table align="center" style="width: auto">
+  <tr align="center">
   <% _.each(options, function(key,num) { %>
-  <button class="pollAnswer btn btn-large" data-pollid="<%= poll_id %>" 
+  <td>
+    
+  <button class="pollAnswer btn btn-large btn-primary" data-pollid="<%= poll_id %>" 
                              data-answerid="<%= num %>">
       <%= key %>
   </button>
+  </td>
   <% }); %>
+  </tr>
+  </table>
   <br>
+  <br>
+  <div class="btn-group">
+  <button class="pollNext btn btn-large" data-pollid="<%= poll_id %>" 
+                             data-answerid="99">
+      Skip
+  </button>
   <a href="#/<%= poll_id %>/prompt" class="pollView btn btn-info btn-large" data-pollid="<%= poll_id %>" 
                              data-answerid="99">
       More info
   </a>
-  <button class="pollNext btn btn-large" data-pollid="<%= poll_id %>" 
+  <a href="#/<%= poll_id %>/prompt" class="pollView btn btn-info btn-large" data-pollid="<%= poll_id %>" 
                              data-answerid="99">
-      Skip >>
-  </button>
+      Ask question
+  </a>
+  </div>
 </div>
 
