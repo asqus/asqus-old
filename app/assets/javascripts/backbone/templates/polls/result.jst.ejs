@@ -2,7 +2,7 @@
 <div class="poll-result well span10">
     <h2>Your voice has been heard!</h2>
     <% if(poll_type == "user") {%>
-    <h3>Voter, <%= first_name %> <%= last_name %>, thanks you for your response.</h3>
+    <h3>Voter <%= first_name %> <%= last_name %>, thanks you for your response.</h3>
     <% } else {%> 
     <h3><%= first_name %> <%= last_name %> thanks you for your response.</h3>
     <p style="font-size:16px;"><i><%= rep_title %></i></p>
