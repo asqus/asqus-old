@@ -63,7 +63,12 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
         clickable: true
       highlight:
         opacity: 0.9
-    $.plot(plot_element, plot_data, plot_options)
+    console.log "plot_data"
+    console.log plot_data
+    console.log "data"
+    console.log data
+    #$.plot(plot_element, plot_data, plot_options)
+    $.plot(plot_element, data, plot_options)
     return this
 
 
