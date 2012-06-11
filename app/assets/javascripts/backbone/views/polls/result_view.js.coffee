@@ -29,10 +29,9 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
       return this
       
     plot_data = @model.attributes.totals.map (val) ->
-      return { label: val.option, data: val.count }
+      return { label: val.option, data: parseInt(val.count) }
     console.log "HEREEE"
-    console.log data
-    data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
+    #data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
     if plot_data.length == 4
       color_array = [
         '#31546B'
@@ -65,19 +64,10 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
         clickable: true
       highlight:
         opacity: 0.9
-<<<<<<< HEAD
-    console.log "plot_data"
-    console.log plot_data
-    console.log "data"
-    console.log data
-    #$.plot(plot_element, plot_data, plot_options)
-    $.plot(plot_element, data, plot_options)
-=======
     window.plot_element = plot_element
     window.plot_data = plot_data
     window.plot_options = plot_options
-    #$.plot(plot_element, plot_data, plot_options)
->>>>>>> 633933c3001780226879da354a44178102e87c7a
+    $.plot(plot_element, plot_data, plot_options)
     return this
 
 
@@ -85,13 +75,16 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
     plot_element = $("#poll_#{@model.attributes.poll_id}_time_plot")
     if plot_element.length == 0
       return this
-    if @model.attributes.totals == null
+    if @model.attributes.votes_per_day == null
       $('.poll-time-plot .plot-no-data').show()
       plot_element.hide()
       return this
 
     plot_data = @model.attributes.votes_per_day.map (val) ->
       return [ val[0], val[1] ]
+    plot_data = plot_data.sort( (a, b) ->
+      return (a[0] - b[0])
+    )
     plot_options =
       series:
         lines:
@@ -104,7 +97,7 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
         show: true
         ticks: 0
       xaxis:
-        show: false
+        show: true
         mode: "time"
         tickSize: [1, 'month']
         timeformat: "%b" #"%y/%m/%d"
@@ -121,6 +114,9 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
       highlight:
         opacity: 0.9
       colors: ['#FFC']
+    window.plot_element = plot_element
+    window.plot_data = plot_data
+    window.plot_options = plot_options
     $.plot(plot_element, [ plot_data ], plot_options)
       
     return this
