@@ -18,6 +18,8 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
   
   generateResultPlot: ->
     plot_element = $("#poll_#{@model.attributes.poll_id}_result_plot")
+    console.log 'Plot element:'
+    console.log plot_element
     if plot_element.length == 0
       return this
     if @model.attributes.totals == null
@@ -63,12 +65,19 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
         clickable: true
       highlight:
         opacity: 0.9
+<<<<<<< HEAD
     console.log "plot_data"
     console.log plot_data
     console.log "data"
     console.log data
     #$.plot(plot_element, plot_data, plot_options)
     $.plot(plot_element, data, plot_options)
+=======
+    window.plot_element = plot_element
+    window.plot_data = plot_data
+    window.plot_options = plot_options
+    #$.plot(plot_element, plot_data, plot_options)
+>>>>>>> 633933c3001780226879da354a44178102e87c7a
     return this
 
 
