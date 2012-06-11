@@ -29,10 +29,10 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
       return this
       
     plot_data = @model.attributes.totals.map (val) ->
-      return { label: val.option, data: val.count }
+      return { label: val.option, data: parseInt(val.count) }
     console.log "HEREEE"
     console.log data
-    data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
+    #data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
     if plot_data.length == 4
       color_array = [
         '#31546B'
@@ -95,7 +95,7 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
         show: true
         ticks: 0
       xaxis:
-        show: false
+        show: true
         mode: "time"
         tickSize: [1, 'month']
         timeformat: "%b" #"%y/%m/%d"
