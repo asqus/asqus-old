@@ -75,13 +75,16 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
     plot_element = $("#poll_#{@model.attributes.poll_id}_time_plot")
     if plot_element.length == 0
       return this
-    if @model.attributes.totals == null
+    if @model.attributes.votes_per_day == null
       $('.poll-time-plot .plot-no-data').show()
       plot_element.hide()
       return this
 
     plot_data = @model.attributes.votes_per_day.map (val) ->
       return [ val[0], val[1] ]
+    plot_data = plot_data.sort( (a, b) ->
+      return (a[0] - b[0])
+    )
     plot_options =
       series:
         lines:
@@ -114,7 +117,7 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
     window.plot_element = plot_element
     window.plot_data = plot_data
     window.plot_options = plot_options
-    #$.plot(plot_element, [ plot_data ], plot_options)
+    $.plot(plot_element, [ plot_data ], plot_options)
       
     return this
 
