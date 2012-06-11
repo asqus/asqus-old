@@ -29,6 +29,18 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
     plot_data = @model.attributes.totals.map (val) ->
       return { label: val.option, data: val.count }
     #data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
+    if plot_data.length == 4
+      color_array = [
+        '#31546B'
+        '#6298EB'
+        '#9DA7B2'
+        '#71A43B'
+      ]
+    else
+      color_array = [
+        '#6D6'
+        '#D66'
+      ]
     plot_options =
       series:
         pie:
@@ -39,12 +51,10 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
             formatter: (label, series) ->
               return '<div class="plot-label"><div class="plot-label-label">'+label+'</div>'+
               '<div class="plot-label-series">'+ Math.round(series.percent) + "%</div></div>"
-      colors: [
-        '#6D6'
-        '#D66'
-      ]
+      colors: color_array
       legend:
         show: true
+        position: 'nw'
         labelFormatter: (label, series) ->
           return label + ' ' + Math.round(series.percent) + '%'
       grid:

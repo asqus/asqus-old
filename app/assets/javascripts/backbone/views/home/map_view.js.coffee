@@ -133,14 +133,34 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     pollID = clicked.currentTarget.dataset.pollid
     answerID = clicked.currentTarget.dataset.answerid
     console.log("check check")
-    console.log(pollID)
-    console.log(answerID)
     @count++
     if(! @options.polls.at(@count))
       @count = 0
     url = "/polls/"+pollID+"/vote/"+answerID+".json"
     console.log(url)
     data = null
+
+    poll = @polls.get(pollID)
+    current_totals = poll.get('totals')
+    
+    current_total = current_totals[answerID]
+    
+    foundIndex = -1  # Index into totals that corresponds to the chosen answer
+    answerName = poll.attributes.options[answerID]
+    for i in [0..current_totals.length-1]
+      if current_totals[i].option == answerName
+        foundIndex = i
+      
+    if foundIndex == -1
+      current_totals.push(
+        "option": poll.attributes.options[answerID]
+        "count": 1
+      )
+    else
+      current_totals[foundIndex].count += 1
+    poll.set('totals', current_totals)
+    @resultView.model = poll
+    
     votePost = $.get url
     votePost.success (data) ->
       $(".pollAnswer").removeAttr("disabled", "disabled")
