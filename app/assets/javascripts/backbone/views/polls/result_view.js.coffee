@@ -31,7 +31,6 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
     plot_data = @model.attributes.totals.map (val) ->
       return { label: val.option, data: parseInt(val.count) }
     console.log "HEREEE"
-    console.log data
     #data = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 5}, { label: "Series5",  data: 20} ]
     if plot_data.length == 4
       color_array = [
@@ -68,7 +67,7 @@ class AsqUs.Views.Polls.ResultView extends Backbone.View
     window.plot_element = plot_element
     window.plot_data = plot_data
     window.plot_options = plot_options
-    #$.plot(plot_element, plot_data, plot_options)
+    $.plot(plot_element, plot_data, plot_options)
     return this
 
 
