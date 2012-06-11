@@ -159,3 +159,13 @@ Poll.create({
 })
 
 
+(Poll.last.id).times { |i|
+  20.times{ |j|
+    v = rand(Poll.find(i).poll_option_set_index.num_options)
+    a = Vote.create(:poll_id => i+1, :voter_id => 100+j, :poll_option_set_index => v, :created_at => rand(30).days.ago)
+  }
+}
+
+
+
+
