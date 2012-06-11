@@ -1,8 +1,12 @@
 
 <div class="poll-result well span10">
     <h2>Your voice has been heard!</h2>
-    <h3><%= rep_title %> <%= first_name %> <%= last_name %> thanks you for your response.</h3>
-
+    <% if(poll_type == "user") {%>
+    <h3>Voter, <%= first_name %> <%= last_name %>, thanks you for your response.</h3>
+    <% } else {%> 
+    <h3><%= first_name %> <%= last_name %> thanks you for your response.</h3>
+    <p style="font-size:16px;"><i><%= rep_title %></i></p>
+    <% } %>
     <div class="poll-plot-container poll-result-plot">
       <div class="poll-plot poll-result-plot" id="poll_<%= poll_id %>_result_plot">
       </div>
