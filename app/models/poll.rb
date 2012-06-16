@@ -128,16 +128,16 @@ class Poll < ActiveRecord::Base
     results.each_with_index { |poll, i|
       case poll['zipcode']
         when '49501'  # Grand Rapids
-          x = 340
+          x = 263
           y = 350
         when '48854'  # Lansing
-          x = 420
+          x = 343
           y = 360
         when '49855'  # Marquette
-          x = 215
+          x = 138
           y = 45
         else          # Ann Arbor
-          x = 470
+          x = 393
           y = 405
       end
       poll['map_x_coord'] = x

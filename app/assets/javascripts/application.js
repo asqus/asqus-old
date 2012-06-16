@@ -8,7 +8,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jqm-config
-//= require jquery.mobile-1.0.1.min
+//=# require jquery.mobile-1.0.1.min
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync

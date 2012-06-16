@@ -36,10 +36,11 @@
         = image_tag 'logo/logo_flat_orange_white_transparent_small.png', :class => 'header_logo'
 
       .nav-collapse
-        %form.navbar-form.navbar-search.pull-left.form-inline
-          %input{ :type => "text", :class => "search-query", :placeholder => "Email" }
-          %input{ :type => "submit", :class => "btn", :value => "Submit" }
-        %span.divider-vertical
+        -# __
+          %form.navbar-form.navbar-search.pull-left.form-inline
+            %input{ :type => "text", :class => "search-query", :placeholder => "Email" }
+            %input{ :type => "submit", :class => "btn", :value => "Submit" }
+          %span.divider-vertical
         %ul.nav
           -if user_signed_in?
             %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'new')) }

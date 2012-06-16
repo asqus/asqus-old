@@ -13,10 +13,13 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     @state = options.state
     @count = options.count
     @polls = options.polls
+    @num_polls_completed = 0
     $(@el).html(@template({state_graphic_path: "/assets/#{@state.toLowerCase()}_outline.png"}))
+    @initModal()
     
 
   template: JST["backbone/templates/home/map_view"]
+  doneTemplate: JST["backbone/templates/home/done"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
   resultTemplate: JST["backbone/templates/home/result_view"]
   siteInfoTemplate: JST["backbone/templates/home/site_info"]
@@ -63,7 +66,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   
   
   populateMap: ->
-    mapElement = @$el
+    mapElement = @$el.children('#state')
     @options.polls.each (single_poll, i) ->
       console.log("populateMap")
       console.log(single_poll)
@@ -81,6 +84,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
           top: "#{single_poll.attributes.map_y_coord}px"
       question_bubble.addClass(bubble_direction)
       mapElement.append(question_bubble)
+
 
   populatePoll: ->
     $(".poll-question-container").remove()
@@ -133,6 +137,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     pollID = clicked.currentTarget.dataset.pollid
     answerID = clicked.currentTarget.dataset.answerid
     console.log("check check")
+    @num_polls_completed++
     @count++
     if(! @options.polls.at(@count))
       @count = 0
@@ -190,6 +195,33 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       $("#poll_results_container").fadeIn('fast')
     )
     @resultView.generatePlots()
+    if (@num_polls_completed == 2)
+      that = this
+      setTimeout ( ->
+        that.showDoneModal()
+      ), 2000
+
+  
+  initModal: ->
+    # Preload overlay graphic
+    overlay = $('<div class="ui-widget-overlay" style="display:none;"></div>').appendTo(document.body)
+    modalArgs =
+      autoOpen: false
+      resizable: false
+      title: false
+      show: 'fade'
+      hide: 'fold'
+      open: ->
+        $('.ui-widget-overlay').hide().fadeIn();
+      height: 380
+      width: 600
+      modal: true
+    @doneModal = $('<div></div>').html(@doneTemplate()).dialog(modalArgs)
+    overlay.remove()
+
+  
+  showDoneModal: ->
+    @doneModal.dialog('open')
 
 
   generatePips: ->

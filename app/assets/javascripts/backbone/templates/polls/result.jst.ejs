@@ -1,4 +1,3 @@
-
 <div class="poll-result well span10">
     <h2>Your voice has been heard!</h2>
     <% if(poll_type == "user") {%>
@@ -21,26 +20,29 @@
       <div class="plot-no-data" style="display: none;">Not enough data</div>
     </div>
     
-    <div class="facebook-share">
-      <img src="/assets/icons/facebook.png" alt="Tell your friends!" />
+    <div class="share-buttons">
+      <div class="facebook-share-button">
+        <iframe src="//www.facebook.com/plugins/like.php?href=<%= share_url %>&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80&amp;appId=360097154054877" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true">
+        </iframe>
+      </div>
+
+      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en"
+         target="_blank"
+         data-url="<%= share_url %>"
+         data-text="I just made my voice heard. You can, too @AsqUs"
+         data-count="none"
+         data-dnt="true">
+        <img src="/assets/icons/twitter.png" alt="Tell your friends!" />
+      </a>
+      <script type="text/javascript">
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+          if(!d.getElementById(id)){
+            js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js,fjs);
+          }
+        }(document,"script","twitter-wjs");
+      </script>
     </div>
-    
-    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en"
-       target="_blank"
-       data-url="<%= share_url %>"
-       data-text="I just made my voice heard. You can, too @AsqUs"
-       data-count="none"
-       data-dnt="true">
-      <img src="/assets/icons/twitter.png" alt="Tell your friends!" />
-    </a>
-    <script type="text/javascript">
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
-        if(!d.getElementById(id)){
-          js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";
-          fjs.parentNode.insertBefore(js,fjs);
-        }
-      }(document,"script","twitter-wjs");
-    </script>
 
     <a href="#" class="pollNext btn btn-primary btn-large">Next question</a>
 </div>

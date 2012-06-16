@@ -126,6 +126,19 @@
     max-width: 80px;
   }
 
+
+.share-buttons {
+  padding: 2px;
+}
+
+  .facebook-share-button {
+    height: 25px;
+    width: 100px;
+    overflow: hidden;
+    background-color: transparent;
+  }
+
+
 .speech_bubble {
   position: absolute;
   top: 0; left: 0;

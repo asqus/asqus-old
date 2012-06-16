@@ -87,7 +87,7 @@ ul, ol {
   background-image: -webkit-linear-gradient(top, $blue-gradient-first, $blue-gradient-second);
   background-image: -o-linear-gradient(top, $blue-gradient-first, $blue-gradient-second);
   background-image: linear-gradient(top, $blue-gradient-first, $blue-gradient-second);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-gradient-first', endColorstr='$blue-gradient-second', GradientType=0)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-gradient-first', endColorstr='$blue-gradient-second', GradientType=0);
 }
 
   .btn-navbar {
@@ -98,8 +98,28 @@ ul, ol {
     background-image: -webkit-linear-gradient(top, $blue-gradient-first, $blue-gradient-second);
     background-image: -o-linear-gradient(top, $blue-gradient-first, $blue-gradient-second);
     background-image: linear-gradient(top, $blue-gradient-first, $blue-gradient-second);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-gradient-first', endColorstr='$blue-gradient-second', GradientType=0)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-gradient-first', endColorstr='$blue-gradient-second', GradientType=0);
   }
+
+  .navbar .divider-vertical {
+    background-color: $blue-gradient-second;
+    border-right: 1px solid $blue-gradient-first;
+  }
+
+
+.new-signup-modal {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+  .new-signup-modal .form-inline input {
+    margin: 0 5px;
+  }
+    .new-signup-modal .form-inline input:first-child {
+      margin-left: 0;
+    }
+    .new-signup-modal .form-inline .submit-button {
+      margin-left: 8px;
+    }
 
 
 #footer {
