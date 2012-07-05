@@ -3,6 +3,57 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.comment-box {
+  display: block;
+  margin-left: 70px;
+  margin-top: 10px;
+  padding: 15px;
+  height: 90px;
+}
+
+.comment-meta {
+  width: 100%;
+  margin: 0;
+  background: #ff8700;
+  border-radius: 5px; 
+  position: relative;
+}
+
+.comment-text {
+  margin: 0;
+  float: left;
+  background: #ffffff;
+  border-radius: 5px;  
+  padding: 10px;
+  padding-top: 20px;
+  margin-top: -20px;
+}
+
+.author {
+  width: auto;
+  height: 33px;
+  line-height: 33px;
+  padding-left: 12px;
+}
+
+.comment-rate {
+  width: auto;
+  height: 33px;
+  line-height: 33px;
+  padding-left: 12px;
+}
+
+.avatar {
+  margin-left: -65px;
+  margin-top: 15px;
+  width: auto;
+  float: left;
+}
+
+.avatar img {
+  border-radius: 3px;  
+}
+
 .map {
   position: relative;
   overflow: auto;
