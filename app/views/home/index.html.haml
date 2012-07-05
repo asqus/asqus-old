@@ -1,23 +1,4 @@
-:javascript
-  $(function() {
-    window.router = new AsqUs.Routers.HomeRouter({
-      polls: #{@polls.to_json.html_safe},
-      user_auth: #{@user_auth},
-      location: {
-        state: '#{@state_name}',
-        city: '#{@city_name}'
-      }
-    });
-    Backbone.history.start();
-  });
-
-
-#testModal
-
 #main.container
   .row
     #home.span12
-
-#message
-#poll
-
+      In home

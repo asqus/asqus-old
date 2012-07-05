@@ -1,11 +1,6 @@
 AsqUs::Application.routes.draw do
   
-  resources :votes
-
-  resources :poll_option_sets
-
-
-  resources :groups
+  root :to => 'home#index'
 
   match 'reps/dashboard' => 'reps#dashboard', :as => :rep_dashboard
   match 'reps/find_by_latlong' => 'reps#find_by_latlong'
@@ -13,10 +8,15 @@ AsqUs::Application.routes.draw do
   match 'users/home' => 'users#home', :as => :user_home
   match 'reps/home' => 'reps#home', :as => :rep_home
 
+  match 'map' => 'home#map'
+
   devise_for :users
 
   resources :users
   resources :reps
+  resources :votes
+  resources :poll_option_sets
+  resources :groups
 
 
   resources :polls
@@ -70,10 +70,6 @@ AsqUs::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 
