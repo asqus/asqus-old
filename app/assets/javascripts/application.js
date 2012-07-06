@@ -20,6 +20,9 @@
 
 
 //Prevent scrolling
-document.body.addEventListener('touchmove', function(event) {
-  event.preventDefault();
-}, false);
+$(function() {
+  document.body.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+  }, false);
+});
+

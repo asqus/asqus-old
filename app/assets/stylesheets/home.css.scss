@@ -25,23 +25,6 @@
   margin: 0 auto;
 }
 
-.poll-question-container {
-	position:relative;
-}
-
-.poll-question-container:after {
-	content:"";
-	position:absolute;
-	bottom:-20px; /* value = - border-top-width - border-bottom-width */
-	left:50px; /* controls horizontal position */
-	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
-	border-style:solid;
-	border-color:#CCC transparent; 
-  /* reduce the damage in FF3.0 */
-  display:block; 
-  width:0;
-}
-
 
 .poll-plot-container {
   position: relative;
@@ -191,4 +174,29 @@
   font-size:1.1em;
   padding: 16px;
 }
+
+
+.faq-item {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+  .faq-item .response {
+    
+  }
+  
+  .faq-item.speech-bubble-arrow:nth-child(even) {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .faq-item.speech-bubble-arrow:nth-child(even):after {
+    left: auto;
+    right: 50px;
+    border-width: 0 0 20px 20px;
+  	border-color: transparent #CCC;
+  }
+
+
 

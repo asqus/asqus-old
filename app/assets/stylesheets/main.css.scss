@@ -1,3 +1,7 @@
+/*
+  Speech bubbles: http://nicolasgallagher.com/pure-css-speech-bubbles/demo/
+*/
+
 /* Site-wide styles */
 
 
@@ -203,7 +207,14 @@ ul, ol {
       }
 
 
+.center-column {
+  float: none;
+  margin: 0 auto;
+}
+
+
 .well {
+  position: relative;
 	background:#DDD;
 	background:-webkit-gradient(linear, 0 0, 0 100%, from(#EEE), to(#CCC));
 	background:-moz-linear-gradient(#EEE, #CCC);
@@ -241,6 +252,21 @@ ul, ol {
     height: 20px;
     border: 1px solid #633;
   }
+
+
+
+.speech-bubble-arrow:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:#CCC transparent; 
+  /* reduce the damage in FF3.0 */
+  display:block; 
+  width:0;
+}
 
 
 
