@@ -1,4 +1,5 @@
 <div class="poll-result well span10">
+
     <h2>Your voice has been heard!</h2>
     <% if(poll_type == "user") {%>
     <h3>Voter <%= first_name %> <%= last_name %>, thanks you for your response.</h3>
@@ -19,14 +20,16 @@
       <div class="plot-title">Activity</div>
       <div class="plot-no-data" style="display: none;">Not enough data</div>
     </div>
+
+    <a href="#" class="pollNext btn btn-primary btn-large" style="margin-top: 20px;">Next question</a>
     
     <div class="share-buttons">
-      <div class="facebook-share-button">
-        <iframe src="//www.facebook.com/plugins/like.php?href=<%= share_url %>&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80&amp;appId=360097154054877" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true">
+      <div class="facebook-share-button share-button">
+        <iframe src="//www.facebook.com/plugins/like.php?href=<%= share_url %>&amp;send=false&amp;layout=button_count&amp;width=55&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80&amp;appId=360097154054877" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true">
         </iframe>
       </div>
 
-      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en"
+      <a href="https://twitter.com/share" class="twitter-share-button share-button" data-lang="en"
          target="_blank"
          data-url="<%= share_url %>"
          data-text="I just made my voice heard. You can, too @AsqUs"
@@ -44,6 +47,5 @@
       </script>
     </div>
 
-    <a href="#" class="pollNext btn btn-primary btn-large">Next question</a>
 </div>
 

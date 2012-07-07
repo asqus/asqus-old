@@ -163,11 +163,16 @@
 
 .share-buttons {
   padding: 2px;
+  margin: 10px 0 10px;
 }
+
+  .share-buttons .share-button {
+    float: left;
+  }
 
   .facebook-share-button {
     height: 25px;
-    width: 100px;
+    width: 55px;
     overflow: hidden;
     background-color: transparent;
   }
