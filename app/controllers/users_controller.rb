@@ -51,6 +51,10 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    params[:user][:status] = 'email_signup' if params[:action] == 'email_signup'
+    logger.info 'status'
+
+    #@user.status == 'email_signup' means he just gave us his email and maybe zip. His password is literally: NOPASS
     @user = User.new(params[:user])
 
     respond_to do |format|

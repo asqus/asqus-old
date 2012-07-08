@@ -18,12 +18,12 @@ AsqUs::Application.routes.draw do
   resources :votes
   resources :poll_option_sets
   resources :groups
-
-
   resources :polls
+
   match 'polls/:id/vote/:option' => 'polls#vote', :as => :poll_vote
   match 'polls/:id/votes_per_day' => 'polls#votes_per_day', :as => :poll_votes_per_day
 
+  post 'users/email_signup' => 'users#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -217,6 +217,7 @@ class AsqUs.Views.Home.MapView extends Backbone.View
       width: 600
       modal: true
     @doneModal = $('<div></div>').html(@doneTemplate()).dialog(modalArgs)
+    $('#modal-signup-submit-button').click @submitEmailClick
     overlay.remove()
 
   
@@ -236,4 +237,23 @@ class AsqUs.Views.Home.MapView extends Backbone.View
     $('.pip').removeClass('current')
     $("#pip_#{index}").addClass('current')
 
+
+  submitEmailClick: ->
+    container = $($('.new-signup-action')[0])
+    container.children('form').hide()
+    container.children('.loader').show()
+    $.ajax
+      type: 'POST'
+      url: '/users/email_signup'
+      data: container.children('form').serialize()
+      success: ->
+        container.children('.loader').hide()
+        container.children('.success').show()
+      error: ->
+        container.children('.loader').hide()
+        container.children('form').show()
+
+    
+    return false
+    
 

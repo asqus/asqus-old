@@ -114,6 +114,10 @@ ul, ol {
 .new-signup-modal {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+  
+  .new-signup-modal form {
+    text-align: left;
+  }
 
   .new-signup-modal .form-inline input {
     margin: 0 5px;
@@ -123,6 +127,14 @@ ul, ol {
     }
     .new-signup-modal .form-inline .submit-button {
       margin-left: 8px;
+    }
+  
+  .new-signup-modal .new-signup-action {
+    margin: 10px 0 0;
+    text-align: center;
+  }
+    .new-signup-modal .new-signup-action .success {
+      color: #365;
     }
 
 
