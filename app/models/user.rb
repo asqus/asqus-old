@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :lockable, :timeoutable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :admin, :email, :password, :password_confirmation, :remember_me, :zipcode
+  attr_accessible :first_name, :last_name, :status, :admin, :email, :password, :password_confirmation, :remember_me, :zipcode
 
   has_one :rep
   has_many :votes, :foreign_key => 'voter_id', :class_name => 'Vote'
