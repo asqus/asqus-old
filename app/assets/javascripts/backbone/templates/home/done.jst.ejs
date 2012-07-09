@@ -3,12 +3,8 @@
   <h2>Your voice counts. Be heard.</h2>
 
   <p>
-    Your government was designed in a time where it took five to ten days by horseback to hear back from your elected officials.
-  </p>
-
-  <p>
-    The Internet has changed all that. Now you can finally <strong>ask</strong> your elected officials questions.
-      And they can ask how you feel. <strong>They are listening</strong>.
+    Now you can finally <strong>ask</strong> your elected officials questions.
+    And they can ask how you feel. <strong>They are listening</strong>.
   </p>
 
   <h3>Join the movement.</h3>
@@ -18,20 +14,24 @@
       You should give us your email and continue to explore our demo. We'll keep you posted with developments.
     </div>
     <div class="new-signup-action">
-      <form class="form-inline" accept-charset="UTF-8" action="/users/email_signup" method="post">
+      <form class="email_signup form-inline" accept-charset="UTF-8" action="/users/email_signup" method="post">
         <input class="user_email span3" name="user[email]" placeholder="Email" size="32" type="text" />
-        <input class="user_zipcode span2" name="user[zipcode]" placeholder="Zip" size="10" type="text" />
-        <input id="modal-signup-submit-button" class="submit-button btn btn-primary span2" name="commit" style="height:30px;margin:10px auto;" type="submit" value="Submit" />
+        <input class="user_zipcode span1" name="user[zipcode]" placeholder="Zip" size="10" type="text" />
+        <input class="modal-signup-submit-button submit-button btn btn-primary" name="commit" type="submit" value="Submit" />
         <div style="margin:0;padding:0;display:none">
           <input name="user[password]" type="hidden" value="NOPASS" />
           <input name="utf8" type="hidden" value="&#x2713;" />
         </div>
       </form>
       <img class="loader" src="/assets/ajax-loader.gif" alt="Loading..." style="display:none;"/>
-      <div class="success" src="" style="display:none;">
+      <div class="alert alert-success success" style="display:none;">
         Thanks! You'll hear from us soon when AsqUs comes to your area!
       </div>
     </div>
   </div>
 
 </div>
+
+<script type="text/javascript">
+  emailSignupListener();
+</script>

@@ -18,40 +18,47 @@
             We're a group of technologists, gardeners, and political junkies who see a problem.
 
       .center-column.span9
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            OK, but what is a political dialogue platform?
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            A political dialogue platform is a place where voters and elected officials can chat about current issues.
-            
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            So how does it work?
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            It's easy, just ask your elected officials questions, and answer the ones they ask you.
-            
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            So I can ask my elected officials anything?
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            You can ask your representatives any question you would like.
-            We will have community moderation so that elected officials get to see the most relevant
-            and popular user-submitted questions. So ask a good one!
-            
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            How do I know my representatives are listening?
-        .faq-item.well.speech-bubble-arrow.row.span6
-          .lead
-            We have personally met with over half-a-dozen represenatives who all tell us the same thing:
-            %em I have no good way of getting opinions and feelings from my constituents!
-            %br
-            We are solving this problem with Asq.Us. We hope that this dialogue platform will facilitate
-            better discussion between you and your elected officials, and ultimately result in a more
-            representative government that you can trust.
+        .row
+          = render :partial => 'common_partials/email_signup'
+ 
+        .row
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              OK, but what is a political dialogue platform?
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              A political dialogue platform is a place where voters and elected officials can chat about current issues.
+              
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              So how does it work?
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              It's easy, just ask your elected officials questions, and answer the ones they ask you.
+              
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              So I can ask my elected officials anything?
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              You can ask your representatives any question you would like.
+              We will have community moderation so that elected officials get to see the most relevant
+              and popular user-submitted questions. So ask a good one!
+              
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              How do I know my representatives are listening?
+          .faq-item.well.speech-bubble-arrow.row.span6
+            .lead
+              We have personally met with over half-a-dozen represenatives who all tell us the same thing:
+              %em I have no good way of getting opinions and feelings from my constituents!
+              %br
+              We are solving this problem with Asq.Us. We hope that this dialogue platform will facilitate
+              better discussion between you and your elected officials, and ultimately result in a more
+              representative government that you can trust.
+
+        .row
+          = render :partial => 'common_partials/email_signup'
 
       -# __
         .faq-item.well.speech-bubble-arrow

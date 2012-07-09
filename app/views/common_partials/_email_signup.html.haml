@@ -1,0 +1,15 @@
+.well.new-signup
+  .signup-info
+    You should give us your email and continue to explore our demo. We'll keep you posted with developments.
+  .new-signup-action
+    %form.email_signup.form-inline{"accept-charset" => "UTF-8", :action => "/users/email_signup", :method => "post"}
+      %input.user_email.span3{:name => "user[email]", :placeholder => "Email", :size => "32", :type => "text"}/
+      %input.user_zipcode.span1{:name => "user[zipcode]", :placeholder => "Zip", :size => "10", :type => "text"}/
+      %input.modal-signup-submit-button.submit-button.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}/
+      %div{:style => "margin:0;padding:0;display:none"}
+        %input{:name => "user[password]", :type => "hidden", :value => "NOPASS"}/
+        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+    %img.loader{:alt => "Loading...", :src => "/assets/ajax-loader.gif", :style => "display:none;"}/
+    .alert.alert-success.success{:style => "display:none;"}
+      Thanks! You'll hear from us soon when AsqUs comes to your area!
+

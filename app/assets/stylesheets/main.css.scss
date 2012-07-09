@@ -115,26 +115,27 @@ ul, ol {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
   
-  .new-signup-modal form {
+.new-signup-action {
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+  .new-signup-action form {
     text-align: left;
   }
 
-  .new-signup-modal .form-inline input {
+  .new-signup-action .form-inline input {
     margin: 0 5px;
+    font-size: 11pt;
   }
-    .new-signup-modal .form-inline input:first-child {
+    .new-signup-action .form-inline input:first-child {
       margin-left: 0;
     }
-    .new-signup-modal .form-inline .submit-button {
-      margin-left: 8px;
+    .new-signup-action .form-inline input.user_email {
+      margin: 0 6px;
     }
-  
-  .new-signup-modal .new-signup-action {
-    margin: 10px 0 0;
-    text-align: center;
-  }
-    .new-signup-modal .new-signup-action .success {
-      color: #365;
+    .new-signup-action .form-inline .submit-button {
+      margin-left: 8px;
     }
 
 
@@ -235,6 +236,7 @@ ul, ol {
 	-webkit-border-radius:10px;
 	-moz-border-radius:10px;
 	border-radius:10px;
+	font-size: 11pt;
 	text-shadow: 1px 1px 1px #FFF;
 }
 
