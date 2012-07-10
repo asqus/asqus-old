@@ -78,6 +78,15 @@ ul, ol {
   margin-right: 20px;
 }
 
+
+.feature {
+  margin-bottom: 30px;
+}
+  .feature img {
+    max-height: 400px;
+  }
+
+
 .navbar-form .search-query {
   display: inline-block;
   width: auto;
@@ -125,17 +134,17 @@ ul, ol {
   }
 
   .new-signup-action .form-inline input {
-    margin: 0 5px;
+    margin: 0 1px;
     font-size: 11pt;
   }
     .new-signup-action .form-inline input:first-child {
       margin-left: 0;
     }
     .new-signup-action .form-inline input.user_email {
-      margin: 0 6px;
+      margin: 0 6px 0 0;
     }
     .new-signup-action .form-inline .submit-button {
-      margin-left: 8px;
+      margin-left: 6px;
     }
 
 
