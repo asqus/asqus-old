@@ -4,7 +4,7 @@
   .new-signup-action
     %form.email_signup.form-inline{"accept-charset" => "UTF-8", :action => "/users/email_signup", :method => "post"}
       %input.user_email.span3{:name => "user[email]", :placeholder => "Email", :size => "32", :type => "text"}/
-      %input.user_zipcode.span1{:name => "user[zipcode]", :placeholder => "Zip", :size => "10", :type => "text"}/
+      %input.user_zipcode.span2{:name => "user[zipcode]", :placeholder => "Zip", :size => "10", :type => "text"}/
       %input.modal-signup-submit-button.submit-button.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}/
       %div{:style => "margin:0;padding:0;display:none"}
         %input{:name => "user[password]", :type => "hidden", :value => "NOPASS"}/
