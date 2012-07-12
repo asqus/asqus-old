@@ -73,9 +73,10 @@ ul, ol {
   height: 28px;
 }
 
-.brand {
+.navbar .brand {
   padding: 8px 5px 2px !important;
   margin-right: 20px;
+  margin-left: 0px;
 }
 
 
@@ -149,11 +150,12 @@ ul, ol {
 
 
 #footer {
-  position: fixed;
+/*  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  margin: 0;
+*/
+  margin: 45px 0 0 0;
   padding: 0;
   background-color: transparent;
 }
