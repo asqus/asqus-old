@@ -4,16 +4,35 @@
     %small
       Your voice counts
 
-.row
-  #home.span12
-    .row
-      .feature.span8.pull-left
-        = image_tag 'team/asqus_image_dumpster.jpg'
-        .caption
-          The AsqForce
-      .span4.pull-right
-        %p
-          We're a group of technologists, gardeners, and political junkies who see a problem.
+.row.span12
+  .row
+    .pane#intro
+      = render :partial => 'common_partials/intro'
+      
+  .row
+    .pane#answer
+      = render :partial => 'common_partials/answer'
+      
+  .row
+    .pane#ask
+      = render :partial => 'common_partials/ask'
+      
+  .row
+    .pane#community
+      = render :partial => 'common_partials/community'
+      
+  .row
+    .pane#signup
+      = render :partial => 'common_partials/signup'
+
+  -# __
+    .feature.span8.pull-left
+      = image_tag 'team/asqus_image_dumpster.jpg'
+      .caption
+        The AsqForce
+    .span4.pull-right
+      %p
+        We're a group of technologists, gardeners, and political junkies who see a problem.
 
     .center-column.span9
       .row
