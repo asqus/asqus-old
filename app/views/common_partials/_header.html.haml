@@ -42,27 +42,11 @@
             %input{ :type => "submit", :class => "btn", :value => "Submit" }
           %span.divider-vertical
         %ul.nav
-          -if user_signed_in?
-            %li{ :class => ('active' if current_page?(new_user_registration_path)) }
-              = link_to 'Propose', {:controller => '/users', :action => 'new'}
-            -# __
-              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-                = link_to 'Policy', '/'
-              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-                = link_to 'People', '/'
-              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-                = link_to 'Profile', '/'
-          -else
-            %li{ :class => ('active' if current_page?(new_user_registration_path)) }
-              = link_to 'Propose', '#login_register', :class => 'sign_in_button'
-            -# __
-              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-                = link_to 'Policy', '/'
-              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-                = link_to 'People', '/'
-              %li{ :class => ('active' if current_page?(:controller => 'users', :action => 'index')) }
-                = link_to 'Profile', '#login_register', :class => 'sign_in_button'
-          %li.divider-vertical
+          -# __
+            -if user_signed_in?
+              %li{ :class => ('active' if current_page?(new_user_registration_path)) }
+                = link_to 'Propose', {:controller => '/users', :action => 'new'}
+            %li.divider-vertical
 
         %ul.nav.pull-right
           -if user_signed_in?
