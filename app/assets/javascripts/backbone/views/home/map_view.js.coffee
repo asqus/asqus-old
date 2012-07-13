@@ -21,7 +21,6 @@ class AsqUs.Views.Home.MapView extends Backbone.View
   template: JST["backbone/templates/home/map_view"]
   doneTemplate: JST["backbone/templates/home/done"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
-  resultTemplate: JST["backbone/templates/home/result_view"]
   siteInfoTemplate: JST["backbone/templates/home/site_info"]
   
 

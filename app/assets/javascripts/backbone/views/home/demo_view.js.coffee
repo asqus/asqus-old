@@ -2,65 +2,55 @@ AsqUs.Views.Home ||= {}
 
 class AsqUs.Views.Home.DemoView extends Backbone.View
 
-  className: "demo"
+  el: "demo"
 
   initialize: (options) ->
     @polls = options.polls
-    @count = options.count
     @num_polls_completed = 0
-    @initModal()
-    $(@el).html(@template({state_graphic_path: "/assets/michigan_outline.png"}))
-    console.log("test")
     console.log(@polls)
     
 
   template: JST["backbone/templates/home/map_view"]
   doneTemplate: JST["backbone/templates/home/done"]
   pollTemplate: JST["backbone/templates/home/poll_view"]
-  resultTemplate: JST["backbone/templates/home/result_view"]
   siteInfoTemplate: JST["backbone/templates/home/site_info"]
   
 
   events: ->
-    "click .pollAnswer" : "nextPoll"
+    "click .pollAnswer" : "pollAnswer"
     "click .pollNext" : "populatePoll"
     "click .pollTest" : "populatePoll"
     "hover .speech_bubble" : "hover"
     "click .speech_bubble" : "replacePoll"
     "click .pip" : "replacePoll"
+    
+  
+  answerPane: ->
+    @count++
+    if(! @options.polls.at(@count))
+      @count = 0
+    poll = @options.polls.at(@count)
+    if (poll)
+      pollID = poll.attributes.poll_id
+      $('.card .front.face').html(@pollTemplate(poll.toJSON()))
+      #$('.card').click ->
+      #  $('.card .back.face').show()
+      #  $('.card').toggleClass('flip')
+      @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
+    @_initializePollResults(poll)
+      
 
 
   hover:(e) ->
     $(e.currentTarget).toggleClass("hl_temp")
 
   render: ->
-    @populatePoll()
-    #$(@el).prepend(@siteInfoTemplate())
+    @answerPane()
     return this
   
   populatePoll: ->
-    $(".poll-question-container").remove()
-    $(".poll-result").remove()
-    @count++
-    if(! @options.polls.at(@count))
-      @count = 0
-    poll = @options.polls.at(@count)
-    console.log("poll here?")
-    console.log(poll)
-    if(poll)
-      pollID = poll.attributes.poll_id
-      currentBubble = $("#speech_bubble_" + pollID)
-      $(".speech_bubble").removeClass("hl")
-      $(".speech_bubble").removeClass("hl_temp")
-        #Toggle would be better here!
-      currentBubble.addClass("hl")
 
-      @$el.find('.poll-wrapper').prepend(@pollTemplate(poll.toJSON()))
-      @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
-      $('#poll_results_container').html(@resultView.render().el).hide()
-      @updatePips(@count)
 
-#How to get the id of question bubble, and then switch to that question
   replacePoll:(e) ->
     $(".speech_bubble").removeClass("hl_temp")
     $(".poll-question-container").remove()
@@ -79,9 +69,8 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
     @updatePips(@count)
     
 
-  nextPoll:(clicked) ->
-    console.log("EL")
-    console.log(@el)
+  pollAnswer: (clicked) ->
+    alert('pa')
     if($(clicked.currentTarget).hasClass("disabled"))
       return false
     $(clicked.currentTarget).toggleClass("btn-inverse")
@@ -134,24 +123,13 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
       $("#poll_results_container").fadeOut('fast', ->
         $(".poll-question-container").fadeIn('fast')
       )
-    #@populatePoll()
-    @showResults(pollID)
-
-  showResults:(pollID) ->
     $(".pollAnswer").attr("disabled", "disabled")
-    $('#poll_results_container').html(@resultView.render().el).hide()
-    poll = @options.polls.get(pollID)
+    @resultView.generatePlots()
+
+  _initializePollResults:(poll) ->
     if(!poll)
       return
-    $(".poll-question-container").fadeOut('fast', ->
-      $("#poll_results_container").fadeIn('fast')
-    )
-    @resultView.generatePlots()
-    if (@num_polls_completed == 2)
-      that = this
-      setTimeout ( ->
-        that.showDoneModal()
-      ), 2000
+    $('.card .back.face').html(@resultView.render().el)
 
   
   initModal: ->

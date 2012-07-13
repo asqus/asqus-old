@@ -3,7 +3,6 @@ AsqUs.Views.Home ||= {}
 class AsqUs.Views.Home.PromptView extends Backbone.View
 
   template: JST["backbone/templates/home/prompt_view"]
-  resultTemplate: JST["backbone/templates/home/result_view"]
 
   initialize: ->
     @count = 0
