@@ -23,7 +23,7 @@
     });  //{
   });
 
-.navbar.navbar-fixed-top
+#navbar.navbar.navbar-fixed-top
   .navbar-inner
     .container
 
@@ -42,6 +42,15 @@
             %input{ :type => "submit", :class => "btn", :value => "Submit" }
           %span.divider-vertical
         %ul.nav
+          %li
+            = link_to 'Answer', '#answer', :class => 'nav-link'
+          %li
+            = link_to 'Ask', '#ask', :class => 'nav-link'
+          %li
+            = link_to 'Community', '#community', :class => 'nav-link'
+          %li
+            = link_to 'Be heard', '#signup', :class => 'nav-link'
+
           -# __
             -if user_signed_in?
               %li{ :class => ('active' if current_page?(new_user_registration_path)) }

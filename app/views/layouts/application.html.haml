@@ -9,7 +9,7 @@
     = jquery_include_tag :google
     = javascript_include_tag 'application.js'
     = csrf_meta_tags
-  %body
+  %body{ 'data-spy' => "scroll" }
 
     = render :partial => 'common_partials/header'
 

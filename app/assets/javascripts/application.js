@@ -24,6 +24,15 @@ $(function() {
     event.preventDefault();
   }, false);
 
+  $('#navbar').scrollspy();
+  $.localScroll({
+    axis: 'y',
+    //offset: {
+    //  top: '100px'
+    //},
+    duration: 500
+  });
+
   emailSignupListener();
   
 });

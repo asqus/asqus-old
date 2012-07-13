@@ -7,61 +7,82 @@
 .row
   #home.span12
     .row
-      .span8.pull-left
-        = image_tag 'http://placehold.it/800x450'
+      .feature.span8.pull-left
+        = image_tag 'team/asqus_image_dumpster.jpg'
         .caption
           The AsqForce
       .span4.pull-right
         %p
-          Asq.Us is a publicly-owned political dialogue platform.
-        %p
-          As a nonprofit building open-source technology, Asq.Us bridges the gap between you and your elected officials.
-        %p
-          By using the internet, we can finally connect all of the people that make up America's democracy. 
+          We're a group of technologists, gardeners, and political junkies who see a problem.
 
     .center-column.span9
-      .faq-item.well.speech-bubble-arrow.span6
-        .lead
-          What do you mean by &quot;publicly-owned&quot;?
-        %p.caption
-          Asq.Us is being built by a non-profit organization for the people and by the people.
-          We intend to modernize democracy and place this platform in the public domain, being
-          open-source and fully transparent.
+      .row
+        = render :partial => 'common_partials/email_signup'
 
-      .faq-item.well.speech-bubble-arrow.span6
-        .lead
-          How will the project be funded after its launch?
-        %p.caption
-          We believe an open, issue-based dialogue platform will be a valuable improvement to
-          democracy. As such, we intend to support it in a way similar to Wikipedia - primarily
-          through donations and grants.
+      .row
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            OK, but what is a political dialogue platform?
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            A political dialogue platform is a place where voters and elected officials can chat about current issues.
+            
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            So how does it work?
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            It's easy, just ask your elected officials questions, and answer the ones they ask you.
+            
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            So I can ask my elected officials anything?
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            You can ask your representatives any question you would like.
+            We will have community moderation so that elected officials get to see the most relevant
+            and popular user-submitted questions. So ask a good one!
+            
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            How do I know my representatives are listening?
+        .faq-item.well.speech-bubble-arrow.row.span6
+          .lead
+            We have personally met with over half-a-dozen represenatives who all tell us the same thing:
+            %em I have no good way of getting opinions and feelings from my constituents!
+            %br
+            We are solving this problem with Asq.Us. We hope that this dialogue platform will facilitate
+            better discussion between you and your elected officials, and ultimately result in a more
+            representative government that you can trust.
 
-      .faq-item.well.speech-bubble-arrow.span6
-        .lead
-          What level of government will be eligible to use the platform?
-        %p.caption
-          Any elected official or public representative at any level - city, county, state, and national.
+      .row
+        = render :partial => 'common_partials/email_signup'
 
-      .faq-item.well.speech-bubble-arrow.span6
+    -# __
+      .faq-item.well.speech-bubble-arrow
         .lead
-          How will you determine who is a representative? How will you prevent abuse?
-        %p.caption
-          Initially, we will contact representatives where we have contacts and connections.
-          We will verify representatives over the phone and again by email.
-
-      .faq-item.well.speech-bubble-arrow.span6
-        .lead
-          Why is the platform open-source?
+          So I can ask my elected officials
+          %em anything
+          ?
         %p.caption
           The platform is all about transparency. The more contributors we get, the better the platform will be.
           
-      .faq-item.well.speech-bubble-arrow.span6
+      .faq-item.well.speech-bubble-arrow
         .lead
           Are you trying to create &quot;Direct Democracy&quot;?
         %p.caption
-          No. A direct democracy is probably neither feasible nor advisable. Nonetheless,
-          constituents should still be represented. We are creating an easy way for representatives
-          to find out how their constituents feel about issues. It also allows people to ask
-          questions of their constituents.
+          No. A direct democracy is probably neither feasible nor advisable. Nonetheless, constituents should still be represented. We are creating an easy way for representatives to find out how their constituents feel about issues. It also allows people to ask questions of their constituents.
           
-        
+      .faq-item.well.speech-bubble-arrow
+        .lead
+          Why will my representative use this platform?
+        %p.caption
+          Many representatives currently spend between 5-10% of their budgets on polling.
+          Our platform is free to use. As well, when a representative gets into office, he/she
+          typically only has a small subset of people on the mailing list, and those tend to be o 
+          the same party. Asq.Us allows them to reach out to people of any political leaning.
+          We will also be aggressively promoting the platform so they don't have to do that work.
+          Finally, reaching out to constituents is something they ought to be doing;
+          and with a free platform, they won't have any excuse.
+
+
