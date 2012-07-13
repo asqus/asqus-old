@@ -24,7 +24,9 @@ $(function() {
     event.preventDefault();
   }, false);
 
-  $('#navbar').scrollspy({offset: '0px'});
+  $('#navbar').scrollspy({
+    offset: 10
+  });
   $.localScroll({
     axis: 'y',
     //offset: {
