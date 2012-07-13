@@ -32,7 +32,7 @@
         %span.icon-bar
         %span.icon-bar
 
-      = link_to root_url + '#', :class => 'brand' do
+      = link_to root_url + '#intro', :class => 'brand' do
         = image_tag 'logo/logo_flat_orange_white_transparent_small.png', :class => 'header_logo'
 
       .nav-collapse
@@ -42,6 +42,8 @@
             %input{ :type => "submit", :class => "btn", :value => "Submit" }
           %span.divider-vertical
         %ul.nav
+          %li
+            = link_to 'Intro', '#intro', :class => 'nav-link', :style => 'display: none'
           %li
             = link_to 'Answer', '#answer', :class => 'nav-link'
           %li

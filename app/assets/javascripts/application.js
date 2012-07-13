@@ -24,12 +24,15 @@ $(function() {
     event.preventDefault();
   }, false);
 
-  $('#navbar').scrollspy();
+  $('#navbar').scrollspy({
+    offset: 10
+  });
   $.localScroll({
     axis: 'y',
     //offset: {
     //  top: '100px'
     //},
+    offset: -50,
     duration: 500
   });
 
