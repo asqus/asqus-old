@@ -1,6 +1,6 @@
 :javascript
   $(function() {
-    window.router = new AsqUs.Routers.HomeRouter({
+    window.router = new AsqUs.Routers.MapRouter({
       polls: #{@polls.to_json.html_safe},
       user_auth: #{@user_auth},
       location: {

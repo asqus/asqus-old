@@ -13,48 +13,13 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     ":id/answer" : "answer"
     ":id/prompt" : "prompt"
     "index"    : "index"
-    ":id/edit" : "edit"
-    ":id"      : "show"
     ".*"       : "index"
 
   index: ->
-    @view = new AsqUs.Views.Home.MapView(polls: @polls, state: @state, count: 0)
+    console.log("cheers")
+    @view = new AsqUs.Views.Home.DemoView(polls: @polls, state: @state, count: 0)
+    console.log("cheers2")
     $("#home").html(@view.render().el)
-    @view.generatePips()
-    @view.updatePips(1)
-    @view.highlightBubble(@polls.at(1).attributes.id)
+    console.log("cheers3")
     
-    show_alert = false
-    
-    if(show_alert && !@user_auth && !Cookie.get('browser_location_city'))
-      @view = new AsqUs.Views.Home.AlertView(city: @city, user_auth: @user_auth)
-      $("#message").html(@view.render().el)
-    @user_auth = true
-    
-  prompt: (id) ->
-    console.log("Prompt!")
-    poll = @polls.get(id)
-    @view = new AsqUs.Views.Home.PromptView(model: poll)
-    $("#home").html(@view.render().el)
-    #@slideView(@view)
-
-  answer: (id) ->
-    console.log("Answer!")
-    poll = @polls.get(id)
-    @view = new AsqUs.Views.Home.PollView(model: poll)
-    $("#home").html(@view.render().el)
-    #@slideView(@view)
-
-  slideView: (page) ->
-    console.log("Slide View!")
-    $(page.el).attr('data-role', 'page')
-    page.render()
-    $("body").append($(page.el))
-    transition = $.mobile.defaultPageTransition
-    if (@firstPage)
-      transition = 'none'
-      @firstPage = false
-    console.log("Slide 5!")
-    $.mobile.changePage($(page.el), {changeHash:false, transition: transition})
-    console.log("Slide 6!")
      

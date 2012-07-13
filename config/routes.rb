@@ -10,6 +10,7 @@ AsqUs::Application.routes.draw do
 
   match 'map' => 'home#map'
   match 'faq' => 'home#faq'
+  match 'demo' => 'home#demo'
 
   devise_for :users
 
