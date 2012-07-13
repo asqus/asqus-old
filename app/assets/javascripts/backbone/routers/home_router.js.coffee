@@ -11,6 +11,8 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
 
   index: ->
     @view = new AsqUs.Views.Home.DemoView(polls: @polls)
+    console.log("view")
+    console.log(@view)
     $("#answer").html(@view.render().el)
     
      

@@ -2,7 +2,7 @@ AsqUs.Views.Home ||= {}
 
 class AsqUs.Views.Home.DemoView extends Backbone.View
 
-  el: "demo"
+  className: "georgeWASHINGTON"
 
   initialize: (options) ->
     @polls = options.polls
@@ -32,7 +32,7 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
     poll = @options.polls.at(@count)
     if (poll)
       pollID = poll.attributes.poll_id
-      $('.card .front.face').html(@pollTemplate(poll.toJSON()))
+      $(@el).html(@pollTemplate(poll.toJSON()))
       #$('.card').click ->
       #  $('.card .back.face').show()
       #  $('.card').toggleClass('flip')
@@ -70,7 +70,7 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
     
 
   pollAnswer: (clicked) ->
-    alert('pa')
+    console.log("GW")
     if($(clicked.currentTarget).hasClass("disabled"))
       return false
     $(clicked.currentTarget).toggleClass("btn-inverse")
@@ -142,7 +142,7 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
       show: 'fade'
       hide: 'fold'
       open: ->
-        $('.ui-widget-overlay').hide().fadeIn();
+        $('.ui-widget-overlay').hide().fadeIn()
       height: 380
       width: 600
       modal: true
