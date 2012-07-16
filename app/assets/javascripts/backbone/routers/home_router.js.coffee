@@ -8,11 +8,12 @@ class AsqUs.Routers.HomeRouter extends Backbone.Router
     ":id/prompt" : "prompt"
     "index"    : "index"
     ".*"       : "index"
+    "intro"    : "index"
 
   index: ->
-    @view = new AsqUs.Views.Home.DemoView(polls: @polls)
-    console.log("view")
-    console.log(@view)
-    $("#answer").html(@view.render().el)
+    @answer_view = new AsqUs.Views.Home.DemoView(polls: @polls)
+    $("#answer").html(@answer_view.render().el)
+    @ask_view = new AsqUs.Views.Home.AskView()
+    $("#ask").html(@ask_view.render().el)
     
      
