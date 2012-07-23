@@ -3,10 +3,16 @@ AsqUs.Views.Polls ||= {}
 class AsqUs.Views.Polls.ResultView extends Backbone.View
   template: JST["backbone/templates/polls/result"]
   
+  
   render: ->
     @model.attributes.share_url = document.location.href
     $(@el).html(@template(@model.toJSON() ))
     return this
+  
+
+  setModel: (newModel) ->
+    @model = newModel
+  
 
   generatePlots: ->
     console.log "Plots for"

@@ -2,7 +2,7 @@ AsqUs.Views.Home ||= {}
 
 class AsqUs.Views.Home.DemoView extends Backbone.View
 
-  className: "georgeWASHINGTON"
+  className: 'hello'
 
   initialize: (options) ->
     @polls = options.polls
@@ -18,37 +18,32 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
 
   events: ->
     "click .pollAnswer" : "pollAnswer"
-    "click .pollNext" : "populatePoll"
-    "click .pollTest" : "populatePoll"
-    "hover .speech_bubble" : "hover"
-    "click .speech_bubble" : "replacePoll"
-    "click .pip" : "replacePoll"
-    
+    "click .pollNext" : "nextPoll"
+
+
+  nextPoll: ->
+    @_renderNextPoll()
+    @$el.find('.card').toggleClass('flip')
+        
   
-  answerPane: ->
+  _renderNextPoll: ->
     @count++
     if(! @options.polls.at(@count))
       @count = 0
     poll = @options.polls.at(@count)
     if (poll)
-      pollID = poll.attributes.poll_id
-      $(@el).html(@pollTemplate(poll.toJSON()))
-      #$('.card').click ->
-      #  $('.card .back.face').show()
-      #  $('.card').toggleClass('flip')
-      @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
-    @_initializePollResults(poll)
-      
+      @$el.html(@pollTemplate(poll.toJSON()))
+      @resultView ||= new AsqUs.Views.Polls.ResultView(model: poll)
+      @resultView.setModel(poll)
+      @_initializePollResults(poll)
 
 
   hover:(e) ->
     $(e.currentTarget).toggleClass("hl_temp")
 
   render: ->
-    @answerPane()
+    @_renderNextPoll()
     return this
-  
-  populatePoll: ->
 
 
   replacePoll:(e) ->
@@ -70,7 +65,6 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
     
 
   pollAnswer: (clicked) ->
-    console.log("GW")
     if($(clicked.currentTarget).hasClass("disabled"))
       return false
     $(clicked.currentTarget).toggleClass("btn-inverse")
@@ -124,7 +118,12 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
         $(".poll-question-container").fadeIn('fast')
       )
     $(".pollAnswer").attr("disabled", "disabled")
+    
+    @$el.find('.card .back.face').html(@resultView.render().el)
     @resultView.generatePlots()
+    @$el.find('.card .back.face').show()
+    @$el.find('.card').toggleClass('flip')
+
 
   _initializePollResults:(poll) ->
     if(!poll)
