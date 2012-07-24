@@ -2,7 +2,7 @@ AsqUs.Views.Home ||= {}
 
 class AsqUs.Views.Home.AskView extends Backbone.View
 
-  className: "askExample"
+  className: "ask_view"
 
   initialize: (options) ->
     @num_polls_completed = 0
@@ -11,14 +11,17 @@ class AsqUs.Views.Home.AskView extends Backbone.View
   askTemplate: JST["backbone/templates/home/ask_view"]
 
   events: ->
-    "click .submitQuestion" : "showQuestion"
+    "submit form.askQuestion" : "showQuestion"
+    #"click .submitQuestion" : "showQuestion"
   
   showQuestion: ->
-    @resultView = new AsqUs.Views.Polls.ResultView(model: poll)
-    $(@el).html(@resultView)
+    console.log("check it")
+    #@resultView = new AsqUs.Views.Polls.ResultView(model: poll)
+    $(@el).html(@askTemplate)
+    return false
 
   render: ->
-    $(@el).html(@askTemplate())
+    $(@el).html(@askTemplate)
     return this
   
 
