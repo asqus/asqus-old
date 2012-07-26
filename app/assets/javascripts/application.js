@@ -43,7 +43,6 @@ $(function() {
 
 function emailSignupListener() {
   $('form.email_signup').on('submit', function(event) {
-    console.log(event.target);
     var container = $(event.target.parentElement)
     container.children('form').hide()
     container.children('.loader').show()
