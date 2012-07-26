@@ -114,6 +114,7 @@ class Poll < ActiveRecord::Base
         reps.level as rep_level,
         users.first_name,
         users.last_name,
+        users.gender,
         users.zipcode,
         users.id as user_id,
         poll_option_sets.options_type,

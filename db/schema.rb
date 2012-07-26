@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708025425) do
+ActiveRecord::Schema.define(:version => 20120724022403) do
 
   create_table "groups", :force => true do |t|
     t.string   "title"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20120708025425) do
     t.datetime "locked_at"
     t.boolean  "admin",                  :default => false, :null => false
     t.string   "status"
+    t.string   "gender"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

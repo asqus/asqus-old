@@ -3,6 +3,7 @@ jake_schwartz =
   User.create(
     :first_name => 'Jake',
     :last_name => 'Schwartz',
+    :gender => 'm',
     :email => 'jake@asq.us',
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
@@ -15,6 +16,7 @@ adam_williams =
   User.create({
     :first_name => 'Adam',
     :last_name => 'Williams',
+    :gender => 'm',
     :email => 'adam@asq.us',
     :zipcode => '49341',
     :password => 'asdfasdf',
@@ -26,6 +28,7 @@ adam_williams =
 brad_chick = User.create({
   :first_name => 'Brad',
   :last_name => 'Chick',
+  :gender => 'm',
   :email => 'brad@asq.us',
   :zipcode => '48471',
   :password => 'asdfasdf',
@@ -38,6 +41,7 @@ rick_snyder =
   User.create(
     :first_name => 'Rick',
     :last_name => 'Snyder',
+    :gender => 'm',
     :email => 'rick@snyder.com',
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
@@ -58,6 +62,7 @@ justin_amash =
   User.create({
     :first_name => 'Justin',
     :last_name => 'Amash',
+    :gender => 'm',
     :email => 'justin@amash.com',
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
@@ -77,6 +82,7 @@ john_hieftje =
   User.create({
     :first_name => 'John',
     :last_name => 'Hieftje',
+    :gender => 'm',
     :email => 'jhieftje@ci.ann-arbor.mi.us',
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
