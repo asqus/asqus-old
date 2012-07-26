@@ -1,10 +1,27 @@
-<div class="poll-result well span10">
+<%
+  if (gender == 'm')
+    var gender_subject = 'He';
+  else if (gender == 'f')
+    var gender_subject = 'She';
+  else
+    var gender_subject = 'He/she';
+%>
 
+<div class="poll-result well span10">
+    <!-- 27" x 56" -->
     <h2>Your voice has been heard!</h2>
     <% if(poll_type == "user") {%>
     <h3>Voter <%= first_name %> <%= last_name %>, thanks you for your response.</h3>
     <% } else {%> 
-    <h3><%= first_name %> <%= last_name %> thanks you for your response.</h3>
+    <h3>
+      <span class="rep-name"
+        title="Your elected official"
+        data-content="Your elected official will see the community's responses. Engagement on AsqUs is way better than inconvenient town hall meetings and expensive phone polls!"
+        data-placement="bottom">
+          <%= first_name %> <%= last_name %>
+      </span>
+      thanks you for your response.
+    </h3>
     <p style="font-size:16px;"><i><%= rep_title %></i></p>
     <% } %>
     <div class="poll-plot-container poll-result-plot">

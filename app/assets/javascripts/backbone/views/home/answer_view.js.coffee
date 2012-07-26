@@ -20,7 +20,7 @@ class AsqUs.Views.Home.AnswerView extends Backbone.View
 
   nextPoll: ->
     @_renderNextPoll()
-    @$el.find('.card').toggleClass('flip')
+    @$el.find('.card').removeClass('flip')
         
   
   _renderNextPoll: ->
@@ -33,10 +33,11 @@ class AsqUs.Views.Home.AnswerView extends Backbone.View
       @resultView ||= new AsqUs.Views.Polls.ResultView(model: poll)
       @resultView.setModel(poll)
       @_initializePollResults(poll)
-
+	
 
   render: ->
     @_renderNextPoll()
+    @$el.find('.card').popover()
     return this
 
 
@@ -116,7 +117,13 @@ class AsqUs.Views.Home.AnswerView extends Backbone.View
     @$el.find('.card .back.face').html(@resultView.render().el)
     @resultView.generatePlots()
     @$el.find('.card .back.face').show()
-    @$el.find('.card').toggleClass('flip')
+    that = this
+    setTimeout ->
+      that.$el.find('.card').addClass('flip')
+      setTimeout ->
+        that.$el.find('.rep-name').popover('show')
+      , 2000
+    , 200
 
 
   _initializePollResults:(poll) ->
