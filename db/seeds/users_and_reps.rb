@@ -8,6 +8,7 @@ jake_schwartz =
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
     :zipcode => '49855',
+    :state_id => 23,
     :admin => true
   )
 
@@ -19,6 +20,7 @@ adam_williams =
     :gender => 'm',
     :email => 'adam@asq.us',
     :zipcode => '49341',
+    :state_id => 23,
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
     :admin => true
@@ -31,6 +33,7 @@ brad_chick = User.create({
   :gender => 'm',
   :email => 'brad@asq.us',
   :zipcode => '48471',
+  :state_id => 23,
   :password => 'asdfasdf',
   :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
   :admin => true
@@ -45,6 +48,7 @@ rick_snyder =
     :email => 'rick@snyder.com',
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
+    :state_id => 23,
     :zipcode => '48854',
     :admin => false
   )
@@ -67,6 +71,7 @@ justin_amash =
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
     :zipcode => '49501',
+    :state_id => 23,
     :admin => false
   })
   Rep.create({
@@ -87,6 +92,7 @@ john_hieftje =
     :password => 'asdfasdf',
     :encrypted_password => "$2a$10$eG5ccm77VIotfxwo0jmySuHhvUnaR8fH1Sjf7do9BJbwlVfPhhk36",
     :zipcode => '48104',
+    :state_id => 23,
     :admin => false
   })
   Rep.create({
