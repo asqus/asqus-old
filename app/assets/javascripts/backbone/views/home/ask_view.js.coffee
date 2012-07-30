@@ -16,8 +16,12 @@ class AsqUs.Views.Home.AskView extends Backbone.View
   
   showQuestion: ->
     console.log("check it")
+    formData = $('form.askQuestion')
+    @title = $('input.askTitle').val()
+    @prompt = $('textarea.askPrompt').val()
+    console.log(formData)
     #@resultView = new AsqUs.Views.Polls.ResultView(model: poll)
-    $(@el).html(@askTemplate)
+    $(@el).html(@title + @prompt)
     return false
 
   render: ->

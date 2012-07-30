@@ -13,6 +13,9 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
   
 
   render: ->
+    @intro_view = new AsqUs.Views.Home.IntroView()
+    $("#introPane").html(@intro_view.render().el)
+
     @ask_view = new AsqUs.Views.Home.AskView()
     $("#ask").html(@ask_view.render().el)
 
