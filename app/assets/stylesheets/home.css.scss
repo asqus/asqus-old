@@ -10,7 +10,27 @@
   border: 1px solid black;
 }
 
+.introOverlay {
+  height: 400px;
+  width: 470px;
+  overflow: hidden;
+  position: absolute;
+}
 
+.introTitle {
+  position: relative;
+  left: 600px;
+  top: 120px;
+}
+
+#tablet {
+  background-image: url(ipad.png);
+  background-repeat: no-repeat;
+  width: 450px;
+  height: 576px;
+  position: absolute;
+  top: 70px;
+}
 
 .card-container {
   -webkit-perspective: 1000px;
