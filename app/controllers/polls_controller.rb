@@ -11,7 +11,7 @@ class PollsController < ApplicationController
   # On error:
   #   {"errors": ["error1", "error2"]}
   
-    @poll = Poll.where(:id => params[:id]).first
+    @poll = Poll.where(:id => params[:id] || params[:poll_id]).first
     option_index = params[:option]
     response = Hash.new
     
@@ -19,7 +19,7 @@ class PollsController < ApplicationController
       (response['errors'] ||= []) << 'That poll was not found.'
       return respond_with response
     end
-    
+
     if cookies["voted_on_poll_#{@poll.id}"] === 'true' && false
       (response['errors'] ||= []) << 'You have already voted on this poll.'
       return respond_with response
@@ -47,6 +47,50 @@ class PollsController < ApplicationController
   end
   
   
+  def for_user
+  # API requires
+  #   :user_id
+  # responds with
+  #   [ [1287903600, 79], [1287990000, 25], [1288076400, 61] ]
+  # On error:
+  #   {"errors": ["error1", "error2"]}
+  #
+    response = Hash.new
+    begin
+      @polls = Poll.received_by_user(params[:user_id])
+    rescue ActiveRecord::RecordNotFound
+      (response['errors'] ||= []) << 'That user does not exist'
+      return respond_with response
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @polls }
+      format.json { render :json => @polls }
+      format.xml { render :xml => @polls }
+    end
+  end
+
+
+  def totals
+  # API requires
+  #   :poll_id
+  # responds with
+  #  [{"count":10,"option":"Yes"},{"count":12,"option":"No"}]
+  # On error:
+  #   {"errors": ["error1", "error2"]}
+  #
+    @poll = Poll.where(:id => params[:id] || params[:poll_id]).first
+    response = Hash.new
+
+    if @poll.nil?
+      (response['errors'] ||= []) << 'That poll was not found.'
+      return respond_with response
+    end
+
+    respond_with @poll.totals
+  end
+
+
   def votes_per_day
   # API requires
   #   :id
@@ -55,7 +99,7 @@ class PollsController < ApplicationController
   # On error:
   #   {"errors": ["error1", "error2"]}
   #
-    @poll = Poll.where(:id => params[:id]).first
+    @poll = Poll.where(:id => params[:id] || params[:poll_id]).first
     response = Hash.new
     
     if @poll.nil?
@@ -79,17 +123,19 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @polls }
+      format.xml { render :xml => @polls }
     end
   end
 
   # GET /polls/1
   # GET /polls/1.json
   def show
-    @poll = Poll.find(params[:id])
+    @poll = Poll.find_with_details(params[:id] || params[:poll_id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @poll }
+      format.xml { render :xml => @poll }
     end
   end
 
@@ -101,6 +147,7 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @poll }
+      format.xml { render :xml => @poll }
     end
   end
 

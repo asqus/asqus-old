@@ -1,6 +1,7 @@
 class Rep < ActiveRecord::Base
   belongs_to :user
   belongs_to :state
+  has_many :polls_created, :through => :user
   
   def self.find_by_latlong(lat, long)
     logger.info 'Looking up rep for ' + lat.to_s + ' ' + long.to_s

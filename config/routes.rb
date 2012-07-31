@@ -7,24 +7,29 @@ AsqUs::Application.routes.draw do
 
   match 'users/home' => 'users#home', :as => :user_home
   match 'reps/home' => 'reps#home', :as => :rep_home
+  match 'users/:id/reps' => 'users#get_reps', :as => :reps_for_user
 
   match 'map' => 'home#map'
   match 'faq' => 'home#faq'
   match 'demo' => 'home#demo'
 
-  devise_for :users
+  match 'polls/for_user' => 'polls#for_user', :as => :polls_for_user
+  match 'polls/:id/vote/:option' => 'polls#vote', :as => :poll_vote
+  match 'polls/:id/votes_per_day' => 'polls#votes_per_day', :as => :poll_votes_per_day
+  match 'polls/:id/totals' => 'polls#totals', :as => :poll_totals
 
+  match 'states/by_abbreviation' => 'states#by_abbreviation'
+
+  post 'users/email_signup' => 'users#create'
+
+  devise_for :users
   resources :users
   resources :reps
   resources :votes
   resources :poll_option_sets
   resources :groups
   resources :polls
-
-  match 'polls/:id/vote/:option' => 'polls#vote', :as => :poll_vote
-  match 'polls/:id/votes_per_day' => 'polls#votes_per_day', :as => :poll_votes_per_day
-
-  post 'users/email_signup' => 'users#create'
+  resources :states
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

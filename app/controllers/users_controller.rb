@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  respond_to :json, :xml
+
   before_filter :authenticate_user!, :only => [ :home ]
 
   def home
@@ -9,6 +11,14 @@ class UsersController < ApplicationController
       return redirect_to current_user
     end
   end
+
+
+  def get_reps
+    user_id = params[:id] || params[:user_id]
+    user = User.where(:id => user_id).first
+    respond_with user.reps
+  end
+
 
   # GET /users
   # GET /users.json
@@ -24,7 +34,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id] || params[:user_id])
 
     respond_to do |format|
       format.html # show.html.erb

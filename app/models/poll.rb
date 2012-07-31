@@ -81,6 +81,13 @@ class Poll < ActiveRecord::Base
     output << ' ]'
   end
 
+
+  def self.received_by_user(user_id)
+    user = User.find(user_id)
+    return nil if user.nil?
+    user.received_polls
+  end
+
   
   def options
     if self.poll_option_set
@@ -100,7 +107,14 @@ class Poll < ActiveRecord::Base
   end
   
   
-  def self.all_with_details
+  def self.find_with_details(id)
+    self.all_with_details(id).first
+  end
+
+
+  def self.all_with_details(poll_id = nil)
+  # Optional poll_id to fetch single poll
+  #
     results = Poll.find_by_sql(
       "SELECT
         polls.*,
@@ -109,8 +123,8 @@ class Poll < ActiveRecord::Base
         polls.created_at as published_at,
         reps.id as rep_id,
         reps.title as rep_title,
-        reps.district as rep_district,
-        reps.chamber as rep_chamber,
+          reps.district as rep_district,
+          reps.chamber as rep_chamber,
         reps.level as rep_level,
         users.first_name,
         users.last_name,
@@ -124,7 +138,8 @@ class Poll < ActiveRecord::Base
       LEFT JOIN users ON users.id = polls.creator_id
       LEFT JOIN reps ON reps.user_id = users.id
       LEFT JOIN poll_option_sets ON poll_option_sets.id = polls.poll_option_set_id
-      WHERE polls.published = #{ActiveRecord::Base.connection.quoted_true}"
+      WHERE polls.published = #{ActiveRecord::Base.connection.quoted_true}
+      #{poll_id && 'AND polls.id = ' + ActiveRecord::Base.connection.quote(poll_id)}"
     )
     results.each_with_index { |poll, i|
       case poll['zipcode']
