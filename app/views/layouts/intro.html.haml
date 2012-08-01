@@ -13,6 +13,12 @@
 
     = render :partial => 'common_partials/header'
 
+    #headerIntro
+      .container
+        .row#introPane
+        
+          = render :partial => 'common_partials/email_signup'
+
     #main.container
       = yield
 

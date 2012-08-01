@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @polls = Poll.all_with_details
+    render :layout => 'intro'
   end
 
 

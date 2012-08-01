@@ -10,24 +10,40 @@
   border: 1px solid black;
 }
 
-.introOverlay {
-  height: 400px;
-  width: 470px;
-  overflow: hidden;
-  position: absolute;
+
+#introPane {
+  
+}
+
+#introOverlay {
+  float: left;
+  overflow: auto;
 }
 
 .introTitle {
   position: relative;
-  left: 600px;
-  top: 120px;
+  float: right;
+  margin-top: 40px;
+  text-shadow: 0 0 1em #FFF, 0 0 1em #FFF, 0 0 1em #FFF;
 }
 
+  .introTitle h1 {
+    text-shadow:
+      0 0 1em #FFF,
+      0 0 1em #FFF,
+      0 0 1em #FFF,
+      0 0 1em #FFF;
+    font-size: 60px;
+    line-height: 66px;
+  }
+
+  .introTitle h1, .introTitle h2 {
+    color: #012345;
+  }
+
+
 #tablet {
-  background-image: url(ipad.png);
-  background-repeat: no-repeat;
-  width: 450px;
-  height: 576px;
+  width: 500px;
   position: absolute;
   top: 70px;
 }
