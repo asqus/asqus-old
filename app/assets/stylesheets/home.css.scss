@@ -5,11 +5,16 @@
 
 
 .pane {
-  height: 600px;
-  margin: 50px 0 0;
+  height: 400px;
+  margin: 20px 0 0;
   border: 1px solid black;
 }
 
+#main {
+  z-index: 10;
+  position: relative;
+  background-color: white;
+}
 
 #introPane {
   
@@ -17,13 +22,15 @@
 
 #introOverlay {
   float: left;
-  overflow: auto;
+  height: 400px;
+  width: 450px;
 }
 
 .introTitle {
-  position: relative;
+  position: absolute;
   float: right;
   margin-top: 40px;
+  margin-left: 500px;
   text-shadow: 0 0 1em #FFF, 0 0 1em #FFF, 0 0 1em #FFF;
 }
 
@@ -43,9 +50,11 @@
 
 
 #tablet {
-  width: 500px;
-  position: absolute;
-  top: 70px;
+  width: 450px;
+  height: 576px;
+  position: fixed;
+  top: 100px;
+  background: url("ipad.png") 0 0 no-repeat;
 }
 
 .card-container {

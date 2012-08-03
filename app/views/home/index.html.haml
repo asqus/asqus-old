@@ -9,10 +9,6 @@
 
 .row.span12
   .row
-    .pane#topPanel
-      = render :partial => 'common_partials/email_signup'
-      
-  .row
     .pane#answer
       = render :partial => 'common_partials/answer'
       
@@ -28,6 +24,10 @@
     .pane#signup
       = render :partial => 'common_partials/signup'
 
+  .row
+    .pane#topPanel
+      = render :partial => 'common_partials/email_signup'
+ 
   -# __
     .feature.span8.pull-left
       = image_tag 'team/asqus_image_dumpster.jpg'
