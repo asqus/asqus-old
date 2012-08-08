@@ -29,6 +29,7 @@ $(function() {
   });
   $.localScroll({
     axis: 'y',
+    lazy: true,
     //offset: {
     //  top: '100px'
     //},

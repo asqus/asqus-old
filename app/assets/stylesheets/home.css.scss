@@ -2,18 +2,132 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.askQuestion{
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.answerQuestion{
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+.communityView{
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.leftText{
+  width: 450px;
+  float: left;
+  margin: 45px 15px 6px;
+}
 
+.rightText{
+  position: relative;
+  width: 450px;
+  float: right;
+  margin: 15px 15px 6px;
+}
+
+.leftText h1{
+//  font-size: 50px;
+//  line-height: 1.1;
+  text-shadow:
+      0 0 1em #FFF,
+      0 0 1em #FFF,
+      0 0 1em #FFF,
+      0 0 1em #FFF;
+  font-size: 45px;
+  line-height: 55px;
+  color: #012345;
+
+}
+
+.rightText h1{
+//  font-size: 50px;
+//  line-height: 1.1;
+  text-shadow:
+      0 0 1em #FFF,
+      0 0 1em #FFF,
+      0 0 1em #FFF,
+      0 0 1em #FFF;
+  font-size: 45px;
+  line-height: 55px;
+  color: #012345;
+}
+.fb-quiz {
+  position: relative;
+  float: left;
+  height: 258px;
+  width: 400px;
+  background-image: url('fb-amash.png');
+  margin-top: 40px;
+
+}
+.rightImage {
+  position: relative;
+  float: left;
+  height: 379px;
+  width: 306px;
+  margin-top: 20px;
+}
+.rightImage .front {
+  position: absolute;
+  z-index: 20;
+  left: 120px;
+  background-image: url('letter_to_mayor_tilt.png');
+  height: 379px;
+  width: 306px;
+}
+.rightImage .front:hover {
+
+  -moz-transform: scale(1) rotate(25deg) translateX(150px) translateY(20px) skewX(10deg) skewY(10deg);
+  -webkit-transform: scale(1) rotate(25deg) translateX(150px) translateY(20px) skewX(10deg) skewY(10deg);
+  -o-transform: scale(1) rotate(25deg) translateX(150px) translateY(20px) skewX(10deg) skewY(10deg);
+  -ms-transform: scale(1) rotate(25deg) translateX(150px) translateY(20px) skewX(10deg) skewY(10deg);
+  transform: scale(1) rotate(25deg) translateX(150px) translateY(20px) skewX(10deg) skewY(10deg);
+}
+
+.rightImage .back {
+  position: absolute;
+  z-index: 10;
+  background-image: url('letter_to_mayor_tweet.png');
+  height: 379px;
+  width: 306px;
+}
+.iphone-display {
+  position: relative;
+  z-index: 20;
+  background-image: url('iphone_container.png');
+  height: 654px;
+  width: 363px;
+  float: left;
+}
 
 .pane {
   height: 400px;
-  margin: 20px 0 0;
-  border: 1px solid black;
+  margin: 20px 0 45px;
 }
 
 #main {
   z-index: 10;
   position: relative;
-  background-color: white;
+  background-image: url("/assets/natural_paper.png");
+  //Shadow
+  -webkit-box-shadow: 2px 2px 20px 1px rgba(1, 1, 1, 1);
+  box-shadow: 2px 2px 20px 1px rgba(1, 1, 1, 1);
+  //Corners
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  
+}
+
+.intro_container {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #introPane {
@@ -24,6 +138,7 @@
   float: left;
   height: 400px;
   width: 450px;
+  position: relative;
 }
 
 .introTitle {

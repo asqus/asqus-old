@@ -19,7 +19,7 @@ class AsqUs.Views.Home.DemoView extends Backbone.View
     @ask_view = new AsqUs.Views.Home.AskView()
     $("#ask").html(@ask_view.render().el)
 
-    @answer_view = new AsqUs.Views.Home.AnswerView(polls: @polls)
+    @answer_view = new AsqUs.Views.Home.AnswerView()
     $("#answer").html(@answer_view.render().el)
 
     @community_view = new AsqUs.Views.Home.CommunityView()

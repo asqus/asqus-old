@@ -9,12 +9,12 @@
 
 .row.span12
   .row
-    .pane#answer
-      = render :partial => 'common_partials/answer'
-      
-  .row
     .pane#ask
       = render :partial => 'common_partials/ask'
+ 
+  .row
+    .pane#answer
+      = render :partial => 'common_partials/answer'
       
   .row
     .pane#community
@@ -22,10 +22,6 @@
       
   .row
     .pane#signup
-      = render :partial => 'common_partials/signup'
-
-  .row
-    .pane#topPanel
       = render :partial => 'common_partials/email_signup'
  
   -# __
